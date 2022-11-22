@@ -2,7 +2,7 @@ import { renderHook } from "@testing-library/react";
 import mockInitialStore from "../../mocks/store/mockInitialStore";
 import { ShowModalActionPayload } from "../../redux/features/uiSlice/types";
 import { showModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
-import { userRegisterCredentials } from "../../redux/features/userSlice/types";
+import { UserRegisterCredentials } from "../../redux/features/userSlice/types";
 import ProviderWrapper from "../../testUtils/ProviderWrapper";
 import useUser from "./useUser";
 
@@ -15,7 +15,7 @@ describe("Given the custom hook useUser", () => {
         const { result } = renderHook(() => useUser(), {
           wrapper: ProviderWrapper,
         });
-        const newUser: userRegisterCredentials = {
+        const newUser: UserRegisterCredentials = {
           username: "AdminAdmin",
           email: "Admin@test.com",
           password: "admin123",
@@ -39,7 +39,7 @@ describe("Given the custom hook useUser", () => {
           wrapper: ProviderWrapper,
         });
 
-        const newUser: userRegisterCredentials = {
+        const newUser: UserRegisterCredentials = {
           username: "AdminRepetad",
           email: "",
           password: "",

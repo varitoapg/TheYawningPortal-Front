@@ -1,4 +1,4 @@
-export interface userRegisterCredentials {
+export interface UserRegisterCredentials {
   username: string;
   email: string;
   password: string;

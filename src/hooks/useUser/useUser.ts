@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { showModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
-import { userRegisterCredentials } from "../../redux/features/userSlice/types";
+import { UserRegisterCredentials } from "../../redux/features/userSlice/types";
 import { useAppDispatch } from "../../redux/hooks";
 import userRoutes from "../../routes/userRoute";
 
@@ -11,7 +11,7 @@ const useUser = () => {
 
   const { registerRoute, usersRoute } = userRoutes;
 
-  const userRegister = async (registerFormData: userRegisterCredentials) => {
+  const userRegister = async (registerFormData: UserRegisterCredentials) => {
     try {
       await axios.post(
         `${baseUrl}${usersRoute}${registerRoute}`,
