@@ -1,6 +1,13 @@
-import { mockUiInitialState } from "../../../mocks/states/uiState";
+import {
+  mockUiInitialState,
+  mockUiModalOpenState,
+} from "../../../mocks/states/uiState";
 import { ShowModalActionPayload, UiState } from "./types";
-import { showModalActionCreator, uiReducer } from "./uiSlice";
+import {
+  hideModalActionCreator,
+  showModalActionCreator,
+  uiReducer,
+} from "./uiSlice";
 
 describe("Given a uiReducer", () => {
   describe("And it's invoked", () => {
@@ -17,7 +24,7 @@ describe("Given a uiReducer", () => {
     });
   });
 
-  describe("When its reducer showLoading is invoked with a payload with isError true and text 'Test error'", () => {
+  describe("When its reducer showModal is invoked with a payload with isError true and text 'Test error'", () => {
     test("Then it should return a new state with isError true and text 'Test error", () => {
       const expectedUiState: UiState = {
         ...mockUiInitialState,
@@ -36,6 +43,26 @@ describe("Given a uiReducer", () => {
       const newUiState = uiReducer(
         mockUiInitialState,
         showModalActionCreator(actionPayload)
+      );
+
+      expect(newUiState).toStrictEqual(expectedUiState);
+    });
+  });
+
+  describe("When its reducer hideModal is invoked when there is a state with isOpen is true", () => {
+    test("Then it should return a new state with isOpen false", () => {
+      const expectedUiState: UiState = {
+        ...mockUiInitialState,
+        modal: {
+          isError: false,
+          text: "",
+          isOpen: false,
+        },
+      };
+
+      const newUiState = uiReducer(
+        mockUiModalOpenState,
+        hideModalActionCreator()
       );
 
       expect(newUiState).toStrictEqual(expectedUiState);
