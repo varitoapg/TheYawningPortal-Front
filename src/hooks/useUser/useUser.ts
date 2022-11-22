@@ -11,7 +11,7 @@ const useUser = () => {
 
   const { registerRoute, usersRoute } = userRoutes;
 
-  const registerUser = async (registerFormData: userRegisterCredentials) => {
+  const userRegister = async (registerFormData: userRegisterCredentials) => {
     try {
       await axios.post(
         `${baseUrl}${usersRoute}${registerRoute}`,
@@ -21,7 +21,7 @@ const useUser = () => {
       dispatch(
         showModalActionCreator({
           isError: false,
-          text: "Welcome, traveler!",
+          text: "Crit! Welcome, traveler!",
         })
       );
     } catch (error: unknown) {
@@ -36,7 +36,7 @@ const useUser = () => {
     }
   };
   return {
-    registerUser,
+    userRegister,
   };
 };
 
