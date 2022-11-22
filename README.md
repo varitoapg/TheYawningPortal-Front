@@ -1,46 +1,213 @@
-# Getting Started with Create React App
+# Data
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+## Data layer
 
-## Available Scripts
+### UI
 
-In the project directory, you can run:
+- loading: boolean
+- modal
+  - isOpen: boolean
+  - isError: boolean
+  - text: string
 
-### `npm start`
+### User
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<!-- - email: string -->
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- id: string
+- username: string
+- token: string
+- isLogged: boolean
 
-### `npm test`
+### Character
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- image: string
+- name: string
+- race: string
+- class: string
+- speed: number
+- stats:
+  - strength: number
+  - dexterity: number
+  - constitution: number
+  - intelligence: number
+  - wisdom: number
+  - charisma: number
+- background: string
+- details: string
+- isAlive: boolean
+- createdBy: Object
 
-### `npm run build`
+### Characters
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- characters: Character[]
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Data modification
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### UI
 
-### `npm run eject`
+- loading
+  - set to true
+  - set to false
+- modal
+  - isOpen
+    - set to true
+    - set to false
+  - text
+    - set text
+  - isError
+    - set to true
+    - set to false
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### User
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- isLogged
+  - set to true
+  - set to false
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Character
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- getAllCharacters
+- findCharacterById
+- deleteCharacter
+- updateCharacter
+- toggleLifeCharacter
+- toggleFavouriteCharacter
 
-## Learn More
+# Components
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## App
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Show data
+
+- Show a heading level 2 with 'Welcome travelers!' and 2 spans on navigate to /welcome
+- Show a LoginForm on navigate to /login
+- Show a RegisterForm on navigate to /register
+- Show Loading if isLoading is true
+- When isLogged is true
+  - Show a CharacterList of the user on navigate to /home
+
+### Get actions
+
+## Header
+
+### Show data
+
+- Show a heading level 1 with 'The Yawning Portal'
+- Show a D&D icon as a link
+- Show a Navigation component
+
+### Get actions
+
+- Navigate to Welcome on click
+
+## Navigation
+
+### Show data
+
+- When isLogged is true
+  - Show a link to Home
+  - Show a link to Create
+  - Show a link to Community
+  - Show a button with Logout
+- When isLogged is false
+  - Show a link to Register
+  - Show a link to Login
+
+### Get actions
+
+## Button
+
+### Show data
+
+- Show the received text
+
+### Get actions
+
+- Call the received action on click
+
+## RegisterForm
+
+### Show data
+
+- Show an input with label 'Username'
+- Show an input with label 'Password'
+- Show an input with label 'Email'
+- Show a button with text 'Register'
+- Show a text 'Are you new, traveler?'
+- Show a link with text 'Log in'
+
+### Get actions
+
+- Submit form on enter or click 'Register'
+- Navigate to Login page on click 'Log in'
+
+## LoginForm
+
+### Show data
+
+- Show an input with label 'Username'
+- Show an input with label 'Password'
+- Show a button with text 'Log in'
+- Show a text 'Do you want a pint of mead?'
+- Show a link with text 'Register'
+
+### Get actions
+
+- Submit form on enter or click 'Log in'
+- Navigate to Register page on click 'Register'
+
+## Character
+
+### Show data
+
+- Show a heading level 2 with the received 'name' in desktop
+- Show the received image with the received 'name' as aria label
+- Show a span with the received 'name'
+- Show a span with the received 'race'
+- Show a span with the received 'class'
+- Show a span with the received 'speed'
+- Show 6 spans with the received 'stats'
+- Show a span with the received 'background'
+- Show a span with the received 'details'
+- Show an icon of a pencil
+
+### Get actions
+
+- Navigate to "edit"
+
+## CharacterCard
+
+### Show data
+
+- Show the received image with the received 'name' as aria label
+- Show a span with the received 'name'
+- Show a span with the received 'race'
+- Show a span with the received 'class'
+- Show 6 spans with the received 'stats'
+- Show a skull or ank icon if character isAlive
+- Show a broken heart icon
+
+### Get actions
+
+- Navigate to Detail on click (image)
+- Toggle isAlive on click (skull or ank)
+- Delete character on click (broken heart)
+
+## CharacterCardList
+
+### Show data
+
+- Show a CharacterCard for each character received
+
+### Get actions
+
+## FIlter
+
+### Show data
+
+- Show a dropdown wit all classes as option
+
+### Get actions
+
+- Change the filter on click
