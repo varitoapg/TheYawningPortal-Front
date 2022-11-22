@@ -8,3 +8,12 @@ export const mockUiInitialState: UiState = {
     text: "",
   },
 };
+
+export const mockUiModalOpenState: UiState = {
+  isLoading: false,
+  modal: {
+    isError: true,
+    isOpen: true,
+    text: "Error modal",
+  },
+};
