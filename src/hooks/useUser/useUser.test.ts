@@ -46,7 +46,7 @@ describe("Given the custom hook useUser", () => {
         };
         const actionPayload: ShowModalActionPayload = {
           isError: true,
-          text: "There was an error during registration. Try again!",
+          text: "username already exists",
         };
 
         await result.current.userRegister(newUser);
