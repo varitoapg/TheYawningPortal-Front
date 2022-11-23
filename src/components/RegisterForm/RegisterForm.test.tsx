@@ -65,8 +65,8 @@ describe("Given the RegisterForm Component", () => {
       });
 
       await userEvent.type(usernameInput!, userInput.username);
-      await userEvent.type(passwordInput!, userInput.password);
-      await userEvent.type(expectedInputEmail!, userInput.email);
+      await userEvent.type(passwordInput, userInput.password);
+      await userEvent.type(expectedInputEmail, userInput.email);
       await userEvent.click(registerButton!);
 
       expect(mockUserRegister).toHaveBeenCalledWith(userInput);
