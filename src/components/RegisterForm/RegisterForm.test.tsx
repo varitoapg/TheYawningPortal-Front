@@ -1,6 +1,16 @@
 import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { UserRegisterCredentials } from "../../redux/features/userSlice/types";
 import renderWithProviders from "../../testUtils/renderWithProvider";
 import RegisterForm from "./RegisterForm";
+
+const mockUserRegister = jest.fn();
+
+jest.mock("../../hooks/useUser/useUser", () => {
+  return () => ({
+    userRegister: mockUserRegister,
+  });
+});
 
 describe("Given the RegisterForm Component", () => {
   const expectedUsername = "Username";
@@ -30,6 +40,36 @@ describe("Given the RegisterForm Component", () => {
       expect(expectedInputEmail).toBeInTheDocument();
       expect(buttonRegister).toBeInTheDocument();
       expect(linkLogin).toBeInTheDocument();
+    });
+  });
+
+  describe("When it is rendered and the user submits username 'admin' and password 'admin123", () => {
+    test("Then userRegister should be called with the details entered", async () => {
+      const userInput: UserRegisterCredentials = {
+        username: "admin",
+        password: "admin123",
+        email: "test@email.com",
+      };
+
+      renderWithProviders(<RegisterForm />);
+
+      const usernameInput = screen.queryByRole("textbox", {
+        name: expectedUsername,
+      });
+      const passwordInput = screen.getByLabelText(expectedPassword);
+      const expectedInputEmail = screen.getByRole("textbox", {
+        name: expectedEmail,
+      });
+      const registerButton = screen.queryByRole("button", {
+        name: expectedButtonText,
+      });
+
+      await userEvent.type(usernameInput!, userInput.username);
+      await userEvent.type(passwordInput!, userInput.password);
+      await userEvent.type(expectedInputEmail!, userInput.email);
+      await userEvent.click(registerButton!);
+
+      expect(mockUserRegister).toHaveBeenCalledWith(userInput);
     });
   });
 });
