@@ -3,6 +3,7 @@ import { showModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
 import { UserRegisterCredentials } from "../../redux/features/userSlice/types";
 import { useAppDispatch } from "../../redux/hooks";
 import userRoutes from "../../routes/userRoute";
+import { AxiosResponseBody } from "./types";
 
 const useUser = () => {
   const dispatch = useAppDispatch();
@@ -25,14 +26,12 @@ const useUser = () => {
         })
       );
     } catch (error: unknown) {
-      if (error instanceof AxiosError) {
-        dispatch(
-          showModalActionCreator({
-            isError: true,
-            text: "There was an error during registration. Try again!",
-          })
-        );
-      }
+      dispatch(
+        showModalActionCreator({
+          isError: true,
+          text: (error as AxiosError<AxiosResponseBody>).response?.data.error!,
+        })
+      );
     }
   };
   return {

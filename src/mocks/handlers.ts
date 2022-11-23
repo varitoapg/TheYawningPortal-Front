@@ -11,7 +11,10 @@ export const handlers = [
       const { username } = await req.json();
 
       if (username === "AdminRepetad") {
-        return res(ctx.status(409), ctx.json({}));
+        return res(
+          ctx.status(409),
+          ctx.json({ error: "username already exists" })
+        );
       }
 
       return res(ctx.status(201), ctx.json({}));
