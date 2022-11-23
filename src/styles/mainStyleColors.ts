@@ -1,38 +1,33 @@
-interface Color {
-  base: string;
-  darkest?: string;
-  light?: string;
-  lightest?: string;
-}
+import { Color } from "./types";
 
 const mainStyleColors = {
   primary: {
-    base: "#C11F15",
-    darkest: "#9A1911",
-    light: "#CD4C44",
-    lightest: "#E08F8A",
+    base: "#c11f15",
+    darkest: "#9a1911",
+    light: "#cd4c44",
+    lightest: "#e08f8A",
   } as Color,
 
   ink: {
-    base: "#221F27",
+    base: "#221f27",
     darkest: "#000000",
-    light: "#4E4C52",
-    lightest: "#918F93",
+    light: "#4e4c52",
+    lightest: "#918f93",
   } as Color,
 
   Whites: {
-    base: "#E6E6E6",
-    lightest: "#FFFFFF",
-    light: "#CCCCCC",
-    darkest: "#7F7F7F",
+    base: "#e6e6e6",
+    lightest: "#ffffff",
+    light: "#cccccc",
+    darkest: "#7f7f7f",
   } as Color,
 
   errors: {
-    base: "#F03738",
+    base: "#f03738",
   } as Color,
 
   success: {
-    base: "#3CC13B",
+    base: "#3cc13b",
   } as Color,
 };
 
