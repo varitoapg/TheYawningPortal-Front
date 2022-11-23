@@ -1,8 +1,11 @@
 import { useState } from "react";
+import useUser from "../../hooks/useUser/useUser";
 import { UserRegisterCredentials } from "../../redux/features/userSlice/types";
 import RegisterFormStyled from "./RegisterFormStyled";
 
 const RegisterForm = (): JSX.Element => {
+  const { userRegister } = useUser();
+
   const initialRegisterFormData: UserRegisterCredentials = {
     username: "",
     password: "",
@@ -20,9 +23,21 @@ const RegisterForm = (): JSX.Element => {
     });
   };
 
+  const handleSubmit = async (event: React.SyntheticEvent) => {
+    event.preventDefault();
+
+    const formDataToSubmit: UserRegisterCredentials = {
+      username: formRegisterData.username,
+      password: formRegisterData.password,
+      email: formRegisterData.email,
+    };
+
+    userRegister(formDataToSubmit);
+  };
+
   return (
     <RegisterFormStyled>
-      <form className="login-form">
+      <form className="login-form" onClick={handleSubmit}>
         <div className="login-form__item">
           <label className="login-form__label" htmlFor="username">
             Username
@@ -71,9 +86,9 @@ const RegisterForm = (): JSX.Element => {
             required
           />
         </div>
+        <button className="button">Register</button>
       </form>
       <div className="register">
-        <button className="button">Register</button>
         <span className="register__title">Do you want a pint of mead?</span>
         <a className="register__link" href="/">
           Log in

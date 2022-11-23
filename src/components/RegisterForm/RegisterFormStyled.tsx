@@ -9,12 +9,13 @@ const RegisterFormStyled = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 60px;
   width: 100%;
 
   .login-form {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 30px;
 
     &__item {
@@ -43,12 +44,6 @@ const RegisterFormStyled = styled.div`
         text-align: center;
       }
     }
-  }
-
-  .register {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 
     .button {
       padding: ${mainStyleSizes.buttonPadding};
@@ -62,11 +57,18 @@ const RegisterFormStyled = styled.div`
       color: ${mainStyleColors.Whites.lightest};
       background-color: ${mainStyleColors.primary.base};
       margin-bottom: 1rem;
+      margin-top: 30px;
 
       :hover {
         background-color: ${mainStyleColors.primary.darkest};
       }
     }
+  }
+
+  .register {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     &__title {
       font-size: ${mainStyleFonts.titleFontSize};

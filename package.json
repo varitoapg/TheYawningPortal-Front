@@ -52,5 +52,10 @@
     "@types/styled-components": "^5.1.26",
     "husky": "^8.0.0",
     "msw": "^0.49.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "!./src/index.tsx"
+    ]
   }
 }
