@@ -22,9 +22,9 @@ const mainStyleColors = {
 
   Whites: {
     base: "#E6E6E6",
-    darkest: "#FFFFFF",
+    lightest: "#FFFFFF",
     light: "#CCCCCC",
-    lightest: "#7F7F7F",
+    darkest: "#7F7F7F",
   } as Color,
 
   errors: {
