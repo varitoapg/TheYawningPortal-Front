@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { UserLoginCredentials } from "../../hooks/useUser/types";
-import LoginFormStyled from "./LoginFormStyled";
+import RegisterFormStyled from "../RegisterForm/RegisterFormStyled";
 
 const LoginForm = (): JSX.Element => {
   const initialLogindFormData: UserLoginCredentials = {
@@ -18,7 +18,7 @@ const LoginForm = (): JSX.Element => {
   };
 
   return (
-    <LoginFormStyled>
+    <RegisterFormStyled>
       <form className="login-form">
         <div className="login-form__item">
           <label className="login-form__label" htmlFor="username">
@@ -59,7 +59,7 @@ const LoginForm = (): JSX.Element => {
           Register
         </a>
       </div>
-    </LoginFormStyled>
+    </RegisterFormStyled>
   );
 };
 
