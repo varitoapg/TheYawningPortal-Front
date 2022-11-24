@@ -1,6 +1,7 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { UserRegisterCredentials } from "../../redux/features/userSlice/types";
+import { store } from "../../redux/store";
 import renderWithProviders from "../../testUtils/renderWithProvider";
 import RegisterForm from "./RegisterForm";
 
@@ -21,7 +22,7 @@ describe("Given the RegisterForm Component", () => {
 
   describe("When it's rendered", () => {
     test("Then it should return 2 inputs text element 'Username' and 'Email', a password input 'Password', 1 button 'Register', and a link 'Log in'", () => {
-      renderWithProviders(<RegisterForm />);
+      renderWithProviders(<RegisterForm />, { store });
 
       const expectedInputUser = screen.getByRole("textbox", {
         name: expectedUsername,
