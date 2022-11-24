@@ -3,8 +3,11 @@ import { render, RenderOptions } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { PropsWithChildren } from "react";
 import { Provider } from "react-redux";
+import { ThemeProvider } from "styled-components";
 import { uiReducer } from "../redux/features/uiSlice/uiSlice";
 import { RootState, store } from "../redux/store";
+import GlobalStyle from "../styles/GlobalStyle";
+import mainTheme from "../styles/mainTheme/mainTheme";
 
 interface ExtendedRenderOptions extends RenderOptions {
   preloadedState?: PreloadedState<RootState>;
@@ -28,7 +31,12 @@ export const renderWithProviders = (
     return (
       <>
         <BrowserRouter>
-          <Provider store={store}>{children}</Provider>
+          <Provider store={store}>
+            <ThemeProvider theme={mainTheme}>
+              <GlobalStyle />
+              {children}
+            </ThemeProvider>
+          </Provider>
         </BrowserRouter>
       </>
     );

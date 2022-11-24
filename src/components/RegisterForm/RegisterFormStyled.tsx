@@ -1,7 +1,4 @@
 import styled from "styled-components";
-import mainStyleColors from "../../styles/mainStyleColors";
-import mainStyleFonts from "../../styles/mainStyleFonts";
-import mainStyleSizes from "../../styles/mainStyleSizes";
 
 const RegisterFormStyled = styled.div`
   height: 100vh;
@@ -25,42 +22,43 @@ const RegisterFormStyled = styled.div`
     }
 
     &__label {
-      color: ${mainStyleColors.ink.base};
-      font-size: ${mainStyleFonts.titleFontSize};
-      font-weight: ${mainStyleFonts.mainFontBold};
-      text-shadow: 0px 3px 2px ${mainStyleColors.Whites.light};
+      color: ${(props) => props.theme.color.ink.base};
+      font-size: ${(props) => props.theme.font.main.sizes.title};
+      font-weight: ${(props) => props.theme.font.main.weights.bold};
+      text-shadow: 0px 3px 2px ${(props) => props.theme.color.whites.light};
     }
 
     &__input {
       width: 320px;
       height: 80px;
-      border-radius: ${mainStyleSizes.borderRadiusMinimum};
-      border: 1px solid ${mainStyleColors.ink.light};
-      box-shadow: 0px 4px 15px -5px ${mainStyleColors.ink.darkest};
+      border-radius: ${(props) => props.theme.size.borderRadius.minimum};
+
+      border: 1px solid ${(props) => props.theme.color.ink.light};
+      box-shadow: 0px 4px 15px -5px ${(props) => props.theme.color.ink.darkest};
 
       ::placeholder {
-        font-size: ${mainStyleFonts.bodyFontSize};
-        color: ${mainStyleColors.ink.lightest};
+        font-size: ${(props) => props.theme.font.main.sizes.body};
+        color: ${(props) => props.theme.color.ink.lightest};
         text-align: center;
       }
     }
 
     .button {
-      padding: ${mainStyleSizes.buttonPadding};
-      border-radius: ${mainStyleSizes.borderRadiusMinimum};
+      padding: ${(props) => props.theme.size.padding.regular};
+      border-radius: ${(props) => props.theme.size.borderRadius.minimum};
       border: none;
       width: 140px;
       height: 40px;
-      font-family: ${mainStyleFonts.mainFont};
-      font-size: ${mainStyleFonts.titleFontSize};
-      font-weight: ${mainStyleFonts.mainFontRegular};
-      color: ${mainStyleColors.Whites.lightest};
-      background-color: ${mainStyleColors.primary.base};
+      font-family: ${(props) => props.theme.font.main.family};
+      font-size: ${(props) => props.theme.font.main.sizes.title};
+      font-weight: ${(props) => props.theme.font.main.weights.regular};
+      color: ${(props) => props.theme.color.whites.lightest};
+      background-color: ${(props) => props.theme.color.primary.base};
       margin-bottom: 1rem;
       margin-top: 30px;
 
       :hover {
-        background-color: ${mainStyleColors.primary.darkest};
+        background-color: ${(props) => props.theme.color.primary.darkest};
       }
     }
   }
@@ -71,16 +69,16 @@ const RegisterFormStyled = styled.div`
     align-items: center;
 
     &__title {
-      font-size: ${mainStyleFonts.titleFontSize};
-      font-weight: ${mainStyleFonts.mainFontRegular};
+      font-size: ${(props) => props.theme.font.main.sizes.title};
+      font-weight: ${(props) => props.theme.font.main.weights.regular};
     }
 
     &__link {
       margin-top: 5px;
       text-decoration: underline;
-      font-size: ${mainStyleFonts.titleFontSize};
-      color: ${mainStyleColors.primary.base};
-      font-weight: ${mainStyleFonts.mainFontRegular};
+      font-size: ${(props) => props.theme.font.main.sizes.title};
+      color: ${(props) => props.theme.color.primary.base};
+      font-weight: ${(props) => props.theme.font.main.weights.regular};
     }
   }
 `;

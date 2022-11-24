@@ -1,6 +1,4 @@
 import { createGlobalStyle } from "styled-components";
-import mainStyleColors from "./mainStyleColors";
-import mainStyleFonts from "./mainStyleFonts";
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -9,8 +7,8 @@ const GlobalStyle = createGlobalStyle`
 body {
   height: 100vh;
   margin: 0;
-  font-family: ${mainStyleFonts.mainFont};
-  color: ${mainStyleColors.ink.base};
+  font-family: ${(props) => props.theme.font.main.family};
+  color: ${(props) => props.theme.color.ink.base};
 }
 h1,
 h2,
@@ -19,8 +17,8 @@ h4,
 h5,
 h6 {
   margin: 0;
-  font-family: ${mainStyleFonts.mainFont};
-  color: ${mainStyleColors.Whites.lightest};
+  font-family:  ${(props) => props.theme.font.main.family};
+  color: ${(props) => props.theme.color.whites.lightest};
 }
 a {
   text-decoration: none;
