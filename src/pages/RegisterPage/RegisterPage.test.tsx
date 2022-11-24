@@ -1,5 +1,4 @@
 import { screen } from "@testing-library/react";
-import RegisterForm from "../../components/RegisterForm/RegisterForm";
 import { store } from "../../redux/store";
 import renderWithProviders from "../../testUtils/renderWithProvider";
 import RegisterPage from "./RegisterPage";
