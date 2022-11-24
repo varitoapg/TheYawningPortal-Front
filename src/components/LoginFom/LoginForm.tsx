@@ -1,8 +1,12 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { UserLoginCredentials } from "../../hooks/useUser/types";
+import useUser from "../../hooks/useUser/useUser";
 import RegisterFormStyled from "../RegisterForm/RegisterFormStyled";
 
 const LoginForm = (): JSX.Element => {
+  const { userLogin } = useUser();
+
   const initialLogindFormData: UserLoginCredentials = {
     username: "",
     password: "",
@@ -16,10 +20,20 @@ const LoginForm = (): JSX.Element => {
       [event.target.id]: event.target.value,
     });
   };
+  const handleSubmit = async (event: React.SyntheticEvent) => {
+    event.preventDefault();
+
+    const formDataToSubmit = {
+      username: formLoginData.username,
+      password: formLoginData.password,
+    };
+
+    await userLogin(formDataToSubmit);
+  };
 
   return (
     <RegisterFormStyled>
-      <form className="login-form">
+      <form className="login-form" onSubmit={handleSubmit}>
         <div className="login-form__item">
           <label className="login-form__label" htmlFor="username">
             Username
@@ -55,9 +69,9 @@ const LoginForm = (): JSX.Element => {
       </form>
       <div className="register">
         <span className="register__title">Are you new, traveler?</span>
-        <a className="register__link" href="/">
+        <Link className="register-link" to="/register">
           Register
-        </a>
+        </Link>
       </div>
     </RegisterFormStyled>
   );
