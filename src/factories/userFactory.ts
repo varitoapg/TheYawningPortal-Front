@@ -1,6 +1,5 @@
 import { faker } from "@faker-js/faker";
 import { Factory } from "fishery";
-import { f } from "msw/lib/SetupApi-0d3126ba";
 import {
   UserAllInformation,
   UserRegisterCredentials,
