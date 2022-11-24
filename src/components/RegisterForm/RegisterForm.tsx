@@ -37,7 +37,7 @@ const RegisterForm = (): JSX.Element => {
 
   return (
     <RegisterFormStyled>
-      <form className="login-form" onClick={handleSubmit}>
+      <form className="login-form" onSubmit={handleSubmit}>
         <div className="login-form__item">
           <label className="login-form__label" htmlFor="username">
             Username
