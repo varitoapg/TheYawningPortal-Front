@@ -1,5 +1,6 @@
 import { faker } from "@faker-js/faker";
 import { Factory } from "fishery";
+import { UserLoginCredentials } from "../hooks/useUser/types";
 import {
   UserRegisterCredentials,
   UserState,
@@ -18,5 +19,11 @@ const randomUserCredentials = Factory.define<UserRegisterCredentials>(() => ({
   username: faker.internet.userName(),
 }));
 
+const randomLoginCredentials = Factory.define<UserLoginCredentials>(() => ({
+  password: faker.internet.password(12),
+  username: faker.internet.userName(),
+}));
+
 export const getRandomUserState = () => randomUserState.build();
 export const getRandomUserCredentials = () => randomUserCredentials.build();
+export const getRandomLoginCredentials = () => randomLoginCredentials.build();
