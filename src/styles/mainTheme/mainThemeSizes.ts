@@ -9,6 +9,7 @@ const mainThemeSizes: DefaultThemeSizes = {
   },
   padding: {
     regular: "6px",
+    overall: "20px",
   },
 };
 

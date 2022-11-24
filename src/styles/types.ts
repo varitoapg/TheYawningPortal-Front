@@ -42,6 +42,7 @@ export interface SizesStructure {
 
 export interface PaddingStructure {
   regular: string;
+  overall: string;
   top?: string;
   right?: string;
   bottom?: string;

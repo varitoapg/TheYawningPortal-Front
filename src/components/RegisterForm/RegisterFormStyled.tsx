@@ -31,10 +31,14 @@ const RegisterFormStyled = styled.div`
     &__input {
       width: 320px;
       height: 80px;
+      padding: ${(props) => props.theme.size.padding.regular};
       border-radius: ${(props) => props.theme.size.borderRadius.minimum};
-
       border: 1px solid ${(props) => props.theme.color.ink.light};
       box-shadow: 0px 4px 15px -5px ${(props) => props.theme.color.ink.darkest};
+      text-align: center;
+      font-family: inherit;
+      font-size: ${(props) => props.theme.font.main.sizes.title};
+      color: ${(props) => props.theme.color.ink.base};
 
       ::placeholder {
         font-size: ${(props) => props.theme.font.main.sizes.body};
