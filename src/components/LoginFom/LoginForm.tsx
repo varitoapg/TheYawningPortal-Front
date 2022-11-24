@@ -69,7 +69,7 @@ const LoginForm = (): JSX.Element => {
       </form>
       <div className="register">
         <span className="register__title">Are you new, traveler?</span>
-        <Link className="register-link" to="/register">
+        <Link className="register__link" to="/register">
           Register
         </Link>
       </div>

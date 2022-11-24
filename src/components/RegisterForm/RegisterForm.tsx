@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import useUser from "../../hooks/useUser/useUser";
 import { UserRegisterCredentials } from "../../redux/features/userSlice/types";
 import RegisterFormStyled from "./RegisterFormStyled";
@@ -90,9 +91,9 @@ const RegisterForm = (): JSX.Element => {
       </form>
       <div className="register">
         <span className="register__title">Do you want a pint of mead?</span>
-        <a className="register__link" href="/">
+        <Link className="register__link" to="/login">
           Log in
-        </a>
+        </Link>
       </div>
     </RegisterFormStyled>
   );
