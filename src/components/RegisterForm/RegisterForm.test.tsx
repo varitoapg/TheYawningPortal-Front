@@ -1,5 +1,6 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { getRandomUserCredentials } from "../../factories/userFactory";
 import { UserRegisterCredentials } from "../../redux/features/userSlice/types";
 import { store } from "../../redux/store";
 import renderWithProviders from "../../testUtils/renderWithProvider";
@@ -46,11 +47,7 @@ describe("Given the RegisterForm Component", () => {
 
   describe("When it is rendered and the user submits username 'admin' and password 'admin123", () => {
     test("Then userRegister should be called with the details entered", async () => {
-      const userInput: UserRegisterCredentials = {
-        username: "admin",
-        password: "admin123",
-        email: "test@email.com",
-      };
+      const userInput: UserRegisterCredentials = getRandomUserCredentials();
 
       renderWithProviders(<RegisterForm />);
 
