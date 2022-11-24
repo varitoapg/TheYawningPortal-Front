@@ -34,6 +34,7 @@ const useUser = () => {
       );
     }
   };
+
   return {
     userRegister,
   };
