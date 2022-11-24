@@ -12,3 +12,8 @@ export interface User {
 export interface UserState extends User {
   isLogged: boolean;
 }
+
+export interface UserAllInformation extends User {
+  password: string;
+  email: string;
+}
