@@ -51,7 +51,7 @@ const ModalStyled = styled.div`
       vertical-align: middle;
     }
 
-    .button {
+    .button-modal {
       background-color: transparent;
       border: none;
       top: 14px;

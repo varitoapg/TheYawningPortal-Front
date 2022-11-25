@@ -1,4 +1,7 @@
 import { FaDiceD20, FaTimes } from "react-icons/fa";
+import { hideModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
+import { useAppDispatch } from "../../redux/hooks";
+import Button from "../Button/Button";
 import ModalStyled from "./ModalStyled";
 
 interface ModalProps {
@@ -7,6 +10,8 @@ interface ModalProps {
 }
 
 const Modal = ({ isError, text }: ModalProps): JSX.Element => {
+  const dispatch = useAppDispatch();
+
   return (
     <ModalStyled>
       <div className={`modal modal${isError ? "--error" : ""}`}>
@@ -18,11 +23,18 @@ const Modal = ({ isError, text }: ModalProps): JSX.Element => {
           <span>{isError ? `Fail!` : `Crit!`}</span>
           <span>{text}</span>
         </div>
-        <button className="button" aria-label="Close modal">
-          <FaTimes
-            className={`button__icon button__icon${isError ? "--error" : ""}`}
-          />
-        </button>
+        <Button
+          ariaLabel="Close Modal"
+          classname="-modal"
+          children={
+            <FaTimes
+              className={`button-modal__icon button-modal__icon${
+                isError ? "--error" : ""
+              }`}
+            />
+          }
+          action={() => dispatch(hideModalActionCreator())}
+        />
       </div>
     </ModalStyled>
   );
