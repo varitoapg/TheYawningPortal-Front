@@ -26,6 +26,12 @@ const ModalStyled = styled.div`
       border: 3px solid ${(props) => props.theme.color.errors.base};
     }
 
+    &-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 300px;
+    }
     .icon-container {
       display: flex;
       flex-direction: column;
