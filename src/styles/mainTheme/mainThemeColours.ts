@@ -26,7 +26,7 @@ const mainThemeColours: DefaultThemeColour = {
     base: "#f03738",
   },
 
-  success: {
+  successColor: {
     base: "#3cc13b",
   },
 };

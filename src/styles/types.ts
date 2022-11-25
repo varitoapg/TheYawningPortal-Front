@@ -10,7 +10,7 @@ export interface DefaultThemeColour {
   ink: Color;
   whites: Color;
   errors: Color;
-  success: Color;
+  successColor: Color;
 }
 
 export interface FontSizes {

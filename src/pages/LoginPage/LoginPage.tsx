@@ -3,9 +3,11 @@ import LoginPageStyled from "./LoginPageStyled";
 
 const LoginPage = () => {
   return (
-    <LoginPageStyled>
-      <LoginForm />
-    </LoginPageStyled>
+    <>
+      <LoginPageStyled>
+        <LoginForm />
+      </LoginPageStyled>
+    </>
   );
 };
 
