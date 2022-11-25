@@ -1,6 +1,10 @@
 import renderWithProviders from "../../testUtils/renderWithProvider";
 import Modal from "./Modal";
 import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import mockInitialStore from "../../mocks/store/mockInitialStore";
+
+const dispatchSpy = jest.spyOn(mockInitialStore, "dispatch");
 
 describe("Given a Modal component", () => {
   describe("When it's render with a text 'Sorry!' and isError true", () => {
@@ -36,6 +40,24 @@ describe("Given a Modal component", () => {
       expect(expectedModalText).toBeInTheDocument();
       expect(expectedIcon).toBeInTheDocument();
       expect(expectedModalInformation).toBeInTheDocument();
+    });
+  });
+
+  describe("When it's rendered and click the button", () => {
+    test("Then dispatch should be called with hideModalActionCreator", async () => {
+      const modalText = "Congratulations";
+      const modalLabel = "Close Modal";
+
+      renderWithProviders(<Modal isError={true} text={modalText} />, {
+        store: mockInitialStore,
+      });
+
+      const expectedButton = screen.getByLabelText(modalLabel);
+
+      await userEvent.click(expectedButton!);
+
+      expect(expectedButton).toBeInTheDocument();
+      expect(dispatchSpy).toHaveBeenCalled();
     });
   });
 });

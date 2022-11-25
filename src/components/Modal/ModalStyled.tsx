@@ -51,13 +51,14 @@ const ModalStyled = styled.div`
       vertical-align: middle;
     }
 
-    .button {
+    .button-modal {
       background-color: transparent;
       border: none;
       top: 14px;
       width: 50px;
       height: 50px;
       padding: 0px;
+      margin: 0px;
       &__icon {
         color: ${(props) => props.theme.color.successColor.base};
         width: 50px;

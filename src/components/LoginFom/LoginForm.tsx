@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { UserLoginCredentials } from "../../hooks/useUser/types";
 import useUser from "../../hooks/useUser/useUser";
+import Button from "../Button/Button";
 import RegisterFormStyled from "../RegisterForm/RegisterFormStyled";
 
 const LoginForm = (): JSX.Element => {
@@ -64,8 +65,7 @@ const LoginForm = (): JSX.Element => {
             required
           />
         </div>
-
-        <button className="button">Log in</button>
+        <Button children="Log in" ariaLabel="Log in" />
       </form>
       <div className="register">
         <span className="register__title">Are you new, traveler?</span>
