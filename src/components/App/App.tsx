@@ -1,9 +1,15 @@
 import { Route, Routes } from "react-router-dom";
 import LoginPage from "../../pages/LoginPage/LoginPage";
 import RegisterPage from "../../pages/RegisterPage/RegisterPage";
+import { useAppSelector } from "../../redux/hooks";
+import Modal from "../Modal/Modal";
 import AppStyled from "./AppStyled";
 
 const App = () => {
+  const {
+    modal: { text, isError, isOpen },
+  } = useAppSelector((state) => state.ui);
+
   return (
     <AppStyled>
       <Routes>
@@ -11,6 +17,8 @@ const App = () => {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>
+
+      {isOpen && <Modal isError={isError} text={text} />}
     </AppStyled>
   );
 };
