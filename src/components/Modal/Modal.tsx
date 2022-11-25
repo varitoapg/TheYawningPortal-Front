@@ -11,6 +11,9 @@ interface ModalProps {
 
 const Modal = ({ isError, text }: ModalProps): JSX.Element => {
   const dispatch = useAppDispatch();
+  const closeModal = () => {
+    dispatch(hideModalActionCreator());
+  };
 
   return (
     <ModalStyled>
@@ -33,7 +36,7 @@ const Modal = ({ isError, text }: ModalProps): JSX.Element => {
               }`}
             />
           }
-          action={() => dispatch(hideModalActionCreator())}
+          action={closeModal}
         />
       </div>
     </ModalStyled>

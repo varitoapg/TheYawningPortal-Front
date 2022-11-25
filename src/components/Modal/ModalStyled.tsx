@@ -58,6 +58,7 @@ const ModalStyled = styled.div`
       width: 50px;
       height: 50px;
       padding: 0px;
+      margin: 0px;
       &__icon {
         color: ${(props) => props.theme.color.successColor.base};
         width: 50px;
