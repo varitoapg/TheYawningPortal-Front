@@ -3,14 +3,15 @@ import LoginPage from "../../pages/LoginPage/LoginPage";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 import RegisterPage from "../../pages/RegisterPage/RegisterPage";
 import { useAppSelector } from "../../redux/hooks";
+import Loading from "../Loading/Loading";
 import Modal from "../Modal/Modal";
 import AppStyled from "./AppStyled";
 
 const App = () => {
   const {
+    isLoading,
     modal: { text, isError, isOpen },
   } = useAppSelector((state) => state.ui);
-
   return (
     <AppStyled>
       <Routes>
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>
 
+      {isLoading && <Loading />}
       {isOpen && <Modal isError={isError} text={text} />}
     </AppStyled>
   );
