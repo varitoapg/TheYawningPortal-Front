@@ -17,11 +17,25 @@ jest.mock("jwt-decode", () => {
   return () => ({ id: "testid", username: "admin" } as CustomTokenPayload);
 });
 
-localStorageMock.setItem("token", "token");
-
 describe("Given a useToken custom hook", () => {
+  describe("When its method getToken is invoked and there isn't a token in local storage", () => {
+    test("Then dispatch shouldn't be called", () => {
+      const { result } = renderHook(() => useToken(), {
+        wrapper: ProviderWrapper,
+      });
+
+      result.current.getToken();
+
+      expect(dispatchSpy).not.toHaveBeenCalledWith(
+        userLoginActionCreator(testProfile)
+      );
+    });
+  });
+
   describe("When its method getToken is invoked and there is the token 'testtoken' in local storage", () => {
     test("Then it should call dispatch with a login user action", () => {
+      localStorageMock.setItem("token", "token");
+
       const { result } = renderHook(() => useToken(), {
         wrapper: ProviderWrapper,
       });
