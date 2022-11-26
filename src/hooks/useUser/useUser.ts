@@ -5,9 +5,13 @@ import {
   User,
   UserRegisterCredentials,
 } from "../../redux/features/userSlice/types";
-import { userLoginActionCreator } from "../../redux/features/userSlice/userSlice";
+import {
+  userLoginActionCreator,
+  userLogoutActionCreator,
+} from "../../redux/features/userSlice/userSlice";
 import { useAppDispatch } from "../../redux/hooks";
 import userRoutes from "../../routes/userRoute";
+import useToken from "../useToken/useToken";
 import {
   AxiosResponseBody,
   CustomTokenPayload,
@@ -16,6 +20,7 @@ import {
 
 const useUser = () => {
   const dispatch = useAppDispatch();
+  const { deleteToken } = useToken();
 
   const baseUrl = process.env.REACT_APP_API_URL;
 
@@ -87,9 +92,16 @@ const useUser = () => {
     }
   };
 
+  const userLogout = () => {
+    deleteToken();
+
+    dispatch(userLogoutActionCreator());
+  };
+
   return {
     userRegister,
     userLogin,
+    userLogout,
   };
 };
 
