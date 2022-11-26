@@ -6,7 +6,7 @@ const mainThemeFonts: DefaultThemeFonts = {
     family: "Karla, sans-serif",
     sizes: {
       display: "3rem",
-      headline: "2rem",
+      headline: "1.5rem",
       title: "1.25rem",
       body: "0.875rem",
     },
