@@ -47,4 +47,16 @@ describe("Given a useToken custom hook", () => {
       );
     });
   });
+
+  describe("When its method deleteToken is invoked and there is the token 'testtoken' in local storage", () => {
+    test("Then the token should be removed from local storage", async () => {
+      const { result } = renderHook(() => useToken(), {
+        wrapper: ProviderWrapper,
+      });
+
+      await result.current.deleteToken();
+
+      expect(localStorageMock.getItem("token")).toBe(undefined);
+    });
+  });
 });
