@@ -7,7 +7,10 @@ import ProviderWrapper from "../../testUtils/ProviderWrapper";
 import { CustomTokenPayload } from "./types";
 import useUser from "./useUser";
 import testProfile from "../../mocks/testProfile";
-import { userLoginActionCreator } from "../../redux/features/userSlice/userSlice";
+import {
+  userLoginActionCreator,
+  userLogoutActionCreator,
+} from "../../redux/features/userSlice/userSlice";
 import { getRandomUserCredentials } from "../../factories/userFactory";
 
 const dispatchSpy = jest.spyOn(mockInitialStore, "dispatch");
@@ -16,6 +19,14 @@ const userCredentials: UserRegisterCredentials = getRandomUserCredentials();
 
 jest.mock("jwt-decode", () => {
   return () => ({ id: "testid", username: "admin" } as CustomTokenPayload);
+});
+
+const mockRemoveToken = jest.fn();
+
+jest.mock("../useToken/useToken", () => {
+  return () => ({
+    deleteToken: mockRemoveToken,
+  });
 });
 
 jest.spyOn(Object.getPrototypeOf(window.localStorage), "setItem");
@@ -125,6 +136,19 @@ describe("Given the custom hook useUser", () => {
           expectedUser.token
         );
       });
+    });
+  });
+
+  describe("When its method userLogout is invoked", () => {
+    test("Then deleteToken should be called and dispatch should be called with 'userLogoutActionCreator'", () => {
+      const { result } = renderHook(() => useUser(), {
+        wrapper: ProviderWrapper,
+      });
+
+      result.current.userLogout();
+
+      expect(mockRemoveToken).toHaveBeenCalled();
+      expect(dispatchSpy).toBeCalledWith(userLogoutActionCreator());
     });
   });
 });
