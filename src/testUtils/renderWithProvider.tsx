@@ -14,6 +14,7 @@ import { userReducer } from "../redux/features/userSlice/userSlice";
 interface ExtendedRenderOptions extends RenderOptions {
   preloadedState?: PreloadedState<RootState>;
   store?: typeof store;
+  initialEntries?: InitialEntry[];
 }
 
 interface ExtendedPropsWithChildren extends PropsWithChildren {
