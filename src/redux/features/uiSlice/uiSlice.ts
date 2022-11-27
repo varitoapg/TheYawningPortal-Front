@@ -3,6 +3,7 @@ import { UiState } from "./types";
 import showModal from "./reducers/showModal";
 import hideModal from "./reducers/hideModal";
 import showLoading from "./reducers/showLoading";
+import hideLoading from "./reducers/hideLoading";
 
 const initialState: UiState = {
   isLoading: false,
@@ -20,6 +21,7 @@ const uiSlice = createSlice({
     showModal,
     hideModal,
     showLoading,
+    hideLoading,
   },
 });
 
@@ -27,6 +29,7 @@ export const {
   showModal: showModalActionCreator,
   hideModal: hideModalActionCreator,
   showLoading: showLoadingActionCreator,
+  hideLoading: hideLoadingActionCreator,
 } = uiSlice.actions;
 
 export const uiReducer = uiSlice.reducer;

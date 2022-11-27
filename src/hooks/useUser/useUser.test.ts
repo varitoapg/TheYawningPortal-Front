@@ -2,6 +2,7 @@ import { renderHook } from "@testing-library/react";
 import mockInitialStore from "../../mocks/store/mockInitialStore";
 import { ShowModalActionPayload } from "../../redux/features/uiSlice/types";
 import {
+  hideLoadingActionCreator,
   showLoadingActionCreator,
   showModalActionCreator,
 } from "../../redux/features/uiSlice/uiSlice";
@@ -58,7 +59,7 @@ describe("Given the custom hook useUser", () => {
     });
 
     describe("When its method registerUser is invoked with username 'AdminAdmin', that is already in the database", () => {
-      test("Then dispatch should be called with showModalActionCreator with isError true and text 'There was an error during registration. Try again!' also be called with showLoadingActionCreator", async () => {
+      test("Then dispatch should be called with showModalActionCreator with isError true and text 'There was an error during registration. Try again!' also be called with show and hide LoadingActionCreator", async () => {
         const { result } = renderHook(() => useUser(), {
           wrapper: ProviderWrapper,
         });
@@ -75,6 +76,7 @@ describe("Given the custom hook useUser", () => {
           showModalActionCreator(actionPayload)
         );
         expect(dispatchSpy).toHaveBeenCalledWith(showLoadingActionCreator());
+        expect(dispatchSpy).toHaveBeenCalledWith(hideLoadingActionCreator());
       });
     });
   });
@@ -136,6 +138,7 @@ describe("Given the custom hook useUser", () => {
         expect(dispatchSpy).toHaveBeenCalledWith(
           userLoginActionCreator(expectedUser)
         );
+        expect(dispatchSpy).toHaveBeenCalledWith(hideLoadingActionCreator());
         expect(window.localStorage.setItem).toHaveBeenCalledWith(
           "token",
           expectedUser.token
