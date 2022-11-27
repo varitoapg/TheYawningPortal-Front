@@ -7,7 +7,6 @@ const RegisterFormStyled = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-
   .login-form {
     display: flex;
     flex-direction: column;

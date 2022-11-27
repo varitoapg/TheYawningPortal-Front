@@ -2,7 +2,7 @@ import { DefaultThemeFonts } from "../types";
 
 const mainThemeFonts: DefaultThemeFonts = {
   main: {
-    family: "Karla, sans-serif",
+    family: "Karla",
     sizes: {
       display: "2.25rem",
       headline: "1.5rem",
