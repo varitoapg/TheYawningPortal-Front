@@ -5,7 +5,7 @@ const GlobalStyle = createGlobalStyle`
   box-sizing: border-box;
 }
 html {
-   font-family: "Karla";
+  font-family: "Karla";
 }
 body {
   height: 100vh;
