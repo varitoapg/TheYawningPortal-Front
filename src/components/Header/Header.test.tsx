@@ -5,7 +5,7 @@ import Header from "./Header";
 describe("Given a Header component", () => {
   describe("When it is rendered", () => {
     test("Then it should show a heading with 'The Yawning portal' level 1", () => {
-      const expectedTitle = "The Yawing Portal";
+      const expectedTitle = "The Yawning Portal";
 
       renderWithProviders(<Header />);
 
