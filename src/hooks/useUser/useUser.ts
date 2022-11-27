@@ -1,5 +1,6 @@
 import axios, { AxiosError } from "axios";
 import decodeToken from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 import {
   hideLoadingActionCreator,
   showLoadingActionCreator,
@@ -25,6 +26,7 @@ import {
 const useUser = () => {
   const dispatch = useAppDispatch();
   const { deleteToken } = useToken();
+  const navigate = useNavigate();
 
   const baseUrl = process.env.REACT_APP_API_URL;
 
@@ -42,9 +44,10 @@ const useUser = () => {
       dispatch(
         showModalActionCreator({
           isError: false,
-          text: "Crit! Welcome, traveler!",
+          text: "Welcome, traveler!",
         })
       );
+      navigate("/login");
     } catch (error: unknown) {
       dispatch(hideLoadingActionCreator());
       dispatch(

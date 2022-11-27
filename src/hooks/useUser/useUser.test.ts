@@ -37,17 +37,23 @@ jest.spyOn(Object.getPrototypeOf(window.localStorage), "setItem");
 
 Object.setPrototypeOf(window.localStorage.setItem, jest.fn());
 
+const mockedUseNavigate = jest.fn();
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => mockedUseNavigate,
+}));
+
 describe("Given the custom hook useUser", () => {
   describe("And its method userRegister is invoked", () => {
     describe("When it's invoked with username 'AdminAdmin', email 'admin@test.com' and password 'AdminAdmin'", () => {
-      test("Then dispatch should be called once with showModalActionCreator witn isError false and text 'Crit! Welcome, traveler!", async () => {
+      test("Then dispatch should be called once with showModalActionCreator witn isError false and text 'Crit! Welcome, traveler! and call navigate with path '/login'", async () => {
         const { result } = renderHook(() => useUser(), {
           wrapper: ProviderWrapper,
         });
 
         const actionPayload: ShowModalActionPayload = {
           isError: false,
-          text: "Crit! Welcome, traveler!",
+          text: "Welcome, traveler!",
         };
 
         await result.current.userRegister(userCredentials);
@@ -55,6 +61,8 @@ describe("Given the custom hook useUser", () => {
         expect(dispatchSpy).toHaveBeenCalledWith(
           showModalActionCreator(actionPayload)
         );
+
+        expect(mockedUseNavigate).toHaveBeenCalledWith("/login");
       });
     });
 
