@@ -22,18 +22,40 @@ const LoadingStyled = styled.div`
 
   .breathe {
     animation: breathe 5s infinite;
+    fill: #e08f8a;
+    fill-rule: "evenodd";
+    stroke: #ffffff;
+    stroke-miterlimit: 10;
+    stroke-width: 1.5px;
   }
   .first {
     animation-delay: 0.6s;
+    fill: #c11f15;
   }
   .second {
     animation-delay: 1.2s;
+    fill: #9a1911;
+
+    &--darker {
+      fill-rule: "evenodd";
+    }
   }
   .third {
     animation-delay: 1.8s;
+    fill: #9a1911;
+
+    &--darker {
+      fill: #600f0a;
+      fill-rule: "evenodd";
+    }
   }
   .fourth {
     animation-delay: 2.4s;
+    fill: #cd4c44;
+    &--darker {
+      fill: #600f0a;
+      fill-rule: "evenodd";
+    }
   }
 
   @keyframes breathe {
