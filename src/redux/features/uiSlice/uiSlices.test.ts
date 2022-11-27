@@ -1,9 +1,11 @@
 import {
   mockUiInitialState,
+  mockUiLoadingOpenState,
   mockUiModalOpenState,
 } from "../../../mocks/states/uiState";
 import { ShowModalActionPayload, UiState } from "./types";
 import {
+  hideLoadingActionCreator,
   hideModalActionCreator,
   showLoadingActionCreator,
   showModalActionCreator,
@@ -70,7 +72,7 @@ describe("Given a uiReducer", () => {
     });
   });
 
-  describe("When its reducer showLoading is invoked with a initial state with isLoading <false></false>", () => {
+  describe("When its reducer showLoading is invoked with a initial state with isLoading false", () => {
     test("Then it should return a copy of the state with isLoading true", () => {
       const expectedUiState: UiState = {
         isLoading: true,
@@ -84,6 +86,26 @@ describe("Given a uiReducer", () => {
       const newState = uiReducer(
         mockUiInitialState,
         showLoadingActionCreator()
+      );
+
+      expect(expectedUiState).toStrictEqual(newState);
+    });
+  });
+
+  describe("When its reducer hideLoading is invoked with a initial state with isLoading true", () => {
+    test("Then it should return a copy of the state with isLoading false", () => {
+      const expectedUiState: UiState = {
+        isLoading: false,
+        modal: {
+          isError: false,
+          isOpen: false,
+          text: "",
+        },
+      };
+
+      const newState = uiReducer(
+        mockUiLoadingOpenState,
+        hideLoadingActionCreator()
       );
 
       expect(expectedUiState).toStrictEqual(newState);
