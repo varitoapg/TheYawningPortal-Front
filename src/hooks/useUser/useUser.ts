@@ -1,6 +1,9 @@
 import axios, { AxiosError } from "axios";
 import decodeToken from "jwt-decode";
-import { showModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
+import {
+  showLoadingActionCreator,
+  showModalActionCreator,
+} from "../../redux/features/uiSlice/uiSlice";
 import {
   User,
   UserRegisterCredentials,
@@ -28,6 +31,7 @@ const useUser = () => {
 
   const userRegister = async (registerFormData: UserRegisterCredentials) => {
     try {
+      dispatch(showLoadingActionCreator());
       await axios.post(
         `${baseUrl}${usersRoute}${registerRoute}`,
         registerFormData
@@ -51,6 +55,7 @@ const useUser = () => {
 
   const userLogin = async (userCredentials: UserLoginCredentials) => {
     try {
+      dispatch(showLoadingActionCreator());
       const response = await axios.post(
         `${baseUrl}${usersRoute}${loginRoute}`,
         userCredentials

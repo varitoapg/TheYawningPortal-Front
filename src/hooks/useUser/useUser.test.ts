@@ -1,7 +1,10 @@
 import { renderHook } from "@testing-library/react";
 import mockInitialStore from "../../mocks/store/mockInitialStore";
 import { ShowModalActionPayload } from "../../redux/features/uiSlice/types";
-import { showModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
+import {
+  showLoadingActionCreator,
+  showModalActionCreator,
+} from "../../redux/features/uiSlice/uiSlice";
 import { UserRegisterCredentials } from "../../redux/features/userSlice/types";
 import ProviderWrapper from "../../testUtils/ProviderWrapper";
 import { CustomTokenPayload } from "./types";
@@ -55,7 +58,7 @@ describe("Given the custom hook useUser", () => {
     });
 
     describe("When its method registerUser is invoked with username 'AdminAdmin', that is already in the database", () => {
-      test("Then dispatch should be called with showModalActionCreator with isError true and text 'There was an error during registration. Try again!'", async () => {
+      test("Then dispatch should be called with showModalActionCreator with isError true and text 'There was an error during registration. Try again!' also be called with showLoadingActionCreator", async () => {
         const { result } = renderHook(() => useUser(), {
           wrapper: ProviderWrapper,
         });
@@ -71,6 +74,7 @@ describe("Given the custom hook useUser", () => {
         expect(dispatchSpy).toHaveBeenCalledWith(
           showModalActionCreator(actionPayload)
         );
+        expect(dispatchSpy).toHaveBeenCalledWith(showLoadingActionCreator());
       });
     });
   });
@@ -116,7 +120,7 @@ describe("Given the custom hook useUser", () => {
     });
 
     describe("When it's called with a correct username and password", () => {
-      test("Then it should called userLoginActionCreator with the user information", async () => {
+      test("Then it should called dispatch with userLoginActionCreator with the user information and with showLoadingActionCreator", async () => {
         const { result } = renderHook(() => useUser(), {
           wrapper: ProviderWrapper,
         });
@@ -128,6 +132,7 @@ describe("Given the custom hook useUser", () => {
 
         await result.current.userLogin(user);
 
+        expect(dispatchSpy).toHaveBeenCalledWith(showLoadingActionCreator());
         expect(dispatchSpy).toHaveBeenCalledWith(
           userLoginActionCreator(expectedUser)
         );

@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { UiState } from "./types";
 import showModal from "./reducers/showModal";
 import hideModal from "./reducers/hideModal";
+import showLoading from "./reducers/showLoading";
 
 const initialState: UiState = {
   isLoading: false,
@@ -18,12 +19,14 @@ const uiSlice = createSlice({
   reducers: {
     showModal,
     hideModal,
+    showLoading,
   },
 });
 
 export const {
   showModal: showModalActionCreator,
   hideModal: hideModalActionCreator,
+  showLoading: showLoadingActionCreator,
 } = uiSlice.actions;
 
 export const uiReducer = uiSlice.reducer;
