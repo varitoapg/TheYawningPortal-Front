@@ -53,7 +53,6 @@ const RegisterForm = (): JSX.Element => {
             placeholder="Insert your username here"
             onChange={handleFormChange}
             autoComplete="off"
-            required
           />
         </div>
         <div className="login-form__item">
@@ -69,7 +68,6 @@ const RegisterForm = (): JSX.Element => {
             placeholder="Insert your password here"
             onChange={handleFormChange}
             autoComplete="off"
-            required
           />
         </div>
         <div className="login-form__item">
