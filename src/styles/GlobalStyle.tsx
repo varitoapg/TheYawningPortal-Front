@@ -7,8 +7,8 @@ const GlobalStyle = createGlobalStyle`
 body {
   height: 100vh;
   margin: 0;
-  font-family: ${(props) => props.theme.font.main.family};
-  color: ${(props) => props.theme.color.ink.base};
+  font-family: "Karla, sans-serif";
+  color: #221f27;
 }
 h1,
 h2,
@@ -17,8 +17,8 @@ h4,
 h5,
 h6 {
   margin: 0;
-  font-family:  ${(props) => props.theme.font.main.family};
-  color: ${(props) => props.theme.color.whites.lightest};
+  font-family:   "Karla, sans-serif";
+  color: #ffffff;
 }
 a {
   text-decoration: none;

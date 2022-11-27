@@ -1,4 +1,3 @@
-import "@fontsource/karla";
 import { DefaultThemeFonts } from "../types";
 
 const mainThemeFonts: DefaultThemeFonts = {
