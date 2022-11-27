@@ -31,14 +31,8 @@ const ModalStyled = styled.div`
       flex-direction: column;
       justify-content: center;
       max-width: 300px;
+      white-space: pre-line;
     }
-    .icon-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-    }
-
     .icon {
       color: ${(props) => props.theme.color.successColor.base};
       width: 65px;
@@ -49,6 +43,14 @@ const ModalStyled = styled.div`
       }
       &--error {
         color: ${(props) => props.theme.color.errors.base};
+      }
+
+      &-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
       }
     }
 
@@ -65,13 +67,16 @@ const ModalStyled = styled.div`
       height: 50px;
       padding: 0px;
       margin: 0px;
+      position: absolute;
+      top: 0px;
+      right: 10px;
+
       &__icon {
         color: ${(props) => props.theme.color.successColor.base};
         width: 50px;
         height: 50px;
         position: relative;
-        top: -16px;
-        right: -16px;
+
         &--error {
           color: ${(props) => props.theme.color.errors.base};
         }
