@@ -1,6 +1,7 @@
 import axios, { AxiosError } from "axios";
 import decodeToken from "jwt-decode";
 import {
+  hideLoadingActionCreator,
   showLoadingActionCreator,
   showModalActionCreator,
 } from "../../redux/features/uiSlice/uiSlice";
@@ -37,6 +38,7 @@ const useUser = () => {
         registerFormData
       );
 
+      dispatch(hideLoadingActionCreator());
       dispatch(
         showModalActionCreator({
           isError: false,
@@ -44,6 +46,7 @@ const useUser = () => {
         })
       );
     } catch (error: unknown) {
+      dispatch(hideLoadingActionCreator());
       dispatch(
         showModalActionCreator({
           isError: true,
@@ -73,11 +76,12 @@ const useUser = () => {
         token: token,
         username: tokenPayload.username,
       };
-
+      dispatch(hideLoadingActionCreator());
       dispatch(userLoginActionCreator(userLogged));
 
       window.localStorage.setItem("token", token);
     } catch (error: unknown) {
+      dispatch(hideLoadingActionCreator());
       if (error instanceof AxiosError) {
         dispatch(
           showModalActionCreator({
