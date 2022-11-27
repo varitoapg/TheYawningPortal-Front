@@ -47,6 +47,7 @@ const useUser = () => {
           text: "Welcome, traveler!",
         })
       );
+
       navigate("/login");
     } catch (error: unknown) {
       dispatch(hideLoadingActionCreator());
