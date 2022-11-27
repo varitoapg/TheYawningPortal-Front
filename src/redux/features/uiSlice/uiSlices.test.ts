@@ -5,6 +5,7 @@ import {
 import { ShowModalActionPayload, UiState } from "./types";
 import {
   hideModalActionCreator,
+  showLoadingActionCreator,
   showModalActionCreator,
   uiReducer,
 } from "./uiSlice";
@@ -66,6 +67,26 @@ describe("Given a uiReducer", () => {
       );
 
       expect(newUiState).toStrictEqual(expectedUiState);
+    });
+  });
+
+  describe("When its reducer showLoading is invoked with a initial state with isLoading <false></false>", () => {
+    test("Then it should return a copy of the state with isLoading true", () => {
+      const expectedUiState: UiState = {
+        isLoading: true,
+        modal: {
+          isError: false,
+          isOpen: false,
+          text: "",
+        },
+      };
+
+      const newState = uiReducer(
+        mockUiInitialState,
+        showLoadingActionCreator()
+      );
+
+      expect(expectedUiState).toStrictEqual(newState);
     });
   });
 });
