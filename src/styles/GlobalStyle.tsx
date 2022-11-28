@@ -26,7 +26,8 @@ h6 {
 a {
   text-decoration: none;
 }
-ul {
+ul,li {
+  margin:0;
   list-style: none;
 }
 button {
