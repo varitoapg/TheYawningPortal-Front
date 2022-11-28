@@ -7,7 +7,8 @@ describe("Given the LoginPage page", () => {
   const expectedUsername = "Username";
   const expectedPassword = "Password";
   const expectedButtonText = "Log in";
-  const expectedLinkText = "Register";
+  const expectedLinkToRegister = "Go to Register";
+  const expectedLinkToLogin = "Go to Login";
 
   describe("When it's rendered", () => {
     test("Then it should return 2 inputs text element 'Username' and 'Email', a password input 'Password', 1 button 'Log in', and a link 'Register'", () => {
@@ -20,12 +21,14 @@ describe("Given the LoginPage page", () => {
       const buttonLogin = screen.getByRole("button", {
         name: expectedButtonText,
       });
-      const linkLogin = screen.getByRole("link", { name: expectedLinkText });
+      const linkToRegister = screen.queryByLabelText(expectedLinkToRegister);
+      const linkToLogin = screen.queryByLabelText(expectedLinkToLogin);
 
       expect(expectedInputUser).toBeInTheDocument();
       expect(passwordInput).toBeInTheDocument();
       expect(buttonLogin).toBeInTheDocument();
-      expect(linkLogin).toBeInTheDocument();
+      expect(linkToRegister).toBeInTheDocument();
+      expect(linkToLogin).toBeInTheDocument();
     });
   });
 });

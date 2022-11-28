@@ -8,10 +8,10 @@ describe("Given the RegisterPage page", () => {
   const expectedPassword = "Password";
   const expectedEmail = "Email";
   const expectedButtonText = "Register";
-  const expectedLinkText = "Log in";
+  const expectedAriaLabelLinkText = "Go to Login page";
 
   describe("When it's rendered", () => {
-    test("Then it should return 2 inputs text element 'Username' and 'Email', a password input 'Password', 1 button 'Register', and a link 'Log in'", () => {
+    test.only("Then it should return 2 inputs text element 'Username' and 'Email', a password input 'Password', 1 button 'Register', and a link 'Log in'", () => {
       renderWithProviders(<RegisterPage />, { store });
 
       const expectedInputUser = screen.getByRole("textbox", {
@@ -24,7 +24,7 @@ describe("Given the RegisterPage page", () => {
       const buttonRegister = screen.getByRole("button", {
         name: expectedButtonText,
       });
-      const linkLogin = screen.getByRole("link", { name: expectedLinkText });
+      const linkLogin = screen.queryByLabelText(expectedAriaLabelLinkText);
 
       expect(expectedInputUser).toBeInTheDocument();
       expect(passwordInput).toBeInTheDocument();

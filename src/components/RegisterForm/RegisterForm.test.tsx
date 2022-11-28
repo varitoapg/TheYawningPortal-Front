@@ -19,7 +19,7 @@ describe("Given the RegisterForm Component", () => {
   const expectedPassword = "Password";
   const expectedEmail = "Email";
   const expectedButtonText = "Register";
-  const expectedLinkText = "Log in";
+  const expectedAriaLabelTextLink = "Go to Login page";
 
   describe("When it's rendered", () => {
     test("Then it should return 2 inputs text element 'Username' and 'Email', a password input 'Password', 1 button 'Register', and a link 'Log in'", () => {
@@ -35,7 +35,7 @@ describe("Given the RegisterForm Component", () => {
       const buttonRegister = screen.getByRole("button", {
         name: expectedButtonText,
       });
-      const linkLogin = screen.getByRole("link", { name: expectedLinkText });
+      const linkLogin = screen.queryByLabelText(expectedAriaLabelTextLink);
 
       expect(expectedInputUser).toBeInTheDocument();
       expect(passwordInput).toBeInTheDocument();

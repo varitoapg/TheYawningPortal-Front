@@ -90,7 +90,11 @@ const RegisterForm = (): JSX.Element => {
       </form>
       <div className="register">
         <span className="register__title">Do you want a pint of mead?</span>
-        <Link className="register__link" to="/login">
+        <Link
+          aria-label="Go to Login page"
+          className="register__link"
+          to="/login"
+        >
           Log in
         </Link>
       </div>
