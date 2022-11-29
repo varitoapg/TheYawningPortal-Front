@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
 import { HiBars3 } from "react-icons/hi2";
 import { FaTimesCircle } from "react-icons/fa";
 import { useState } from "react";
@@ -49,7 +48,7 @@ const NavigationMenu = ({ paths, texts }: NavigationMenuProps): JSX.Element => {
             }`}
           >
             {texts.map((text, index) => (
-              <li key={uuidv4()} className="main-navigation__option">
+              <li key={`${text}${index}`} className="main-navigation__option">
                 {text === "Logout" ? (
                   <Button
                     ariaLabel="Log out"
@@ -77,7 +76,7 @@ const NavigationMenu = ({ paths, texts }: NavigationMenuProps): JSX.Element => {
         <nav>
           <ul className={`main-navigation__list`}>
             {texts.map((text, index) => (
-              <li key={uuidv4()} className="main-navigation__option">
+              <li key={`${text}${index}`} className="main-navigation__option">
                 {text === "Logout" ? (
                   <Button
                     children={text}
