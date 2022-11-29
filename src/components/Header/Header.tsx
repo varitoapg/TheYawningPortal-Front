@@ -3,8 +3,8 @@ import NavigationMenu from "../NavigationMenu/NavigationMenu";
 import HeaderStyled from "./HeaderStyled";
 
 const Header = (): JSX.Element => {
-  const paths = ["/login", "/register", "/"];
-  const texts = ["Login", "Register", "Logout"];
+  const paths = ["/login", "/register"];
+  const texts = ["Login", "Register"];
 
   return (
     <HeaderStyled>
