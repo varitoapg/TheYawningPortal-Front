@@ -4,11 +4,13 @@ import renderWithProviders from "../../testUtils/renderWithProvider";
 import NavigationMenu from "./NavigationMenu";
 
 describe("Given a NavigationMenu component", () => {
-  const expectedTexts = ["test1", "test2"];
-  const expectedPaths = ["/test1", "/test2"];
+  const expectedTexts = ["test1", "test2", "Logout"];
+  const expectedPaths = ["/test1", "/test2", "logout"];
 
-  describe("When it's rendered with test1 and test2 as text and /test1 and /test2 as paths", () => {
-    test("Then it should show a button with aria label 'Navigation menu' and 2 links with 'Go to test1' and 'Go to test2'", () => {
+  describe("When it's rendered with test1, test2 and Logout as text and /test1, /test2 and /logout as paths", () => {
+    test("Then it should show a button with aria label 'Navigation menu' and 2 links with 'Go to test1' and 'Go to test2' and a button with 'Log out' as label text", () => {
+      const labelTextButtonLogout = "Log out";
+
       renderWithProviders(
         <NavigationMenu paths={expectedPaths} texts={expectedTexts} />
       );
@@ -20,10 +22,14 @@ describe("Given a NavigationMenu component", () => {
         `Go to ${expectedTexts[1]}`
       );
       const expectedButton = screen.queryByLabelText("Navigation menu");
+      const expecteButtonLogout = screen.getByRole("button", {
+        name: labelTextButtonLogout,
+      });
 
       expect(expectedFirstLink).toBeInTheDocument();
       expect(expectedSecondLink).toBeInTheDocument();
       expect(expectedButton).toBeInTheDocument();
+      expect(expecteButtonLogout).toBeInTheDocument();
     });
   });
 
