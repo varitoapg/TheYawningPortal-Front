@@ -1,13 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { CharacterState } from "./reducer/types";
+import { initialCharacterState } from "../../../mocks/states/characterState";
+import getAllCharacters from "./reducer/getAllCharacters";
 
-const initialCharacterState: CharacterState = {
-  characters: [],
-};
 const charactersSlice = createSlice({
   name: "characters",
   initialState: initialCharacterState,
-  reducers: {},
+  reducers: {
+    getAllCharacters,
+  },
 });
+
+export const { getAllCharacters: getAllCharactersActionCreator } =
+  charactersSlice.actions;
 
 export const characterReducer = charactersSlice.reducer;
