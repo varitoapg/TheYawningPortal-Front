@@ -8,7 +8,7 @@ interface ProviderWrapperProps {
 const ProviderWrapper = ({ children }: ProviderWrapperProps) => {
   return (
     <BrowserRouter>
-      <Provider store={mockInitialStore}>{children}</Provider>{" "}
+      <Provider store={mockInitialStore}>{children}</Provider>
     </BrowserRouter>
   );
 };
