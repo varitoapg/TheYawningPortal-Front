@@ -1,5 +1,5 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import { characterReducer } from "./features/characterSlice/reducer/getAllCharacters";
+import { characterReducer } from "./features/characterSlice/characterSlice";
 import { uiReducer } from "./features/uiSlice/uiSlice";
 import { userReducer } from "./features/userSlice/userSlice";
 

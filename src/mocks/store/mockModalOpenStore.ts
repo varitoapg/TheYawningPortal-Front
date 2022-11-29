@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { characterReducer } from "../../redux/features/characterSlice/reducer/getAllCharacters";
+import { characterReducer } from "../../redux/features/characterSlice/characterSlice";
 import { uiReducer } from "../../redux/features/uiSlice/uiSlice";
 import { userReducer } from "../../redux/features/userSlice/userSlice";
 import { store } from "../../redux/store";

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { CharacterState } from "./types";
+import { CharacterState } from "./reducer/types";
 
 const initialCharacterState: CharacterState = {
   characters: [],
