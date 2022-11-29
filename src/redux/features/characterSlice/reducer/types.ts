@@ -1,4 +1,4 @@
-enum Classes {
+export enum Classes {
   "Artificer",
   "Warlock",
   "Barbarian",
