@@ -21,7 +21,7 @@ const useToken = () => {
   }, [dispatch]);
 
   const deleteToken = () => {
-    window.localStorage.removeItem("token");
+    localStorage.removeItem("token");
     dispatch(userLogoutActionCreator());
   };
 

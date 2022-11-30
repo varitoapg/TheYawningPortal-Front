@@ -29,6 +29,21 @@ const mainThemeColours: DefaultThemeColour = {
   successColor: {
     base: "#3cc13b",
   },
+  characterClass: {
+    artificer: "#8788EE",
+    barbarian: "#C69B6D",
+    bard: "#FF7C0A",
+    cleric: "#ffffff",
+    druid: "#33937F",
+    fighter: "#C41E3A",
+    monk: "#00FF98",
+    paladin: "#F48CBA",
+    ranger: "#AAD372",
+    rogue: "#FFF468",
+    sorcerer: "#0070DD",
+    warlock: "#A330C9",
+    wizard: "#3FC7EB",
+  },
 };
 
 export default mainThemeColours;

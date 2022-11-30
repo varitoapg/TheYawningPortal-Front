@@ -4,13 +4,28 @@ export interface Color {
   light?: string;
   lightest?: string;
 }
-
+export interface CharacterClass {
+  artificer: string;
+  warlock: string;
+  barbarian: string;
+  fighter: string;
+  monk: string;
+  druid: string;
+  rogue: string;
+  cleric: string;
+  ranger: string;
+  wizard: string;
+  sorcerer: string;
+  bard: string;
+  paladin: string;
+}
 export interface DefaultThemeColour {
   primary: Color;
   ink: Color;
   whites: Color;
   errors: Color;
   successColor: Color;
+  characterClass: CharacterClass;
 }
 
 export interface FontSizes {
