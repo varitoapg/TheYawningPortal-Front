@@ -3,6 +3,7 @@ import styled from "styled-components";
 const RegisterFormStyled = styled.div`
   display: flex;
   flex-direction: column;
+  padding: ${(props) => props.theme.size.padding.overall};
   padding-top: 100px;
 
   .login-form {
@@ -26,7 +27,7 @@ const RegisterFormStyled = styled.div`
     }
 
     &__input {
-      width: 320px;
+      min-width: 250px;
       height: 80px;
       padding: ${(props) => props.theme.size.padding.regular};
       border-radius: ${(props) => props.theme.size.borderRadius.minimum};
