@@ -14,9 +14,15 @@ const CharacterCardList = (): JSX.Element => {
 
   return (
     <CharacterCardListStyled>
-      {characters.map((character) => (
-        <CharacterCard character={character} key={character.name} />
-      ))}
+      {characters.length === 0 ? (
+        <h2 className="empty-warning">
+          Sorry, you still don't have characters
+        </h2>
+      ) : (
+        characters.map((character) => (
+          <CharacterCard character={character} key={character.name} />
+        ))
+      )}
     </CharacterCardListStyled>
   );
 };
