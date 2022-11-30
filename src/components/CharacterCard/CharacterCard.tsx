@@ -58,27 +58,27 @@ const CharacterCard = ({
       </div>
       <div className="character__atributes">
         <div className="character__stat-container">
-          <h4 className="character__stat-title">str</h4>
+          <h3 className="character__stat-title">str</h3>
           <span className="character__stat-value">{stats.strength}</span>
         </div>
         <div className="character__stat-container">
-          <h4 className="character__stat-title">dex</h4>
+          <h3 className="character__stat-title">dex</h3>
           <span className="character__stat-value">{stats.dexterity}</span>
         </div>
         <div className="character__stat-container">
-          <h4 className="character__stat-title">con</h4>
+          <h3 className="character__stat-title">con</h3>
           <span className="character__stat-value">{stats.constitution}</span>
         </div>
         <div className="character__stat-container">
-          <h4 className="character__stat-title">int</h4>
+          <h3 className="character__stat-title">int</h3>
           <span className="character__stat-value">{stats.intelligence}</span>
         </div>
         <div className="character__stat-container">
-          <h4 className="character__stat-title">wis</h4>
+          <h3 className="character__stat-title">wis</h3>
           <span className="character__stat-value">{stats.wisdom}</span>
         </div>
         <div className="character__stat-container">
-          <h4 className="character__stat-title">cha</h4>
+          <h3 className="character__stat-title">cha</h3>
           <span className="character__stat-value">{stats.charisma}</span>
         </div>
       </div>

@@ -1,5 +1,8 @@
 import { screen } from "@testing-library/react";
-import { fourCharactersState } from "../../mocks/states/characterState";
+import {
+  fourCharactersState,
+  initialCharacterState,
+} from "../../mocks/states/characterState";
 import { mockUiInitialState } from "../../mocks/states/uiState";
 import { mockUserLogged } from "../../mocks/states/userState";
 import renderWithProviders from "../../testUtils/renderWithProvider";
@@ -30,6 +33,28 @@ describe("Given a CharacterCardList component", () => {
 
       expect(expectedCharacters).toHaveLength(expectedLenght);
       expect(mockgetCharacters).toHaveBeenCalled();
+    });
+  });
+
+  describe("Given a CharacterCardList component", () => {
+    describe("When it's rendered withot characters in the store", () => {
+      test("Then it should show a heading with 'Sorry, you still don't have characters'", () => {
+        const expectedText = "Sorry, you still don't have characters";
+
+        renderWithProviders(<CharacterCardList />, {
+          preloadedState: {
+            ui: mockUiInitialState,
+            user: mockUserLogged,
+            characters: initialCharacterState,
+          },
+        });
+
+        const expectedHeading = screen.queryByRole("heading", {
+          name: expectedText,
+        });
+
+        expect(expectedHeading).toBeInTheDocument();
+      });
     });
   });
 });
