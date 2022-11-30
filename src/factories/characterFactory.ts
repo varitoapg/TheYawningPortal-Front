@@ -26,5 +26,6 @@ const characterFactory = Factory.define<Character>(() => ({
   },
 }));
 
+export const getRandomCharacter = () => characterFactory.build();
 export const getRandomCharacterList = (number: number) =>
   characterFactory.buildList(number);
