@@ -109,6 +109,7 @@ const useUser = () => {
     deleteToken();
 
     dispatch(userLogoutActionCreator());
+    navigate("/login");
   };
 
   return {

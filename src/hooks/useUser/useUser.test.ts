@@ -165,6 +165,7 @@ describe("Given the custom hook useUser", () => {
 
       expect(mockRemoveToken).toHaveBeenCalled();
       expect(dispatchSpy).toBeCalledWith(userLogoutActionCreator());
+      expect(mockedUseNavigate).toHaveBeenCalledWith("/login");
     });
   });
 });
