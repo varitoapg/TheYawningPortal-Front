@@ -1,22 +1,37 @@
 import { screen } from "@testing-library/react";
+import { fourCharactersState } from "../../mocks/states/characterState";
+import { mockUiInitialState } from "../../mocks/states/uiState";
+import { mockUserLogged } from "../../mocks/states/userState";
 import renderWithProviders from "../../testUtils/renderWithProvider";
 import HomePage from "./HomePage";
 
-describe("Given a HomePage page", () => {
-  describe("When it is rendered", () => {
-    test("Then it should show a heading with 'The Yawning portal' level 1 and a span with 'Here you have your pint!'", () => {
-      const expectedTitle = "The Yawning Portal";
-      const expectedText = "Here you have your pint!";
+const mockgetCharacters = jest.fn();
 
-      renderWithProviders(<HomePage />);
+jest.mock("../../hooks/useCharacter/useCharacter.ts", () => {
+  return () => ({
+    getUserCharacters: mockgetCharacters,
+  });
+});
+
+describe("Given a HomePage page", () => {
+  describe("When it is rendered with 4 characters in store", () => {
+    test("Then it should show a heading with 'The Yawning portal' level 1 and getUserCharacters be called", () => {
+      const expectedTitle = "The Yawning Portal";
+
+      renderWithProviders(<HomePage />, {
+        preloadedState: {
+          ui: mockUiInitialState,
+          user: mockUserLogged,
+          characters: fourCharactersState,
+        },
+      });
 
       const expectedHeader = screen.getByRole("heading", {
         name: expectedTitle,
       });
-      const expectedSpan = screen.getByText(expectedText);
 
       expect(expectedHeader).toBeInTheDocument();
-      expect(expectedSpan).toBeInTheDocument();
+      expect(mockgetCharacters).toHaveBeenCalled();
     });
   });
 });
