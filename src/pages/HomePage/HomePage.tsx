@@ -1,3 +1,4 @@
+import CharacterCardList from "../../components/CharacterCardList/CharacterCardList";
 import Header from "../../components/Header/Header";
 import HomePageStyled from "./HomePageStyled";
 
@@ -6,7 +7,7 @@ const HomePage = () => {
     <>
       <Header />
       <HomePageStyled>
-        <span>Here you have your pint!</span>
+        <CharacterCardList />
       </HomePageStyled>
     </>
   );

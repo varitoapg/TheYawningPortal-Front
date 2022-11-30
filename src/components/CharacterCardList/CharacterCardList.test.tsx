@@ -3,7 +3,7 @@ import { fourCharactersState } from "../../mocks/states/characterState";
 import { mockUiInitialState } from "../../mocks/states/uiState";
 import { mockUserLogged } from "../../mocks/states/userState";
 import renderWithProviders from "../../testUtils/renderWithProvider";
-import HomePage from "./HomePage";
+import CharacterCardList from "./CharacterCardList";
 
 const mockgetCharacters = jest.fn();
 
@@ -13,12 +13,12 @@ jest.mock("../../hooks/useCharacter/useCharacter.ts", () => {
   });
 });
 
-describe("Given a HomePage page", () => {
-  describe("When it is rendered with 4 characters in store", () => {
-    test("Then it should show a heading with 'The Yawning portal' level 1 and getUserCharacters be called", () => {
-      const expectedTitle = "The Yawning Portal";
+describe("Given a CharacterCardList component", () => {
+  describe("When it's rendered with 4 characters in the store", () => {
+    test("Then it should show 4 CharacterCards and getUserCharacters be called", () => {
+      const expectedLenght = 4;
 
-      renderWithProviders(<HomePage />, {
+      renderWithProviders(<CharacterCardList />, {
         preloadedState: {
           ui: mockUiInitialState,
           user: mockUserLogged,
@@ -26,11 +26,9 @@ describe("Given a HomePage page", () => {
         },
       });
 
-      const expectedHeader = screen.getByRole("heading", {
-        name: expectedTitle,
-      });
+      const expectedCharacters = screen.queryAllByRole("listitem");
 
-      expect(expectedHeader).toBeInTheDocument();
+      expect(expectedCharacters).toHaveLength(expectedLenght);
       expect(mockgetCharacters).toHaveBeenCalled();
     });
   });
