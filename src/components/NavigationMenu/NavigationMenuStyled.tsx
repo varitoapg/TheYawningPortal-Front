@@ -13,7 +13,7 @@ const NavigationMenuStyled = styled.div`
     &-navigation {
       margin: 0;
       background-color: transparent;
-      width: 60px;
+      width: 40px;
       display: flex;
       align-items: center;
       justify-content: center;

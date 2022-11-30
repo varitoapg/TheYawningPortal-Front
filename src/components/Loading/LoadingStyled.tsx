@@ -23,7 +23,7 @@ const LoadingStyled = styled.div`
   .breathe {
     animation: breathe 5s infinite;
     fill: #e08f8a;
-    fill-rule: "evenodd";
+    fill-rule: evenodd;
     stroke: #ffffff;
     stroke-miterlimit: 10;
     stroke-width: 1.5px;
@@ -37,7 +37,7 @@ const LoadingStyled = styled.div`
     fill: #9a1911;
 
     &--darker {
-      fill-rule: "evenodd";
+      fill-rule: evenodd;
     }
   }
   .third {
@@ -46,7 +46,7 @@ const LoadingStyled = styled.div`
 
     &--darker {
       fill: #600f0a;
-      fill-rule: "evenodd";
+      fill-rule: evenodd;
     }
   }
   .fourth {
@@ -54,7 +54,7 @@ const LoadingStyled = styled.div`
     fill: #cd4c44;
     &--darker {
       fill: #600f0a;
-      fill-rule: "evenodd";
+      fill-rule: evenodd;
     }
   }
 

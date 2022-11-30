@@ -10,16 +10,22 @@ const CharacterCardStyled = styled.li`
   border: 1px solid ${(props) => props.theme.color.ink.lightest};
   padding: 11px 22px;
   max-width: 400px;
+  min-width: 292px;
 
   .character {
+    &-state {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
     &__image {
-      width: 150px;
-      aspect-ratio: 1;
+      max-width: 100px;
+      aspect-ratio: 1/1;
       border-radius: 50%;
       background-color: wheat;
       border: 5px solid ${(props) => props.theme.color.characterClass.sorcerer};
       object-fit: cover;
-      object-position: center;
+      object-position: top;
 
       &--dead {
         filter: saturate(0);
@@ -29,7 +35,8 @@ const CharacterCardStyled = styled.li`
     &-container {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: center;
+      gap: 20px;
     }
 
     &__atributes {
