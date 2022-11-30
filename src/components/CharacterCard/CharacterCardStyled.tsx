@@ -9,7 +9,7 @@ const CharacterCardStyled = styled.li`
   border-radius: ${(props) => props.theme.size.borderRadius.regular};
   border: 1px solid ${(props) => props.theme.color.ink.lightest};
   padding: 11px 22px;
-  max-width: 370px;
+  max-width: 400px;
 
   .character {
     &__image {
@@ -18,6 +18,8 @@ const CharacterCardStyled = styled.li`
       border-radius: 50%;
       background-color: wheat;
       border: 5px solid ${(props) => props.theme.color.characterClass.sorcerer};
+      object-fit: cover;
+      object-position: center;
 
       &--dead {
         filter: saturate(0);
