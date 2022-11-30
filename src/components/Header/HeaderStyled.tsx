@@ -4,10 +4,11 @@ const HeaderStyled = styled.header`
   padding: 10px ${(props) => props.theme.size.padding.overall};
   background-color: ${(props) => props.theme.color.primary.base};
   color: ${(props) => props.theme.color.whites.lightest};
-  font-size: ${(props) => props.theme.font.main.sizes.headline};
+  font-size: ${(props) => props.theme.font.main.sizes.title};
   font-weight: ${(props) => props.theme.font.main.weights.bold};
   display: flex;
   align-items: center;
+
   .title-container {
     display: flex;
     align-items: center;
