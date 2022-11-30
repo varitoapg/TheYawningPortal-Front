@@ -1,12 +1,10 @@
 import styled from "styled-components";
 
 const RegisterFormStyled = styled.div`
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+  padding-top: 100px;
+
   .login-form {
     display: flex;
     flex-direction: column;
