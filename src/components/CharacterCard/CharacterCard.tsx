@@ -52,7 +52,7 @@ const CharacterCard = ({
         </div>
       </div>
       <div className="character-container">
-        <h3 className="character__name">{name}</h3>
+        <h2 className="character__name">{name}</h2>
         <span className="character__information">{characterClass}</span>
         <span className="character__information">{race}</span>
       </div>
