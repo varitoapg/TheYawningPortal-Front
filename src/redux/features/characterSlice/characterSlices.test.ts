@@ -8,7 +8,6 @@ import {
   deleteCharacterActionCreator,
   getAllCharactersActionCreator,
 } from "./characterSlice";
-import deleteCharacter from "./reducer/deleteceCharacter";
 
 describe("Given a characterReducer", () => {
   describe("And it's invoked", () => {
