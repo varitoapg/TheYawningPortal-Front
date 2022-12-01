@@ -6,6 +6,7 @@ import {
 } from "../redux/features/characterSlice/reducer/types";
 
 const characterFactory = Factory.define<Character>(() => ({
+  id: faker.lorem.word(),
   background: faker.address.city(),
   class: Classes.Barbarian,
   createdBy: faker.database.mongodbObjectId(),
