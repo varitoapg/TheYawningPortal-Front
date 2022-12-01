@@ -1,7 +1,11 @@
 import { getRandomCharacterList } from "../../../factories/characterFactory";
-import { initialCharacterState } from "../../../mocks/states/characterState";
+import {
+  fourCharactersState,
+  initialCharacterState,
+} from "../../../mocks/states/characterState";
 import {
   characterReducer,
+  deleteCharacterActionCreator,
   getAllCharactersActionCreator,
 } from "./characterSlice";
 
@@ -33,6 +37,23 @@ describe("Given a characterReducer", () => {
       );
 
       expect(newState).toStrictEqual({ characters: newCharacters });
+    });
+  });
+
+  describe("When its reducer deleteCharacter is invoked with a payload of 1 character id and the current state", () => {
+    test("Then it should return a new statue without the character in the payload", () => {
+      const currentState = fourCharactersState;
+      const expectedState = {
+        ...fourCharactersState,
+        characters: fourCharactersState.characters.slice(1, 4),
+      };
+
+      const newState = characterReducer(
+        currentState,
+        deleteCharacterActionCreator(currentState.characters[0].id)
+      );
+
+      expect(newState).toStrictEqual(expectedState);
     });
   });
 });

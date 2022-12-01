@@ -14,6 +14,7 @@ export enum Classes {
 }
 
 export interface Character {
+  id: string;
   name: string;
   race: string;
   class: Classes;
