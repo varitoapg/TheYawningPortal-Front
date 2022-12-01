@@ -1,6 +1,9 @@
 import axios, { AxiosError } from "axios";
 import { useCallback } from "react";
-import { getAllCharactersActionCreator } from "../../redux/features/characterSlice/characterSlice";
+import {
+  deleteCharacterActionCreator,
+  getAllCharactersActionCreator,
+} from "../../redux/features/characterSlice/characterSlice";
 import {
   hideLoadingActionCreator,
   showLoadingActionCreator,
@@ -12,7 +15,7 @@ import { AxiosResponseBody } from "../useUser/types";
 
 const useCharacter = () => {
   const baseUrl = process.env.REACT_APP_API_URL;
-  const { charactersRoute } = characterRoutes;
+  const { charactersRoute, deleteRoute } = characterRoutes;
 
   const dispatch = useAppDispatch();
 
@@ -43,7 +46,41 @@ const useCharacter = () => {
     }
   }, [baseUrl, charactersRoute, dispatch, token]);
 
-  return { getUserCharacters };
+  const deleteCharacter = useCallback(
+    async (idCharacter: string) => {
+      try {
+        dispatch(showLoadingActionCreator());
+
+        await axios.delete(
+          `${baseUrl}${charactersRoute}${deleteRoute}/${idCharacter}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        dispatch(deleteCharacterActionCreator(idCharacter));
+        dispatch(hideLoadingActionCreator());
+        dispatch(
+          showModalActionCreator({
+            isError: false,
+            text: "Character deleted successfully!",
+          })
+        );
+      } catch (error: unknown) {
+        dispatch(hideLoadingActionCreator());
+        dispatch(
+          showModalActionCreator({
+            isError: true,
+            text: (error as AxiosError<AxiosResponseBody>).response?.data
+              .error!,
+          })
+        );
+      }
+    },
+    [baseUrl, charactersRoute, deleteRoute, dispatch, token]
+  );
+  return { getUserCharacters, deleteCharacter };
 };
 
 export default useCharacter;
