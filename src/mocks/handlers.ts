@@ -6,7 +6,8 @@ import testProfile from "./testProfile";
 
 const baseUrl = process.env.REACT_APP_API_URL;
 const { registerRoute, usersRoute, loginRoute } = userRoutes;
-const { charactersRoute } = characterRoutes;
+const { charactersRoute, deleteRoute } = characterRoutes;
+const { id } = testListCharacters[0];
 
 export const handlers = [
   rest.post(
@@ -50,4 +51,18 @@ export const handlers = [
       ctx.json({ error: "Something goes wrong. Try again" })
     );
   }),
+
+  rest.delete(
+    `${baseUrl}${charactersRoute}${deleteRoute}/${id}`,
+    async (req, res, ctx) => {
+      return res.once(ctx.status(200));
+    }
+  ),
+
+  rest.delete(
+    `${baseUrl}${charactersRoute}${deleteRoute}/${id}`,
+    async (req, res, ctx) => {
+      return res.once(ctx.status(500), ctx.json({ error: "Fatal error" }));
+    }
+  ),
 ];
