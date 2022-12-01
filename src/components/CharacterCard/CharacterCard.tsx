@@ -1,4 +1,5 @@
 import { FaSkull, FaAnkh, FaHeartBroken } from "react-icons/fa";
+import useCharacter from "../../hooks/useCharacter/useCharacter";
 
 import { Character } from "../../redux/features/characterSlice/reducer/types";
 import Button from "../Button/Button";
@@ -9,8 +10,21 @@ interface CharacterCardProps {
 }
 
 const CharacterCard = ({
-  character: { class: characterClass, name, race, stats, isAlive, imageBackup },
+  character: {
+    class: characterClass,
+    name,
+    race,
+    stats,
+    isAlive,
+    imageBackup,
+    id,
+  },
 }: CharacterCardProps): JSX.Element => {
+  const { deleteCharacter } = useCharacter();
+
+  const deleteCharacterAction = () => {
+    deleteCharacter(id);
+  };
   return (
     <CharacterCardStyled>
       <div className="character-state">
@@ -47,6 +61,7 @@ const CharacterCard = ({
           <Button
             classname="button button-icon"
             ariaLabel="Delete character"
+            action={deleteCharacterAction}
             children={<FaHeartBroken className="icon" />}
           />
         </div>

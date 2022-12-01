@@ -1,8 +1,16 @@
 import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { getRandomCharacter } from "../../factories/characterFactory";
 import { Character } from "../../redux/features/characterSlice/reducer/types";
 import renderWithProviders from "../../testUtils/renderWithProvider";
 import CharacterCard from "./CharacterCard";
+
+const mockDelete = jest.fn();
+jest.mock("../../hooks/useCharacter/useCharacter.ts", () => {
+  return () => ({
+    deleteCharacter: mockDelete,
+  });
+});
 
 describe("Given a component CharacterCard", () => {
   let character: Character = getRandomCharacter();
@@ -120,6 +128,22 @@ describe("Given a component CharacterCard", () => {
       expect(expectedHeading).toBeInTheDocument();
       expect(expectedKillButton).toBeInTheDocument();
       expect(expectedDeleteButton).toBeInTheDocument();
+    });
+  });
+
+  describe("When it's rendered with a character and clicks delete button", () => {
+    test("Then it should call deleteCharacter", async () => {
+      character = { ...character, isAlive: true };
+      const expectedAriaButtonDelete = "Delete character";
+
+      renderWithProviders(<CharacterCard character={character} />);
+
+      const expectedDeleteButton = screen.queryByLabelText(
+        expectedAriaButtonDelete
+      );
+
+      await userEvent.click(expectedDeleteButton!);
+      expect(mockDelete).toHaveBeenCalledWith(character.id);
     });
   });
 });

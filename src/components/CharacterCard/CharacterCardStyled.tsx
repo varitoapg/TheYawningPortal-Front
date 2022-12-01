@@ -98,6 +98,11 @@ const CharacterCardStyled = styled.li`
       align-items: center;
       padding: 0;
     }
+
+    &:active,
+    &:hover {
+      background-color: transparent;
+    }
   }
 
   .icon {
