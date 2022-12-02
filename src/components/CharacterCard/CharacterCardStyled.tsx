@@ -2,9 +2,8 @@ import styled from "styled-components";
 
 const CharacterCardStyled = styled.li`
   background-color: ${(props) => props.theme.color.whites.base};
-  display: grid;
-  grid-template-columns: repeat(2, auto);
-  grid-template-rows: repeat(2, auto);
+  display: flex;
+  flex-direction: column;
   gap: 10px;
   border-radius: ${(props) => props.theme.size.borderRadius.regular};
   border: 1px solid ${(props) => props.theme.color.ink.lightest};
@@ -18,14 +17,15 @@ const CharacterCardStyled = styled.li`
       flex-direction: column;
       justify-content: space-between;
     }
+
     &__image {
-      max-width: 100px;
-      aspect-ratio: 1/1;
+      width: 200px;
+      height: 200px;
       border-radius: 50%;
-      background-color: wheat;
       border: 5px solid ${(props) => props.theme.color.characterClass.sorcerer};
       object-fit: cover;
       object-position: top;
+      margin: 0 auto;
 
       &--dead {
         filter: saturate(0);
@@ -36,11 +36,10 @@ const CharacterCardStyled = styled.li`
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 20px;
+      gap: 10px;
     }
 
     &__atributes {
-      grid-column: 1/3;
       display: grid;
       grid-template-columns: repeat(3, auto);
       grid-template-rows: repeat(2, auto);
