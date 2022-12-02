@@ -27,7 +27,14 @@ const App = () => {
   return (
     <AppStyled>
       <Routes>
-        <Route path="/" element={<LoginPage />} />
+        <Route
+          path="/"
+          element={
+            <ExitRoute isLogged={isLogged}>
+              <LoginPage />
+            </ExitRoute>
+          }
+        />
 
         <Route
           path="/register"
