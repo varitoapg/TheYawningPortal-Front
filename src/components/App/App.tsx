@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import useToken from "../../hooks/useToken/useToken";
+import CreatePage from "../../pages/CreatePage/CreatePage";
 import HomePage from "../../pages/HomePage/HomePage";
 import LoginPage from "../../pages/LoginPage/LoginPage";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
@@ -59,6 +60,15 @@ const App = () => {
           element={
             <ProtectedRoute isLogged={isLogged}>
               <HomePage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/create"
+          element={
+            <ProtectedRoute isLogged={isLogged}>
+              <CreatePage />
             </ProtectedRoute>
           }
         />

@@ -1,6 +1,5 @@
 import { FaSkull, FaAnkh, FaHeartBroken } from "react-icons/fa";
 import useCharacter from "../../hooks/useCharacter/useCharacter";
-
 import { Character } from "../../redux/features/characterSlice/reducer/types";
 import Button from "../Button/Button";
 import CharacterCardStyled from "./CharacterCardStyled";
@@ -11,13 +10,18 @@ interface CharacterCardProps {
 
 const CharacterCard = ({
   character: {
-    class: characterClass,
     name,
     race,
-    stats,
+    charisma,
+    constitution,
+    dexterity,
+    intelligence,
+    strength,
+    wisdom,
     isAlive,
     imageBackup,
     id,
+    characterClass,
   },
 }: CharacterCardProps): JSX.Element => {
   const { deleteCharacter } = useCharacter();
@@ -74,27 +78,27 @@ const CharacterCard = ({
       <div className="character__atributes">
         <div className="character__stat-container">
           <h3 className="character__stat-title">str</h3>
-          <span className="character__stat-value">{stats.strength}</span>
+          <span className="character__stat-value">{strength}</span>
         </div>
         <div className="character__stat-container">
           <h3 className="character__stat-title">dex</h3>
-          <span className="character__stat-value">{stats.dexterity}</span>
+          <span className="character__stat-value">{dexterity}</span>
         </div>
         <div className="character__stat-container">
           <h3 className="character__stat-title">con</h3>
-          <span className="character__stat-value">{stats.constitution}</span>
+          <span className="character__stat-value">{constitution}</span>
         </div>
         <div className="character__stat-container">
           <h3 className="character__stat-title">int</h3>
-          <span className="character__stat-value">{stats.intelligence}</span>
+          <span className="character__stat-value">{intelligence}</span>
         </div>
         <div className="character__stat-container">
           <h3 className="character__stat-title">wis</h3>
-          <span className="character__stat-value">{stats.wisdom}</span>
+          <span className="character__stat-value">{wisdom}</span>
         </div>
         <div className="character__stat-container">
           <h3 className="character__stat-title">cha</h3>
-          <span className="character__stat-value">{stats.charisma}</span>
+          <span className="character__stat-value">{charisma}</span>
         </div>
       </div>
     </CharacterCardStyled>
