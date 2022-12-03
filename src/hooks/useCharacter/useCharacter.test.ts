@@ -1,10 +1,12 @@
 import { renderHook } from "@testing-library/react";
+import { getRandomCharacter } from "../../factories/characterFactory";
 import mockInitialStore from "../../mocks/store/mockInitialStore";
 import { testListCharacters } from "../../mocks/testCharacter";
 import {
   deleteCharacterActionCreator,
   getAllCharactersActionCreator,
 } from "../../redux/features/characterSlice/characterSlice";
+import { Character } from "../../redux/features/characterSlice/reducer/types";
 import {
   hideLoadingActionCreator,
   showLoadingActionCreator,
@@ -14,6 +16,12 @@ import ProviderWrapper from "../../testUtils/ProviderWrapper";
 import useCharacter from "./useCharacter";
 
 const dispatchSpy = jest.spyOn(mockInitialStore, "dispatch");
+
+const mockedUseNavigate = jest.fn();
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => mockedUseNavigate,
+}));
 
 describe("Given the useCharacter custom hook", () => {
   describe("And invokes its function getUserCharacters", () => {
@@ -96,6 +104,57 @@ describe("Given the useCharacter custom hook", () => {
           showModalActionCreator({
             isError: true,
             text: "Fatal error",
+          })
+        );
+      });
+    });
+  });
+
+  describe("And invokes its function createCharacter", () => {
+    const character = getRandomCharacter();
+    const characterFormData: Partial<Character> = {
+      background: character.background,
+      class: character.class,
+      details: character.details,
+      image: character.image,
+      name: character.name,
+      race: character.race,
+      stats: character.stats,
+    };
+
+    describe("When it's invoked with a character data correctly", () => {
+      test("Then it should calls navigate with '/home'", async () => {
+        const { result } = renderHook(() => useCharacter(), {
+          wrapper: ProviderWrapper,
+        });
+
+        await result.current.createCharacter(characterFormData);
+
+        expect(mockedUseNavigate).toHaveBeenCalledWith("/home");
+      });
+    });
+
+    describe("When it's invoked an axios rejects an error", () => {
+      test("Then it should call dispatch with showLoadingActionCreator, then hideLoadingActionCreator and finally showModalActionCreator", async () => {
+        const { result } = renderHook(() => useCharacter(), {
+          wrapper: ProviderWrapper,
+        });
+
+        await result.current.createCharacter(characterFormData);
+
+        expect(dispatchSpy).toHaveBeenNthCalledWith(
+          1,
+          showLoadingActionCreator()
+        );
+        expect(dispatchSpy).toHaveBeenNthCalledWith(
+          2,
+          hideLoadingActionCreator()
+        );
+        expect(dispatchSpy).toHaveBeenNthCalledWith(
+          3,
+          showModalActionCreator({
+            isError: true,
+            text: "Character cannot be created!",
           })
         );
       });

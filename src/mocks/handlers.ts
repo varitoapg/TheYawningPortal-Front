@@ -6,7 +6,7 @@ import testProfile from "./testProfile";
 
 const baseUrl = process.env.REACT_APP_API_URL;
 const { registerRoute, usersRoute, loginRoute } = userRoutes;
-const { charactersRoute, deleteRoute } = characterRoutes;
+const { charactersRoute, deleteRoute, createRoute } = characterRoutes;
 const { id } = testListCharacters[0];
 
 export const handlers = [
@@ -63,6 +63,26 @@ export const handlers = [
     `${baseUrl}${charactersRoute}${deleteRoute}/${id}`,
     async (req, res, ctx) => {
       return res.once(ctx.status(500), ctx.json({ error: "Fatal error" }));
+    }
+  ),
+
+  rest.post(
+    `${baseUrl}${charactersRoute}${createRoute}`,
+    async (req, res, ctx) => {
+      return res.once(
+        ctx.status(200),
+        ctx.json({ text: "Character created!" })
+      );
+    }
+  ),
+
+  rest.post(
+    `${baseUrl}${charactersRoute}${createRoute}`,
+    async (req, res, ctx) => {
+      return res.once(
+        ctx.status(500),
+        ctx.json({ error: "Character cannot be created!" })
+      );
     }
   ),
 ];
