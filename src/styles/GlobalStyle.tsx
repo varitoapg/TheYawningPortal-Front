@@ -29,6 +29,7 @@ a {
 ul,li {
   margin:0;
   list-style: none;
+  padding: 0px;
 }
 button {
   cursor: pointer;
