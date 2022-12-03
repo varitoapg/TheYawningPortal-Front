@@ -1,9 +1,11 @@
 import axios, { AxiosError } from "axios";
 import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   deleteCharacterActionCreator,
   getAllCharactersActionCreator,
 } from "../../redux/features/characterSlice/characterSlice";
+import { Character } from "../../redux/features/characterSlice/reducer/types";
 import {
   hideLoadingActionCreator,
   showLoadingActionCreator,
@@ -15,9 +17,10 @@ import { AxiosResponseBody } from "../useUser/types";
 
 const useCharacter = () => {
   const baseUrl = process.env.REACT_APP_API_URL;
-  const { charactersRoute, deleteRoute } = characterRoutes;
+  const { charactersRoute, deleteRoute, createRoute } = characterRoutes;
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const token = localStorage.getItem("token");
 
@@ -80,7 +83,41 @@ const useCharacter = () => {
     },
     [baseUrl, charactersRoute, deleteRoute, dispatch, token]
   );
-  return { getUserCharacters, deleteCharacter };
+
+  const createCharacter = async (characterData: Partial<Character>) => {
+    try {
+      dispatch(showLoadingActionCreator());
+
+      await axios.post(
+        `${baseUrl}${charactersRoute}${createRoute}`,
+        characterData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      dispatch(hideLoadingActionCreator());
+      dispatch(
+        showModalActionCreator({
+          isError: false,
+          text: "Character created successfully!",
+        })
+      );
+
+      navigate("/home");
+    } catch (error: unknown) {
+      dispatch(hideLoadingActionCreator());
+      dispatch(
+        showModalActionCreator({
+          isError: true,
+          text: (error as AxiosError<AxiosResponseBody>).response?.data.error!,
+        })
+      );
+    }
+  };
+  return { getUserCharacters, deleteCharacter, createCharacter };
 };
 
 export default useCharacter;
