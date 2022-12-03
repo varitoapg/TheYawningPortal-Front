@@ -73,6 +73,7 @@ const CreateForm = (): JSX.Element => {
                 src={URL.createObjectURL(createCharacterData.image as File)}
                 alt="Your avatar"
                 className="edit-profile__image"
+                aria-label="Your avatar"
               />
             ) : (
               <div
@@ -298,7 +299,7 @@ const CreateForm = (): JSX.Element => {
           </div>
         </div>
 
-        <Button children={"Register"} ariaLabel="Register" />
+        <Button children={"Create"} ariaLabel="Create" />
       </form>
     </CreateFormStyled>
   );
