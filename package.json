@@ -62,7 +62,8 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "!./src/index.tsx"
+      "!./src/index.tsx",
+      "!./src/resources/svg/caret-down.svg"
     ]
   }
 }
