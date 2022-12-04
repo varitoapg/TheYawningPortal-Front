@@ -7,7 +7,6 @@ import {
   getAllCharactersActionCreator,
   getCharacterByIdActionCreator,
 } from "../../redux/features/characterSlice/characterSlice";
-import getCharacterById from "../../redux/features/characterSlice/reducer/getCharacterById";
 import { CharacterForm } from "../../redux/features/characterSlice/reducer/types";
 import {
   hideLoadingActionCreator,
