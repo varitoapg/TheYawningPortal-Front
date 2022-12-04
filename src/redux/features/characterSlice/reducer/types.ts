@@ -20,6 +20,7 @@ export interface Character {
 
 export interface CharacterState {
   characters: Character[];
+  currentCharacter: CharacterForm;
 }
 
 export interface CharacterForm {
