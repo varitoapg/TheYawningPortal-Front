@@ -337,7 +337,7 @@ const CreateForm = (): JSX.Element => {
       </div>
 
       <Button
-        classname="button button-create"
+        classname="button button--create"
         children={"Create"}
         ariaLabel="Create"
       />
