@@ -1,34 +1,17 @@
-export enum Classes {
-  "Artificer",
-  "Warlock",
-  "Barbarian",
-  "Fighter",
-  "Monk",
-  "Druid",
-  "Rogue",
-  "Cleric",
-  "Ranger",
-  "Wizard",
-  "Bard",
-  "Paladin",
-}
-
 export interface Character {
   id: string;
   name: string;
   race: string;
-  class: Classes;
-  image: string;
+  characterClass: string;
+  image: string | File;
   imageBackup: string;
-  stats: {
-    speed: number;
-    strength: number;
-    dexterity: number;
-    constitution: number;
-    intelligence: number;
-    wisdom: number;
-    charisma: number;
-  };
+  speed: number;
+  strength: number;
+  dexterity: number;
+  constitution: number;
+  intelligence: number;
+  wisdom: number;
+  charisma: number;
   background: string;
   details: string;
   isAlive: boolean;
@@ -37,4 +20,21 @@ export interface Character {
 
 export interface CharacterState {
   characters: Character[];
+}
+
+export interface CharacterForm {
+  name: string;
+  race: string;
+  characterClass: string;
+  image: string | File;
+  imageBackup?: string;
+  speed: number;
+  strength: number;
+  dexterity: number;
+  constitution: number;
+  intelligence: number;
+  wisdom: number;
+  charisma: number;
+  background: string;
+  details: string;
 }

@@ -5,7 +5,7 @@ import {
   deleteCharacterActionCreator,
   getAllCharactersActionCreator,
 } from "../../redux/features/characterSlice/characterSlice";
-import { Character } from "../../redux/features/characterSlice/reducer/types";
+import { CharacterForm } from "../../redux/features/characterSlice/reducer/types";
 import {
   hideLoadingActionCreator,
   showLoadingActionCreator,
@@ -84,7 +84,7 @@ const useCharacter = () => {
     [baseUrl, charactersRoute, deleteRoute, dispatch, token]
   );
 
-  const createCharacter = async (characterData: Partial<Character>) => {
+  const createCharacter = async (characterData: CharacterForm) => {
     try {
       dispatch(showLoadingActionCreator());
 
@@ -93,6 +93,7 @@ const useCharacter = () => {
         characterData,
         {
           headers: {
+            "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`,
           },
         }

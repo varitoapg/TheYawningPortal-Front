@@ -6,7 +6,7 @@ import {
   deleteCharacterActionCreator,
   getAllCharactersActionCreator,
 } from "../../redux/features/characterSlice/characterSlice";
-import { Character } from "../../redux/features/characterSlice/reducer/types";
+import { CharacterForm } from "../../redux/features/characterSlice/reducer/types";
 import {
   hideLoadingActionCreator,
   showLoadingActionCreator,
@@ -112,14 +112,20 @@ describe("Given the useCharacter custom hook", () => {
 
   describe("And invokes its function createCharacter", () => {
     const character = getRandomCharacter();
-    const characterFormData: Partial<Character> = {
+    const characterFormData: CharacterForm = {
       background: character.background,
-      class: character.class,
+      characterClass: character.characterClass,
       details: character.details,
       image: character.image,
       name: character.name,
       race: character.race,
-      stats: character.stats,
+      speed: character.speed,
+      strength: character.strength,
+      constitution: character.constitution,
+      dexterity: character.dexterity,
+      intelligence: character.intelligence,
+      wisdom: character.wisdom,
+      charisma: character.charisma,
     };
 
     describe("When it's invoked with a character data correctly", () => {
