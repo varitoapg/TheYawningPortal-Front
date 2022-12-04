@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import {
   deleteCharacterActionCreator,
   getAllCharactersActionCreator,
+  getCharacterByIdActionCreator,
 } from "../../redux/features/characterSlice/characterSlice";
 import { CharacterForm } from "../../redux/features/characterSlice/reducer/types";
 import {
@@ -118,7 +119,38 @@ const useCharacter = () => {
       );
     }
   };
-  return { getUserCharacters, deleteCharacter, createCharacter };
-};
 
+  const getCharacterById = async (idCharacter: string) => {
+    try {
+      dispatch(showLoadingActionCreator());
+
+      const response = await axios.get(
+        `${baseUrl}${charactersRoute}/${idCharacter}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      dispatch(getCharacterByIdActionCreator(response.data));
+      dispatch(hideLoadingActionCreator());
+    } catch (error: unknown) {
+      dispatch(hideLoadingActionCreator());
+      dispatch(
+        showModalActionCreator({
+          isError: true,
+          text: (error as AxiosError<AxiosResponseBody>).response?.data.error!,
+        })
+      );
+    }
+  };
+
+  return {
+    getUserCharacters,
+    deleteCharacter,
+    createCharacter,
+    getCharacterById,
+  };
+};
 export default useCharacter;

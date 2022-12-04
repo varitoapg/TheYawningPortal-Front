@@ -8,6 +8,7 @@ const baseUrl = process.env.REACT_APP_API_URL;
 const { registerRoute, usersRoute, loginRoute } = userRoutes;
 const { charactersRoute, deleteRoute, createRoute } = characterRoutes;
 const { id } = testListCharacters[0];
+const { id: idCharacter } = testListCharacters[1];
 
 export const handlers = [
   rest.post(
@@ -82,6 +83,22 @@ export const handlers = [
       return res.once(
         ctx.status(500),
         ctx.json({ error: "Character cannot be created!" })
+      );
+    }
+  ),
+
+  rest.get(
+    `${baseUrl}${charactersRoute}/${idCharacter}`,
+    async (req, res, ctx) => {
+      return res.once(ctx.status(200), ctx.json(testListCharacters[1]));
+    }
+  ),
+  rest.get(
+    `${baseUrl}${charactersRoute}/${idCharacter}`,
+    async (req, res, ctx) => {
+      return res.once(
+        ctx.status(500),
+        ctx.json({ error: "Character not found!" })
       );
     }
   ),
