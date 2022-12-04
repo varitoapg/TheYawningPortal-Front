@@ -98,10 +98,6 @@ describe("Given the LoginForm Component", () => {
 
   describe("When it's rendered all inputs fullfilled and Create button it's clicked", () => {
     test("Then the form should be submited", async () => {
-      const image = new File(["avatar"], "avatar.jpg", {
-        type: "image/jpg",
-      });
-
       renderWithProviders(<CreateForm />);
 
       const expectedName = screen.getByRole("textbox", {
