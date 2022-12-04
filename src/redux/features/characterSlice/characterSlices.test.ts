@@ -1,4 +1,7 @@
-import { getRandomCharacterList } from "../../../factories/characterFactory";
+import {
+  getRandomCharacter,
+  getRandomCharacterList,
+} from "../../../factories/characterFactory";
 import {
   fourCharactersState,
   initialCharacterState,
@@ -7,7 +10,9 @@ import {
   characterReducer,
   deleteCharacterActionCreator,
   getAllCharactersActionCreator,
+  getCharacterByIdActionCreator,
 } from "./characterSlice";
+import { Character, CharacterState } from "./reducer/types";
 
 describe("Given a characterReducer", () => {
   describe("And it's invoked", () => {
@@ -36,7 +41,10 @@ describe("Given a characterReducer", () => {
         getAllCharactersActionCreator(newCharacters)
       );
 
-      expect(newState).toStrictEqual({ characters: newCharacters });
+      expect(newState).toStrictEqual({
+        characters: newCharacters,
+        currentCharacter: {},
+      });
     });
   });
 
@@ -51,6 +59,24 @@ describe("Given a characterReducer", () => {
       const newState = characterReducer(
         currentState,
         deleteCharacterActionCreator(currentState.characters[0].id)
+      );
+
+      expect(newState).toStrictEqual(expectedState);
+    });
+  });
+
+  describe("When its reducer getCharacterById is invoked with a payload with a character and the current state", () => {
+    test("Then it should return a state with the same character", () => {
+      const newCharacter = getRandomCharacter();
+
+      const expectedState: CharacterState = {
+        characters: [] as Character[],
+        currentCharacter: newCharacter,
+      };
+
+      const newState = characterReducer(
+        initialCharacterState,
+        getCharacterByIdActionCreator(newCharacter)
       );
 
       expect(newState).toStrictEqual(expectedState);
