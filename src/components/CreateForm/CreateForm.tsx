@@ -192,7 +192,7 @@ const CreateForm = (): JSX.Element => {
           <div className="main-stats__modifier">{"+4"}</div>
           <Button
             children={<FaDiceD20 className="icon--randomize" />}
-            ariaLabel="Create"
+            ariaLabel="Randomize strength"
             classname="button button--randomize"
           />
         </div>
@@ -214,7 +214,7 @@ const CreateForm = (): JSX.Element => {
           <div className="main-stats__modifier">{"+4"}</div>
           <Button
             children={<FaDiceD20 className="icon--randomize" />}
-            ariaLabel="Create"
+            ariaLabel="Randomize constitution"
             classname="button button--randomize"
           />
         </div>
@@ -236,7 +236,7 @@ const CreateForm = (): JSX.Element => {
           <div className="main-stats__modifier">{"+4"}</div>
           <Button
             children={<FaDiceD20 className="icon--randomize" />}
-            ariaLabel="Create"
+            ariaLabel="Randomize dexterity"
             classname="button button--randomize"
           />
         </div>
@@ -258,7 +258,7 @@ const CreateForm = (): JSX.Element => {
           <div className="main-stats__modifier">{"+4"}</div>
           <Button
             children={<FaDiceD20 className="icon--randomize" />}
-            ariaLabel="Create"
+            ariaLabel="Randomize intelligence"
             classname="button button--randomize"
           />
         </div>
@@ -280,7 +280,7 @@ const CreateForm = (): JSX.Element => {
           <div className="main-stats__modifier">{"+4"}</div>
           <Button
             children={<FaDiceD20 className="icon--randomize" />}
-            ariaLabel="Create"
+            ariaLabel="Randomize wisdom"
             classname="button button--randomize"
           />
         </div>
@@ -302,7 +302,7 @@ const CreateForm = (): JSX.Element => {
           <div className="main-stats__modifier">{"+4"}</div>
           <Button
             children={<FaDiceD20 className="icon--randomize" />}
-            ariaLabel="Create"
+            ariaLabel="Randomize charisma"
             classname="button button--randomize"
           />
         </div>
