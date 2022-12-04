@@ -5,7 +5,9 @@ import { testListCharacters } from "../../mocks/testCharacter";
 import {
   deleteCharacterActionCreator,
   getAllCharactersActionCreator,
+  getCharacterByIdActionCreator,
 } from "../../redux/features/characterSlice/characterSlice";
+import getCharacterById from "../../redux/features/characterSlice/reducer/getCharacterById";
 import { CharacterForm } from "../../redux/features/characterSlice/reducer/types";
 import {
   hideLoadingActionCreator,
@@ -163,6 +165,52 @@ describe("Given the useCharacter custom hook", () => {
             text: "Character cannot be created!",
           })
         );
+      });
+    });
+  });
+
+  describe("And invokes its function getCharacterById", () => {
+    describe("When it's invocked with a correct characterId", () => {
+      test("Then it should return the correct character", async () => {
+        const { id: idCharacter } = testListCharacters[1];
+        const { result } = renderHook(() => useCharacter(), {
+          wrapper: ProviderWrapper,
+        });
+
+        await result.current.getCharacterById(idCharacter);
+
+        expect(dispatchSpy).toHaveBeenCalledWith(
+          getCharacterByIdActionCreator(testListCharacters[1])
+        );
+      });
+    });
+
+    describe("And invokes its function getCharacterById", () => {
+      describe("When it's invocked an axios rejects an error", () => {
+        test("Then dispatch should be called with show and hide LoadingActionCreator and showModalActionCreator with error true and 'Character not found!'", async () => {
+          const { id: idCharacter } = testListCharacters[1];
+          const { result } = renderHook(() => useCharacter(), {
+            wrapper: ProviderWrapper,
+          });
+
+          await result.current.getCharacterById(idCharacter);
+
+          expect(dispatchSpy).toHaveBeenNthCalledWith(
+            1,
+            showLoadingActionCreator()
+          );
+          expect(dispatchSpy).toHaveBeenNthCalledWith(
+            2,
+            hideLoadingActionCreator()
+          );
+          expect(dispatchSpy).toHaveBeenNthCalledWith(
+            3,
+            showModalActionCreator({
+              isError: true,
+              text: "Character not found!",
+            })
+          );
+        });
       });
     });
   });
