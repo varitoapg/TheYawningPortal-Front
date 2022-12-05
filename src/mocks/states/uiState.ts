@@ -7,6 +7,10 @@ export const mockUiInitialState: UiState = {
     isOpen: false,
     text: "",
   },
+  pages: {
+    currentPage: 0,
+    totalPages: 1,
+  },
 };
 
 export const mockUiModalOpenState: UiState = {
@@ -16,6 +20,10 @@ export const mockUiModalOpenState: UiState = {
     isOpen: true,
     text: "Error modal",
   },
+  pages: {
+    currentPage: 0,
+    totalPages: 1,
+  },
 };
 
 export const mockUiLoadingOpenState: UiState = {
@@ -24,5 +32,9 @@ export const mockUiLoadingOpenState: UiState = {
     isError: false,
     isOpen: false,
     text: "",
+  },
+  pages: {
+    currentPage: 0,
+    totalPages: 1,
   },
 };

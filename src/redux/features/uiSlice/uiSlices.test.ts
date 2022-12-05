@@ -3,10 +3,12 @@ import {
   mockUiLoadingOpenState,
   mockUiModalOpenState,
 } from "../../../mocks/states/uiState";
-import { ShowModalActionPayload, UiState } from "./types";
+import { Pagination, ShowModalActionPayload, UiState } from "./types";
 import {
+  getPagesActionCreator,
   hideLoadingActionCreator,
   hideModalActionCreator,
+  moveToNextPageActionCreator,
   showLoadingActionCreator,
   showModalActionCreator,
   uiReducer,
@@ -36,6 +38,10 @@ describe("Given a uiReducer", () => {
           text: "Test error",
           isOpen: true,
         },
+        pages: {
+          currentPage: 0,
+          totalPages: 1,
+        },
       };
 
       const actionPayload: ShowModalActionPayload = {
@@ -61,6 +67,10 @@ describe("Given a uiReducer", () => {
           text: "",
           isOpen: false,
         },
+        pages: {
+          currentPage: 0,
+          totalPages: 1,
+        },
       };
 
       const newUiState = uiReducer(
@@ -80,6 +90,10 @@ describe("Given a uiReducer", () => {
           isError: false,
           isOpen: false,
           text: "",
+        },
+        pages: {
+          currentPage: 0,
+          totalPages: 1,
         },
       };
 
@@ -101,12 +115,66 @@ describe("Given a uiReducer", () => {
           isOpen: false,
           text: "",
         },
+        pages: {
+          currentPage: 0,
+          totalPages: 1,
+        },
       };
 
       const newState = uiReducer(
         mockUiLoadingOpenState,
         hideLoadingActionCreator()
       );
+
+      expect(expectedUiState).toStrictEqual(newState);
+    });
+  });
+
+  describe("When its reducer getPages is invoked with a initial state with current page 0 and total pages 5", () => {
+    test("Then it should return a new state with pages information", () => {
+      const initialState = mockUiInitialState;
+      const pagesPayload: Pagination = {
+        currentPage: 0,
+        totalPages: 1,
+      };
+
+      const expectedUiState: UiState = {
+        isLoading: false,
+        modal: {
+          isError: false,
+          isOpen: false,
+          text: "",
+        },
+        pages: pagesPayload,
+      };
+
+      const newState = uiReducer(
+        initialState,
+        getPagesActionCreator(pagesPayload)
+      );
+
+      expect(expectedUiState).toStrictEqual(newState);
+    });
+  });
+
+  describe("When its reducer moveToNextPage is invoked with a initial state with currentPage 0 and total pages 5", () => {
+    test("Then it should return a new state with pages information with currentPage 1", () => {
+      const initialState = mockUiInitialState;
+
+      const expectedUiState: UiState = {
+        isLoading: false,
+        modal: {
+          isError: false,
+          isOpen: false,
+          text: "",
+        },
+        pages: {
+          currentPage: 1,
+          totalPages: 1,
+        },
+      };
+
+      const newState = uiReducer(initialState, moveToNextPageActionCreator());
 
       expect(expectedUiState).toStrictEqual(newState);
     });

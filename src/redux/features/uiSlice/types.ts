@@ -4,6 +4,10 @@ export interface ModalState {
   isOpen: boolean;
 }
 
+export interface Pagination {
+  currentPage: number;
+  totalPages: number;
+}
 export interface ShowModalActionPayload {
   isError: boolean;
   text: string;
@@ -12,4 +16,5 @@ export interface ShowModalActionPayload {
 export interface UiState {
   isLoading: boolean;
   modal: ModalState;
+  pages: Pagination;
 }
