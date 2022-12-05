@@ -21,7 +21,7 @@ const LoadingStyled = styled.div`
   }
 
   .breathe {
-    animation: breathe 5s infinite;
+    animation: breathe 1.2s infinite;
     fill: #e08f8a;
     fill-rule: evenodd;
     stroke: #ffffff;
@@ -29,11 +29,11 @@ const LoadingStyled = styled.div`
     stroke-width: 1.5px;
   }
   .first {
-    animation-delay: 0.6s;
+    animation-delay: 0.3s;
     fill: #c11f15;
   }
   .second {
-    animation-delay: 1.2s;
+    animation-delay: 0.8s;
     fill: #9a1911;
 
     &--darker {
@@ -41,7 +41,7 @@ const LoadingStyled = styled.div`
     }
   }
   .third {
-    animation-delay: 1.8s;
+    animation-delay: 1s;
     fill: #9a1911;
 
     &--darker {
@@ -50,7 +50,7 @@ const LoadingStyled = styled.div`
     }
   }
   .fourth {
-    animation-delay: 2.4s;
+    animation-delay: 1s;
     fill: #cd4c44;
     &--darker {
       fill: #600f0a;
