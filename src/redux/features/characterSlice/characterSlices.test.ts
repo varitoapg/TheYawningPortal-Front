@@ -11,7 +11,9 @@ import {
   deleteCharacterActionCreator,
   getAllCharactersActionCreator,
   getCharacterByIdActionCreator,
+  getMoreCharactersActionCreator,
 } from "./characterSlice";
+import getMoreCharacters from "./reducer/getMoreCharacters";
 import { Character, CharacterState } from "./reducer/types";
 
 describe("Given a characterReducer", () => {
@@ -77,6 +79,25 @@ describe("Given a characterReducer", () => {
       const newState = characterReducer(
         initialCharacterState,
         getCharacterByIdActionCreator(newCharacter)
+      );
+
+      expect(newState).toStrictEqual(expectedState);
+    });
+  });
+
+  describe("When its reducer getMoreCharacters is invoked with a payload of 2 charaters and the current state", () => {
+    test("Then it should return a state with old array of characters and the new ones", () => {
+      const newCharacters = getRandomCharacterList(2);
+      const currentState = fourCharactersState;
+
+      const expectedState: CharacterState = {
+        ...fourCharactersState,
+        characters: [...fourCharactersState.characters, ...newCharacters],
+      };
+
+      const newState = characterReducer(
+        currentState,
+        getMoreCharactersActionCreator(newCharacters)
       );
 
       expect(newState).toStrictEqual(expectedState);
