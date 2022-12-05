@@ -6,6 +6,7 @@ interface ButtonProps {
   action?: () => void;
   isDisable?: boolean;
   ariaLabel?: string;
+  buttonType?: "button" | "submit";
 }
 
 const Button = ({
@@ -14,6 +15,7 @@ const Button = ({
   isDisable,
   classname,
   ariaLabel,
+  buttonType,
 }: ButtonProps): JSX.Element => {
   return (
     <ButtonStyled
@@ -21,6 +23,7 @@ const Button = ({
       onClick={action}
       disabled={isDisable}
       aria-label={ariaLabel}
+      type={buttonType}
     >
       {children}
     </ButtonStyled>

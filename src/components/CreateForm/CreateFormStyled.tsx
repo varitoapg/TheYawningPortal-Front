@@ -253,7 +253,7 @@ const CreateFormStyled = styled.form`
         width: 100%;
         height: 150px;
         padding: 12px 10px;
-        border: 2px solid #ccc;
+        border: 2px solid ${(props) => props.theme.color.whites.lightest};
         border-radius: 4px;
         border: none;
         background-color: #f8f8f8;
@@ -274,12 +274,20 @@ const CreateFormStyled = styled.form`
       position: relative;
       right: -100px;
       top: -100px;
+
+      &:disabled {
+        border: 1px solid ${(props) => props.theme.color.ink.lightest};
+      }
     }
 
     &--create {
       position: fixed;
       bottom: 20px;
     }
+  }
+
+  option {
+    text-transform: capitalize;
   }
 `;
 
