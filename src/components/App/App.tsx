@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import useToken from "../../hooks/useToken/useToken";
 import CreatePage from "../../pages/CreatePage/CreatePage";
+import DetailPage from "../../pages/DetailPage/DetailPage";
 import HomePage from "../../pages/HomePage/HomePage";
 import LoginPage from "../../pages/LoginPage/LoginPage";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
@@ -59,7 +60,14 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-        <Route path="*" element={<NotFoundPage />} />
+        <Route
+          path="/character/:idCharacter"
+          element={
+            <ProtectedRoute isLogged={isLogged}>
+              <DetailPage />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/create"
           element={
@@ -68,6 +76,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
 
       {isLoading && <Loading />}
