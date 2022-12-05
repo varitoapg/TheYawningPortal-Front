@@ -16,7 +16,8 @@ const initialState: UiState = {
   },
   pages: {
     currentPage: 0,
-    totalPages: 1,
+    totalPages: 2,
+    isNextPage: true,
   },
 };
 

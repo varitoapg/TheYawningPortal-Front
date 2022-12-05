@@ -7,6 +7,7 @@ export interface ModalState {
 export interface Pagination {
   currentPage: number;
   totalPages: number;
+  isNextPage: boolean;
 }
 export interface ShowModalActionPayload {
   isError: boolean;

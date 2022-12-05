@@ -40,7 +40,8 @@ describe("Given a uiReducer", () => {
         },
         pages: {
           currentPage: 0,
-          totalPages: 1,
+          totalPages: 2,
+          isNextPage: true,
         },
       };
 
@@ -69,7 +70,8 @@ describe("Given a uiReducer", () => {
         },
         pages: {
           currentPage: 0,
-          totalPages: 1,
+          totalPages: 2,
+          isNextPage: true,
         },
       };
 
@@ -93,7 +95,8 @@ describe("Given a uiReducer", () => {
         },
         pages: {
           currentPage: 0,
-          totalPages: 1,
+          totalPages: 2,
+          isNextPage: true,
         },
       };
 
@@ -117,7 +120,8 @@ describe("Given a uiReducer", () => {
         },
         pages: {
           currentPage: 0,
-          totalPages: 1,
+          totalPages: 2,
+          isNextPage: true,
         },
       };
 
@@ -130,12 +134,13 @@ describe("Given a uiReducer", () => {
     });
   });
 
-  describe("When its reducer getPages is invoked with a initial state with current page 0 and total pages 5", () => {
+  describe("When its reducer getPages is invoked with a initial state with current page 0 and total pages 2", () => {
     test("Then it should return a new state with pages information", () => {
       const initialState = mockUiInitialState;
       const pagesPayload: Pagination = {
         currentPage: 0,
-        totalPages: 1,
+        totalPages: 2,
+        isNextPage: true,
       };
 
       const expectedUiState: UiState = {
@@ -157,7 +162,7 @@ describe("Given a uiReducer", () => {
     });
   });
 
-  describe("When its reducer moveToNextPage is invoked with a initial state with currentPage 0 and total pages 5", () => {
+  describe("When its reducer moveToNextPage is invoked with a initial state with currentPage 0 and total pages 2", () => {
     test("Then it should return a new state with pages information with currentPage 1", () => {
       const initialState = mockUiInitialState;
 
@@ -170,7 +175,8 @@ describe("Given a uiReducer", () => {
         },
         pages: {
           currentPage: 1,
-          totalPages: 1,
+          totalPages: 2,
+          isNextPage: true,
         },
       };
 
