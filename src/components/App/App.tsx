@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import useToken from "../../hooks/useToken/useToken";
 import { useAppSelector } from "../../redux/hooks";
 import Layout from "../Layout/Layout";
@@ -17,8 +18,9 @@ const App = () => {
   return (
     <AppStyled>
       <Layout />
-      {isLoading && <Loading />}
       {isOpen && <Modal isError={isError} text={text} />}
+      <Suspense fallback={<Loading />} />
+      {isLoading && <Loading />}
     </AppStyled>
   );
 };

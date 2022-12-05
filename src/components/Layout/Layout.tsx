@@ -1,13 +1,22 @@
+import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import CreatePage from "../../pages/CreatePage/CreatePage";
-import DetailPage from "../../pages/DetailPage/DetailPage";
-import HomePage from "../../pages/HomePage/HomePage";
 import LoginPage from "../../pages/LoginPage/LoginPage";
-import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
-import RegisterPage from "../../pages/RegisterPage/RegisterPage";
 import { useAppSelector } from "../../redux/hooks";
 import ExitRoute from "../ExitRoute/ExitRoute";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+
+const NotFoundPage = lazy(
+  () => import("../../pages/NotFoundPage/NotFoundPage")
+);
+const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
+
+const RegisterPage = lazy(
+  () => import("../../pages/RegisterPage/RegisterPage")
+);
+
+const DetailPage = lazy(() => import("../../pages/DetailPage/DetailPage"));
+
+const CreatePage = lazy(() => import("../../pages/CreatePage/CreatePage"));
 
 const Layout = (): JSX.Element => {
   const isLogged = useAppSelector((state) => state.user.isLogged);
