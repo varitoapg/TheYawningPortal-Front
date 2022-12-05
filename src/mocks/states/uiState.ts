@@ -9,7 +9,8 @@ export const mockUiInitialState: UiState = {
   },
   pages: {
     currentPage: 0,
-    totalPages: 1,
+    totalPages: 2,
+    isNextPage: true,
   },
 };
 
@@ -22,7 +23,8 @@ export const mockUiModalOpenState: UiState = {
   },
   pages: {
     currentPage: 0,
-    totalPages: 1,
+    totalPages: 2,
+    isNextPage: true,
   },
 };
 
@@ -35,6 +37,7 @@ export const mockUiLoadingOpenState: UiState = {
   },
   pages: {
     currentPage: 0,
-    totalPages: 1,
+    totalPages: 2,
+    isNextPage: true,
   },
 };
