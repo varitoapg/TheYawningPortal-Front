@@ -59,6 +59,7 @@ const CharacterCardStyled = styled.li`
 
       &-title {
         text-transform: capitalize;
+        text-align: center;
         color: ${(props) => props.theme.color.ink.base};
         font-size: ${(props) => props.theme.font.main.sizes.display};
         font-weight: ${(props) => props.theme.font.main.weights.bold};
@@ -72,7 +73,7 @@ const CharacterCardStyled = styled.li`
         border-radius: ${(props) => props.theme.size.borderRadius.small};
         border: 1px solid ${(props) => props.theme.color.ink.darkest};
         text-align: center;
-        max-width: 55px;
+        min-width: 66px;
       }
     }
 
