@@ -98,8 +98,13 @@ describe("Given the LoginForm Component", () => {
 
   describe("When it's rendered all inputs fullfilled and Create button it's clicked", () => {
     test("Then the form should be submited", async () => {
+      const image = new File(["avatar"], "avatar.jpg", {
+        type: "image/jpg",
+      });
+
       renderWithProviders(<CreateForm />);
 
+      const expectedImage = screen.getByTestId("input image");
       const expectedName = screen.getByRole("textbox", {
         name: nameText,
       });
@@ -143,6 +148,8 @@ describe("Given the LoginForm Component", () => {
         name: createButton,
       });
 
+      URL.createObjectURL = jest.fn().mockReturnValue(image.type);
+
       await userEvent.type(expectedName, "test");
       await userEvent.type(expectedRace, "test");
       await userEvent.type(expectedBackground, "test");
@@ -154,6 +161,7 @@ describe("Given the LoginForm Component", () => {
       await userEvent.type(expectedScoreIntelligence, "4");
       await userEvent.type(expectedScoreWisdom, "4");
       await userEvent.type(expectedScoreCharisma, "4");
+      await userEvent.upload(expectedImage!, image);
 
       userEvent.click(classCharacterSelect);
 

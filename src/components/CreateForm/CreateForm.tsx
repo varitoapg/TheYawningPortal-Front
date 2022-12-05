@@ -84,6 +84,7 @@ const CreateForm = (): JSX.Element => {
           )}
         </label>
         <input
+          data-testid="input image"
           className="create-form__input--image"
           type="file"
           id="image"
