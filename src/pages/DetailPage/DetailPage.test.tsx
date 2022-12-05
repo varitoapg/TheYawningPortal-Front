@@ -1,4 +1,3 @@
-import { getRandomCharacter } from "../../factories/characterFactory";
 import renderWithProviders from "../../testUtils/renderWithProvider";
 import DetailPage from "./DetailPage";
 
