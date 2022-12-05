@@ -1,4 +1,5 @@
 import { CharacterForm } from "../../redux/features/characterSlice/reducer/types";
+import setStatsModifier from "../../utils/setStatsModifier/setStatsModifier";
 import DetailCharacterStyled from "./DetailCharacterStyled";
 
 interface DetailCharacterProps {
@@ -68,42 +69,52 @@ const DetailCharacter = ({
           <h3 className="main-stats__value" aria-label="strength score">
             {strength}
           </h3>
-          <div className="main-stats__modifier">{"+4"}</div>
+          <div className="main-stats__modifier">
+            {setStatsModifier(strength)}
+          </div>
         </div>
         <div className="main-stats__item">
           <h2 className="main-stats__label">dexterity</h2>
           <h3 className="main-stats__value" aria-label="dexterity score">
             {dexterity}
           </h3>
-          <div className="main-stats__modifier">{"+4"}</div>
+          <div className="main-stats__modifier">
+            {setStatsModifier(dexterity)}
+          </div>
         </div>
         <div className="main-stats__item">
           <h2 className="main-stats__label">constitution</h2>
           <h3 className="main-stats__value" aria-label="constitution score">
             {constitution}
           </h3>
-          <div className="main-stats__modifier">{"+4"}</div>
+          <div className="main-stats__modifier">
+            {setStatsModifier(constitution)}
+          </div>
         </div>
         <div className="main-stats__item">
           <h2 className="main-stats__label">intelligence</h2>
           <h3 className="main-stats__value" aria-label="intelligence score">
             {intelligence}
           </h3>
-          <div className="main-stats__modifier">{"+4"}</div>
+          <div className="main-stats__modifier">
+            {setStatsModifier(intelligence)}
+          </div>
         </div>
         <div className="main-stats__item">
           <h2 className="main-stats__label">wisdom</h2>
           <h3 className="main-stats__value" aria-label="wisdom score">
             {wisdom}
           </h3>
-          <div className="main-stats__modifier">{"+4"}</div>
+          <div className="main-stats__modifier">{setStatsModifier(wisdom)}</div>
         </div>
         <div className="main-stats__item">
           <h2 className="main-stats__label">charisma</h2>
           <h3 className="main-stats__value" aria-label="charsima score">
             {charisma}
           </h3>
-          <div className="main-stats__modifier">{"+4"}</div>
+          <div className="main-stats__modifier">
+            {setStatsModifier(charisma)}
+          </div>
         </div>
       </div>
 
