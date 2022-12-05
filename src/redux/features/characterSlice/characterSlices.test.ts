@@ -13,7 +13,6 @@ import {
   getCharacterByIdActionCreator,
   getMoreCharactersActionCreator,
 } from "./characterSlice";
-import getMoreCharacters from "./reducer/getMoreCharacters";
 import { Character, CharacterState } from "./reducer/types";
 
 describe("Given a characterReducer", () => {
