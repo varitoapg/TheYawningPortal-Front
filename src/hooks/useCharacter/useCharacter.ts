@@ -5,9 +5,11 @@ import {
   deleteCharacterActionCreator,
   getAllCharactersActionCreator,
   getCharacterByIdActionCreator,
+  getMoreCharactersActionCreator,
 } from "../../redux/features/characterSlice/characterSlice";
 import { CharacterForm } from "../../redux/features/characterSlice/reducer/types";
 import {
+  getPagesActionCreator,
   hideLoadingActionCreator,
   showLoadingActionCreator,
   showModalActionCreator,
@@ -25,30 +27,45 @@ const useCharacter = () => {
 
   const token = localStorage.getItem("token");
 
-  const getUserCharacters = useCallback(async () => {
-    try {
-      dispatch(showLoadingActionCreator());
+  const getUserCharacters = useCallback(
+    async (page: number) => {
+      try {
+        dispatch(showLoadingActionCreator());
 
-      const response = await axios.get(`${baseUrl}${charactersRoute}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+        const response = await axios.get(`${baseUrl}${charactersRoute}`, {
+          params: {
+            page,
+          },
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-      const charactersResponse = response.data;
+        const { allCharacters, isNextPage, totalPages } = response.data;
 
-      dispatch(getAllCharactersActionCreator(charactersResponse.allCharacters));
-      dispatch(hideLoadingActionCreator());
-    } catch (error: unknown) {
-      dispatch(hideLoadingActionCreator());
-      dispatch(
-        showModalActionCreator({
-          isError: true,
-          text: (error as AxiosError<AxiosResponseBody>).response?.data.error!,
-        })
-      );
-    }
-  }, [baseUrl, charactersRoute, dispatch, token]);
+        if (page === 0) {
+          dispatch(getAllCharactersActionCreator(allCharacters));
+        } else {
+          dispatch(getMoreCharactersActionCreator(allCharacters));
+        }
+
+        dispatch(
+          getPagesActionCreator({ totalPages, isNextPage, currentPage: page })
+        );
+        dispatch(hideLoadingActionCreator());
+      } catch (error: unknown) {
+        dispatch(hideLoadingActionCreator());
+        dispatch(
+          showModalActionCreator({
+            isError: true,
+            text: (error as AxiosError<AxiosResponseBody>).response?.data
+              .error!,
+          })
+        );
+      }
+    },
+    [baseUrl, charactersRoute, dispatch, token]
+  );
 
   const deleteCharacter = useCallback(
     async (idCharacter: string) => {
