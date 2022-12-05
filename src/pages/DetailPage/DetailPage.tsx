@@ -7,6 +7,7 @@ import { useAppSelector } from "../../redux/hooks";
 import DetailPageStyled from "./DetailPageStyled";
 
 const DetailPage = () => {
+  window.scrollTo(0, 0);
   const { idCharacter } = useParams();
   const { getCharacterById } = useCharacter();
 

@@ -11,6 +11,10 @@ const CharacterCardStyled = styled.li`
   max-width: 400px;
   min-width: 292px;
   width: 100%;
+
+  a {
+    margin: 0 auto;
+  }
   .character {
     &-state {
       display: flex;

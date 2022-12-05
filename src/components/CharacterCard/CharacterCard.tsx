@@ -1,4 +1,5 @@
 import { FaSkull, FaAnkh, FaHeartBroken } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import useCharacter from "../../hooks/useCharacter/useCharacter";
 import { Character } from "../../redux/features/characterSlice/reducer/types";
 import Button from "../Button/Button";
@@ -32,22 +33,24 @@ const CharacterCard = ({
   return (
     <CharacterCardStyled>
       <div className="character-state">
-        {imageBackup ? (
-          <img
-            src={imageBackup}
-            alt={`${name}`}
-            className={`character__image character__image${
-              isAlive ? "" : "--dead"
-            } `}
-          />
-        ) : (
-          <div
-            aria-label="Empty image"
-            className={`character__image character__image${
-              isAlive ? "" : "--dead"
-            } `}
-          ></div>
-        )}
+        <Link to={`/character/${id}`}>
+          {imageBackup ? (
+            <img
+              src={imageBackup}
+              alt={`${name}`}
+              className={`character__image character__image${
+                isAlive ? "" : "--dead"
+              } `}
+            />
+          ) : (
+            <div
+              aria-label="Empty image"
+              className={`character__image character__image${
+                isAlive ? "" : "--dead"
+              } `}
+            ></div>
+          )}
+        </Link>
         <div className="button-container">
           {isAlive ? (
             <Button
@@ -70,6 +73,7 @@ const CharacterCard = ({
           />
         </div>
       </div>
+
       <div className="character-container">
         <h2 className="character__name">{name}</h2>
         <span className="character__information">{characterClass}</span>
