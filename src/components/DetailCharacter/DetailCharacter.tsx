@@ -44,47 +44,65 @@ const DetailCharacter = ({
       <div className="secondary-stats">
         <div className="secondary-stats-container">
           <h3 className="secondary-stats-title">armor class</h3>
-          <h2 className="secondary-stats-value">16</h2>
+          <h2 className="secondary-stats-value" aria-label="armor class score">
+            16
+          </h2>
         </div>
         <div className="secondary-stats-container">
           <h3 className="secondary-stats-title">initiative</h3>
-          <h2 className="secondary-stats-value">+2</h2>
+          <h2 className="secondary-stats-value" aria-label="initiative score">
+            +2
+          </h2>
         </div>
         <div className="secondary-stats-container">
           <h3 className="secondary-stats-title">speed</h3>
-          <h2 className="secondary-stats-value">{speed}</h2>
+          <h2 className="secondary-stats-value" aria-label="speed score">
+            {speed}
+          </h2>
         </div>
       </div>
 
       <div className="main-stats">
         <div className="main-stats__item">
           <h2 className="main-stats__label">strength</h2>
-          <h3 className="main-stats__value">{strength}</h3>
+          <h3 className="main-stats__value" aria-label="strength score">
+            {strength}
+          </h3>
           <div className="main-stats__modifier">{"+4"}</div>
         </div>
         <div className="main-stats__item">
           <h2 className="main-stats__label">dexterity</h2>
-          <h3 className="main-stats__value">{dexterity}</h3>
+          <h3 className="main-stats__value" aria-label="dexterity score">
+            {dexterity}
+          </h3>
           <div className="main-stats__modifier">{"+4"}</div>
         </div>
         <div className="main-stats__item">
           <h2 className="main-stats__label">constitution</h2>
-          <h3 className="main-stats__value">{constitution}</h3>
+          <h3 className="main-stats__value" aria-label="constitution score">
+            {constitution}
+          </h3>
           <div className="main-stats__modifier">{"+4"}</div>
         </div>
         <div className="main-stats__item">
           <h2 className="main-stats__label">intelligence</h2>
-          <h3 className="main-stats__value">{intelligence}</h3>
+          <h3 className="main-stats__value" aria-label="intelligence score">
+            {intelligence}
+          </h3>
           <div className="main-stats__modifier">{"+4"}</div>
         </div>
         <div className="main-stats__item">
           <h2 className="main-stats__label">wisdom</h2>
-          <h3 className="main-stats__value">{wisdom}</h3>
+          <h3 className="main-stats__value" aria-label="wisdom score">
+            {wisdom}
+          </h3>
           <div className="main-stats__modifier">{"+4"}</div>
         </div>
         <div className="main-stats__item">
           <h2 className="main-stats__label">charisma</h2>
-          <h3 className="main-stats__value">{charisma}</h3>
+          <h3 className="main-stats__value" aria-label="charsima score">
+            {charisma}
+          </h3>
           <div className="main-stats__modifier">{"+4"}</div>
         </div>
       </div>

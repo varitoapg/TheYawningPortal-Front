@@ -120,31 +120,34 @@ const useCharacter = () => {
     }
   };
 
-  const getCharacterById = async (idCharacter: string) => {
-    try {
-      dispatch(showLoadingActionCreator());
+  const getCharacterById = useCallback(
+    async (idCharacter: string) => {
+      try {
+        dispatch(showLoadingActionCreator());
+        const response = await axios.get(
+          `${baseUrl}${charactersRoute}/${idCharacter}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
-      const response = await axios.get(
-        `${baseUrl}${charactersRoute}/${idCharacter}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      dispatch(getCharacterByIdActionCreator(response.data));
-      dispatch(hideLoadingActionCreator());
-    } catch (error: unknown) {
-      dispatch(hideLoadingActionCreator());
-      dispatch(
-        showModalActionCreator({
-          isError: true,
-          text: (error as AxiosError<AxiosResponseBody>).response?.data.error!,
-        })
-      );
-    }
-  };
+        dispatch(getCharacterByIdActionCreator(response.data));
+        dispatch(hideLoadingActionCreator());
+      } catch (error: unknown) {
+        dispatch(hideLoadingActionCreator());
+        dispatch(
+          showModalActionCreator({
+            isError: true,
+            text: (error as AxiosError<AxiosResponseBody>).response?.data
+              .error!,
+          })
+        );
+      }
+    },
+    [baseUrl, charactersRoute, dispatch, token]
+  );
 
   return {
     getUserCharacters,
