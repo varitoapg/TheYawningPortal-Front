@@ -4,6 +4,8 @@ import showModal from "./reducers/showModal";
 import hideModal from "./reducers/hideModal";
 import showLoading from "./reducers/showLoading";
 import hideLoading from "./reducers/hideLoading";
+import getPages from "./reducers/getPages";
+import moveToNextPage from "./reducers/moveToNextPage";
 
 const initialState: UiState = {
   isLoading: false,
@@ -11,6 +13,10 @@ const initialState: UiState = {
     isError: false,
     isOpen: false,
     text: "",
+  },
+  pages: {
+    currentPage: 0,
+    totalPages: 1,
   },
 };
 
@@ -22,6 +28,8 @@ const uiSlice = createSlice({
     hideModal,
     showLoading,
     hideLoading,
+    getPages,
+    moveToNextPage,
   },
 });
 
@@ -30,6 +38,8 @@ export const {
   hideModal: hideModalActionCreator,
   showLoading: showLoadingActionCreator,
   hideLoading: hideLoadingActionCreator,
+  getPages: getPagesActionCreator,
+  moveToNextPage: moveToNextPageActionCreator,
 } = uiSlice.actions;
 
 export const uiReducer = uiSlice.reducer;
