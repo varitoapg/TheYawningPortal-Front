@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import useToken from "../../hooks/useToken/useToken";
 import CreatePage from "../../pages/CreatePage/CreatePage";
@@ -19,11 +18,9 @@ const App = () => {
     modal: { text, isError, isOpen },
   } = useAppSelector((state) => state.ui);
   const isLogged = useAppSelector((state) => state.user.isLogged);
-  const { getToken } = useToken();
 
-  useEffect(() => {
-    getToken();
-  }, [getToken]);
+  const { getToken } = useToken();
+  getToken();
 
   return (
     <AppStyled>
@@ -54,7 +51,6 @@ const App = () => {
             </ExitRoute>
           }
         />
-        <Route path="/*" element={<NotFoundPage />} />
         <Route
           path="/home"
           element={
@@ -63,7 +59,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-
+        <Route path="*" element={<NotFoundPage />} />
         <Route
           path="/create"
           element={

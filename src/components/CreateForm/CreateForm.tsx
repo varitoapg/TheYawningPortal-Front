@@ -131,7 +131,7 @@ const CreateForm = (): JSX.Element => {
             onChange={handleFormChange}
             id="characterClass"
           >
-            <option>select a class</option>
+            {/* <option>select a class</option> */}
             <option value="artificer">artificer</option>
             <option value="barbarian">barbarian</option>
             <option value="warlock">warlock</option>
@@ -194,6 +194,7 @@ const CreateForm = (): JSX.Element => {
             children={<FaDiceD20 className="icon--randomize" />}
             ariaLabel="Randomize strength"
             classname="button button--randomize"
+            buttonType="button"
           />
         </div>
 
@@ -216,6 +217,7 @@ const CreateForm = (): JSX.Element => {
             children={<FaDiceD20 className="icon--randomize" />}
             ariaLabel="Randomize constitution"
             classname="button button--randomize"
+            buttonType="button"
           />
         </div>
 
@@ -238,6 +240,7 @@ const CreateForm = (): JSX.Element => {
             children={<FaDiceD20 className="icon--randomize" />}
             ariaLabel="Randomize dexterity"
             classname="button button--randomize"
+            buttonType="button"
           />
         </div>
 
@@ -260,6 +263,7 @@ const CreateForm = (): JSX.Element => {
             children={<FaDiceD20 className="icon--randomize" />}
             ariaLabel="Randomize intelligence"
             classname="button button--randomize"
+            buttonType="button"
           />
         </div>
 
@@ -282,6 +286,7 @@ const CreateForm = (): JSX.Element => {
             children={<FaDiceD20 className="icon--randomize" />}
             ariaLabel="Randomize wisdom"
             classname="button button--randomize"
+            buttonType="button"
           />
         </div>
 
@@ -304,6 +309,7 @@ const CreateForm = (): JSX.Element => {
             children={<FaDiceD20 className="icon--randomize" />}
             ariaLabel="Randomize charisma"
             classname="button button--randomize"
+            buttonType="button"
           />
         </div>
       </div>
@@ -340,6 +346,7 @@ const CreateForm = (): JSX.Element => {
         classname="button button--create"
         children={"Create"}
         ariaLabel="Create"
+        buttonType="submit"
       />
     </CreateFormStyled>
   );

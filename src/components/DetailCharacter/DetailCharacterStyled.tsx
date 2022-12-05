@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import caretImage from "../../resources/svg/caret-down.svg";
 
-const CreateFormStyled = styled.form`
+const DetailCharacterStyled = styled.article`
   border: 1px solid ${(props) => props.theme.color.whites.darkest};
   border-radius: ${(props) => props.theme.size.borderRadius.regular};
   padding: ${(props) => props.theme.size.padding.overall} 10px;
@@ -10,7 +9,7 @@ const CreateFormStyled = styled.form`
   align-items: center;
   gap: 30px;
 
-  .edit-profile {
+  .character-image {
     &__image {
       width: 200px;
       height: 200px;
@@ -24,59 +23,32 @@ const CreateFormStyled = styled.form`
     }
   }
 
-  .create-form {
-    &__item {
-      &--image {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-    }
+  .character-information {
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(3, auto);
+    display: grid;
+    align-items: baseline;
+    justify-content: start;
+    gap: 5px;
+    width: 100%;
+
     &__label {
-      &--character {
-        color: ${(props) => props.theme.color.ink.base};
-        font-size: ${(props) => props.theme.font.main.sizes.headline};
-        font-weight: ${(props) => props.theme.font.main.weights.bold};
-        text-transform: capitalize;
-        margin-right: 5px;
-      }
+      color: ${(props) => props.theme.color.ink.base};
+      font-size: ${(props) => props.theme.font.main.sizes.headline};
+      font-weight: ${(props) => props.theme.font.main.weights.bold};
+      text-transform: capitalize;
+      margin-right: 5px;
     }
 
-    &__input {
-      border: none;
+    &__value {
+      display: block;
       font-family: ${(props) => props.theme.font.main.family};
       color: ${(props) => props.theme.color.ink.base};
       font-size: ${(props) => props.theme.font.main.sizes.title};
-      padding: ${(props) => props.theme.size.padding.regular};
-      border-bottom: 1px solid ${(props) => props.theme.color.whites.darkest};
+      text-transform: capitalize;
       min-width: 100%;
       max-width: 360px;
-
-      &:focus {
-        outline: none;
-      }
-
-      &--select {
-        -webkit-appearance: none;
-        border: 2px solid ${(props) => props.theme.color.ink.darkest};
-        border-radius: ${(props) => props.theme.size.borderRadius.big};
-        padding: 10px;
-        margin-top: 10px;
-        background: url(${caretImage}) no-repeat 93%,
-          linear-gradient(
-            90deg,
-            ${(props) => props.theme.color.whites.lightest} 80%,
-            ${(props) => props.theme.color.primary.light} 80%,
-            ${(props) => props.theme.color.primary.base} 80%
-          );
-      }
     }
-  }
-
-  .character-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
   }
 
   .secondary-stats {
@@ -87,6 +59,7 @@ const CreateFormStyled = styled.form`
     display: flex;
     align-items: baseline;
     justify-content: space-between;
+    width: 100%;
     gap: 5px;
 
     &-title {
@@ -107,44 +80,12 @@ const CreateFormStyled = styled.form`
       border-radius: ${(props) => props.theme.size.borderRadius.small};
       padding: 11px;
       max-width: 75px;
+      min-width: 66px;
     }
 
     &-container {
       display: flex;
       flex-direction: column-reverse;
-    }
-
-    &__item {
-      display: flex;
-      flex-direction: column-reverse;
-    }
-
-    &__label {
-      text-align: center;
-      color: ${(props) => props.theme.color.ink.base};
-      font-size: ${(props) => props.theme.font.main.sizes.title};
-      font-weight: ${(props) => props.theme.font.main.weights.bold};
-      text-transform: capitalize;
-      margin-top: 10px;
-    }
-
-    &__input {
-      background-color: ${(props) => props.theme.color.whites.lightest};
-      color: ${(props) => props.theme.color.ink.base};
-      font-size: ${(props) => props.theme.font.main.sizes.display};
-      font-weight: ${(props) => props.theme.font.main.weights.regular};
-      text-align: center;
-      border: 1px solid ${(props) => props.theme.color.ink.base};
-      border-radius: ${(props) => props.theme.size.borderRadius.small};
-      padding: 11px;
-      min-width: 50px;
-      min-height: 50px;
-      max-width: 75px;
-      max-height: 75px;
-
-      &:focus {
-        outline: none;
-      }
     }
   }
 
@@ -181,23 +122,19 @@ const CreateFormStyled = styled.form`
       text-transform: capitalize;
       text-overflow: clip;
     }
-    &__input {
+
+    &__value {
       background-color: ${(props) => props.theme.color.whites.base};
       color: ${(props) => props.theme.color.ink.base};
       font-size: ${(props) => props.theme.font.main.sizes.display};
       font-weight: ${(props) => props.theme.font.main.weights.regular};
       text-align: center;
+      vertical-align: middle;
       border: none;
-      border-bottom: 1px solid ${(props) => props.theme.color.whites.darkest};
-      padding: 11px;
       min-width: 50px;
       min-height: 50px;
       max-width: 75px;
       max-height: 75px;
-
-      &:focus {
-        outline: none;
-      }
     }
 
     &__modifier {
@@ -212,83 +149,33 @@ const CreateFormStyled = styled.form`
     }
   }
 
-  .character-information {
-    &-container {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      border: 1px solid ${(props) => props.theme.color.whites.darkest};
-      border-radius: ${(props) => props.theme.size.borderRadius.regular};
-      padding: ${(props) => props.theme.size.padding.overall} 10px;
-      background-color: ${(props) => props.theme.color.whites.base};
-    }
+  .character-story {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid ${(props) => props.theme.color.whites.darkest};
+    border-radius: ${(props) => props.theme.size.borderRadius.regular};
+    padding: ${(props) => props.theme.size.padding.overall} 10px;
+    background-color: ${(props) => props.theme.color.whites.base};
+    width: 100%;
 
     &__label {
+      color: ${(props) => props.theme.color.ink.base};
       font-size: ${(props) => props.theme.font.main.sizes.title};
       font-weight: ${(props) => props.theme.font.main.weights.bold};
       text-transform: capitalize;
     }
 
-    &__input {
+    &__value {
+      text-transform: capitalize;
+      color: ${(props) => props.theme.color.ink.base};
       min-width: 100%;
-      margin-top: 10px;
       border: none;
       background-color: inherit;
-      border-bottom: 2px solid ${(props) => props.theme.color.whites.darkest};
       font-size: ${(props) => props.theme.font.main.sizes.title};
       color: ${(props) => props.theme.color.ink.base};
-
-      &:focus {
-        outline: none;
-      }
-
-      &::placeholder {
-        font-size: ${(props) => props.theme.font.main.sizes.body};
-        font-family: ${(props) => props.theme.font.main.family};
-        color: ${(props) => props.theme.color.ink.light};
-      }
-
-      &--textArea {
-        margin-top: 10px;
-        width: 100%;
-        height: 150px;
-        padding: 12px 10px;
-        border: 2px solid ${(props) => props.theme.color.whites.lightest};
-        border-radius: 4px;
-        border: none;
-        background-color: #f8f8f8;
-        font-size: ${(props) => props.theme.font.main.sizes.title};
-        resize: none;
-
-        &:focus {
-          outline: none;
-        }
-      }
     }
-  }
-  .button {
-    margin: 0;
-    &--randomize {
-      width: 50px;
-      height: 50px;
-      position: relative;
-      right: -100px;
-      top: -100px;
-
-      &:disabled {
-        border: 1px solid ${(props) => props.theme.color.ink.lightest};
-      }
-    }
-
-    &--create {
-      position: fixed;
-      bottom: 20px;
-    }
-  }
-
-  option {
-    text-transform: capitalize;
   }
 `;
 
-export default CreateFormStyled;
+export default DetailCharacterStyled;
