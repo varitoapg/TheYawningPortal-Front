@@ -1,4 +1,4 @@
-import { fireEvent, screen, waitFor, within } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {
   fourCharactersState,
@@ -78,7 +78,7 @@ describe("Given a CharacterCardList component", () => {
   });
 
   describe("When it's rendered with 4 characters in the store and clicks 'sorcerer' in class filter", () => {
-    test("Then it should call getUserCharacter", async () => {
+    test("Then it should call dispatch with filterClassActionCreator", async () => {
       const expectedClass = "sorcerer";
       const classSelect = "class:";
 
