@@ -3,7 +3,6 @@ import {
   mockUiLoadingOpenState,
   mockUiModalOpenState,
 } from "../../../mocks/states/uiState";
-import filterClass from "./reducers/filterClass";
 import { Pagination, ShowModalActionPayload, UiState } from "./types";
 import {
   filterClassActionCreator,
