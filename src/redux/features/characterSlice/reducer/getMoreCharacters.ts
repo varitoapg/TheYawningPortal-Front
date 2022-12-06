@@ -9,7 +9,12 @@ const getMoreCharacters = (
   allCharacters: [
     ...currentState.allCharacters,
     ...action.payload.allCharacters,
-  ],
+  ].filter(
+    (character, index, self) =>
+      self.findIndex((characterIndex) => {
+        return characterIndex.id === character.id;
+      }) === index
+  ),
   total: action.payload.total,
 });
 
