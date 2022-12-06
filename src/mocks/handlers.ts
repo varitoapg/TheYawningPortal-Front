@@ -48,6 +48,13 @@ export const handlers = [
 
   rest.get(`${baseUrl}${charactersRoute}`, async (req, res, ctx) => {
     return res.once(
+      ctx.status(201),
+      ctx.json({ allCharacters: testListCharacters })
+    );
+  }),
+
+  rest.get(`${baseUrl}${charactersRoute}`, async (req, res, ctx) => {
+    return res.once(
       ctx.status(500),
       ctx.json({ error: "Something goes wrong. Try again" })
     );
