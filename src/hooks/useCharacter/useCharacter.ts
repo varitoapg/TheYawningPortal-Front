@@ -28,7 +28,7 @@ const useCharacter = () => {
   const token = localStorage.getItem("token");
 
   const getUserCharacters = useCallback(
-    async (page: number) => {
+    async (page = 0) => {
       try {
         dispatch(showLoadingActionCreator());
 
