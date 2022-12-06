@@ -8,7 +8,7 @@ import {
   CharacterState,
 } from "../../redux/features/characterSlice/reducer/types";
 
-export const initialCharacterState: CharacterState = {
+export const mockInitialCharacterState: CharacterState = {
   allCharacters: [] as Character[],
   currentCharacter: {} as CharacterForm,
   total: 0,
