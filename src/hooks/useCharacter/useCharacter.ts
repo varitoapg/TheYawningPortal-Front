@@ -28,13 +28,14 @@ const useCharacter = () => {
   const token = localStorage.getItem("token");
 
   const getUserCharacters = useCallback(
-    async (page = 0) => {
+    async (page = 0, characterClass = "all") => {
       try {
         dispatch(showLoadingActionCreator());
 
         const response = await axios.get(`${baseUrl}${charactersRoute}`, {
           params: {
             page,
+            characterClass,
           },
           headers: {
             Authorization: `Bearer ${token}`,
