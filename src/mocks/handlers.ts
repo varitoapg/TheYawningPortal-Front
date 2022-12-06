@@ -42,14 +42,14 @@ export const handlers = [
   rest.get(`${baseUrl}${charactersRoute}`, async (req, res, ctx) => {
     return res.once(
       ctx.status(201),
-      ctx.json({ allCharacters: testListCharacters })
+      ctx.json({ allCharacters: testListCharacters, count: 3 })
     );
   }),
 
   rest.get(`${baseUrl}${charactersRoute}`, async (req, res, ctx) => {
     return res.once(
       ctx.status(201),
-      ctx.json({ allCharacters: testListCharacters })
+      ctx.json({ allCharacters: testListCharacters, count: 3 })
     );
   }),
 

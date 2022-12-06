@@ -1,12 +1,13 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { Character, CharacterState } from "./types";
+import { CharacterResponse, CharacterState } from "./types";
 
 const getAllCharacters = (
   currentState: CharacterState,
-  action: PayloadAction<Character[]>
+  action: PayloadAction<CharacterResponse>
 ) => ({
   ...currentState,
-  characters: [...action.payload],
+  allCharacters: [...action.payload.allCharacters],
+  total: action.payload.total,
 });
 
 export default getAllCharacters;
