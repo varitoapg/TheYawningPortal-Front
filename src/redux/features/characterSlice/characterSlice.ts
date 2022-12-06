@@ -1,9 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { initialCharacterState } from "../../../mocks/states/characterState";
 import deleteCharacter from "./reducer/deleteceCharacter";
 import getAllCharacters from "./reducer/getAllCharacters";
 import getCharacterById from "./reducer/getCharacterById";
 import getMoreCharacters from "./reducer/getMoreCharacters";
+import { Character, CharacterForm, CharacterState } from "./reducer/types";
+
+const initialCharacterState: CharacterState = {
+  allCharacters: [] as Character[],
+  currentCharacter: {} as CharacterForm,
+  total: 0,
+};
 
 const charactersSlice = createSlice({
   name: "characters",

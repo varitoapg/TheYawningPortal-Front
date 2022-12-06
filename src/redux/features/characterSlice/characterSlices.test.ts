@@ -4,7 +4,7 @@ import {
 } from "../../../factories/characterFactory";
 import {
   fourCharactersState,
-  initialCharacterState,
+  mockInitialCharacterState,
 } from "../../../mocks/states/characterState";
 import {
   characterReducer,
@@ -24,11 +24,11 @@ describe("Given a characterReducer", () => {
         };
 
         const newCharacterState = characterReducer(
-          initialCharacterState,
+          mockInitialCharacterState,
           unknownAction
         );
 
-        expect(newCharacterState).toStrictEqual(initialCharacterState);
+        expect(newCharacterState).toStrictEqual(mockInitialCharacterState);
       });
     });
   });
@@ -38,7 +38,7 @@ describe("Given a characterReducer", () => {
       const newCharacters = getRandomCharacterList(2);
 
       const newState = characterReducer(
-        initialCharacterState,
+        mockInitialCharacterState,
         getAllCharactersActionCreator({
           allCharacters: newCharacters,
           total: 2,
@@ -81,7 +81,7 @@ describe("Given a characterReducer", () => {
       };
 
       const newState = characterReducer(
-        initialCharacterState,
+        mockInitialCharacterState,
         getCharacterByIdActionCreator(newCharacter)
       );
 

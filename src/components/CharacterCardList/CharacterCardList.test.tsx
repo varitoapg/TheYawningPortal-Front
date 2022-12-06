@@ -2,7 +2,7 @@ import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {
   fourCharactersState,
-  initialCharacterState,
+  mockInitialCharacterState,
 } from "../../mocks/states/characterState";
 import { mockUiInitialState } from "../../mocks/states/uiState";
 import { mockUserLogged } from "../../mocks/states/userState";
@@ -62,7 +62,7 @@ describe("Given a CharacterCardList component", () => {
         preloadedState: {
           ui: mockUiInitialState,
           user: mockUserLogged,
-          characters: initialCharacterState,
+          characters: mockInitialCharacterState,
         },
       });
 
