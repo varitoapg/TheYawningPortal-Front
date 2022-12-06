@@ -41,12 +41,16 @@ const useCharacter = () => {
           },
         });
 
-        const { allCharacters, isNextPage, totalPages } = response.data;
+        const { allCharacters, isNextPage, totalPages, count } = response.data;
 
         if (page === 0) {
-          dispatch(getAllCharactersActionCreator(allCharacters));
+          dispatch(
+            getAllCharactersActionCreator({ allCharacters, total: count })
+          );
         } else {
-          dispatch(getMoreCharactersActionCreator(allCharacters));
+          dispatch(
+            getMoreCharactersActionCreator({ allCharacters, total: count })
+          );
         }
 
         dispatch(

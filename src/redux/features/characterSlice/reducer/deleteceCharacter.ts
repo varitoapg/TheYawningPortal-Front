@@ -7,7 +7,7 @@ const deleteCharacter = (
 ) => {
   return {
     ...currentState,
-    characters: currentState.characters.filter(
+    allCharacters: currentState.allCharacters.filter(
       (character) => character.id !== action.payload
     ),
   };

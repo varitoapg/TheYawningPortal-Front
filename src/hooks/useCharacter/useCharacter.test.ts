@@ -36,7 +36,10 @@ describe("Given the useCharacter custom hook", () => {
         await result.current.getUserCharacters();
 
         expect(dispatchSpy).toHaveBeenCalledWith(
-          getAllCharactersActionCreator(testListCharacters)
+          getAllCharactersActionCreator({
+            allCharacters: testListCharacters,
+            total: 3,
+          })
         );
       });
     });
@@ -47,11 +50,13 @@ describe("Given the useCharacter custom hook", () => {
           const { result } = renderHook(() => useCharacter(), {
             wrapper: ProviderWrapper,
           });
-
           await result.current.getUserCharacters(1);
 
           expect(dispatchSpy).toHaveBeenCalledWith(
-            getMoreCharactersActionCreator(testListCharacters)
+            getMoreCharactersActionCreator({
+              allCharacters: testListCharacters,
+              total: 3,
+            })
           );
         });
       });

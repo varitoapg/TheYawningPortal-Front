@@ -1,4 +1,5 @@
 import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import {
   fourCharactersState,
   initialCharacterState,
@@ -36,25 +37,40 @@ describe("Given a CharacterCardList component", () => {
     });
   });
 
-  describe("Given a CharacterCardList component", () => {
-    describe("When it's rendered withot characters in the store", () => {
-      test("Then it should show a heading with 'Sorry, you still don't have characters'", () => {
-        const expectedText = "Sorry, you still don't have characters";
-
-        renderWithProviders(<CharacterCardList />, {
-          preloadedState: {
-            ui: mockUiInitialState,
-            user: mockUserLogged,
-            characters: initialCharacterState,
-          },
-        });
-
-        const expectedHeading = screen.queryByRole("heading", {
-          name: expectedText,
-        });
-
-        expect(expectedHeading).toBeInTheDocument();
+  describe("When it's rendered with 4 characters in the store and clicks Load more character button", () => {
+    test("Then it should call dispatch with getUserCharacters", async () => {
+      renderWithProviders(<CharacterCardList />, {
+        preloadedState: {
+          ui: mockUiInitialState,
+          user: mockUserLogged,
+          characters: fourCharactersState,
+        },
       });
+      const expectedButton = screen.getByLabelText("Load more characters");
+
+      await userEvent.click(expectedButton!);
+
+      expect(mockgetCharacters).toHaveBeenCalled();
+    });
+  });
+
+  describe("When it's rendered withot characters in the store", () => {
+    test("Then it should show a heading with 'Sorry, you still don't have characters'", () => {
+      const expectedText = "Sorry, you still don't have characters";
+
+      renderWithProviders(<CharacterCardList />, {
+        preloadedState: {
+          ui: mockUiInitialState,
+          user: mockUserLogged,
+          characters: initialCharacterState,
+        },
+      });
+
+      const expectedHeading = screen.queryByRole("heading", {
+        name: expectedText,
+      });
+
+      expect(expectedHeading).toBeInTheDocument();
     });
   });
 });

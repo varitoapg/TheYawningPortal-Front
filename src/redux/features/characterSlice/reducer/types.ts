@@ -18,9 +18,14 @@ export interface Character {
   createdBy: string;
 }
 
+export interface CharacterResponse {
+  allCharacters: Character[];
+  total: number;
+}
 export interface CharacterState {
-  characters: Character[];
+  allCharacters: Character[];
   currentCharacter: CharacterForm;
+  total: number;
 }
 
 export interface CharacterForm {

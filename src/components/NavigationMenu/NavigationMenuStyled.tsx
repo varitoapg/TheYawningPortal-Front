@@ -51,6 +51,7 @@ const NavigationMenuStyled = styled.div`
       flex-direction: column;
       align-items: flex-end;
       text-align: center;
+      text-transform: capitalize;
       align-items: baseline;
       position: absolute;
       right: 80px;

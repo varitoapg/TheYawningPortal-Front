@@ -9,11 +9,13 @@ import {
 } from "../../redux/features/characterSlice/reducer/types";
 
 export const initialCharacterState: CharacterState = {
-  characters: [] as Character[],
+  allCharacters: [] as Character[],
   currentCharacter: {} as CharacterForm,
+  total: 0,
 };
 
 export const fourCharactersState: CharacterState = {
-  characters: getRandomCharacterList(4),
+  allCharacters: getRandomCharacterList(4),
   currentCharacter: getRandomCharacter(),
+  total: 4,
 };

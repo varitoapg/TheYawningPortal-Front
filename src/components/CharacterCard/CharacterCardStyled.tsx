@@ -8,8 +8,8 @@ const CharacterCardStyled = styled.li`
   border-radius: ${(props) => props.theme.size.borderRadius.regular};
   border: 1px solid ${(props) => props.theme.color.ink.lightest};
   padding: 11px 22px;
-  max-width: 400px;
-  min-width: 292px;
+  max-width: 350px;
+  min-width: 280px;
   width: 100%;
 
   a {
@@ -41,6 +41,7 @@ const CharacterCardStyled = styled.li`
       flex-direction: column;
       justify-content: center;
       gap: 10px;
+      text-transform: capitalize;
     }
 
     &__atributes {

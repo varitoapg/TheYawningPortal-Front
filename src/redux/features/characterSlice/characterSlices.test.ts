@@ -39,12 +39,16 @@ describe("Given a characterReducer", () => {
 
       const newState = characterReducer(
         initialCharacterState,
-        getAllCharactersActionCreator(newCharacters)
+        getAllCharactersActionCreator({
+          allCharacters: newCharacters,
+          total: 2,
+        })
       );
 
       expect(newState).toStrictEqual({
-        characters: newCharacters,
+        allCharacters: newCharacters,
         currentCharacter: {},
+        total: 2,
       });
     });
   });
@@ -54,12 +58,12 @@ describe("Given a characterReducer", () => {
       const currentState = fourCharactersState;
       const expectedState = {
         ...fourCharactersState,
-        characters: fourCharactersState.characters.slice(1, 4),
+        allCharacters: fourCharactersState.allCharacters.slice(1, 4),
       };
 
       const newState = characterReducer(
         currentState,
-        deleteCharacterActionCreator(currentState.characters[0].id)
+        deleteCharacterActionCreator(currentState.allCharacters[0].id)
       );
 
       expect(newState).toStrictEqual(expectedState);
@@ -71,8 +75,9 @@ describe("Given a characterReducer", () => {
       const newCharacter = getRandomCharacter();
 
       const expectedState: CharacterState = {
-        characters: [] as Character[],
+        allCharacters: [] as Character[],
         currentCharacter: newCharacter,
+        total: 0,
       };
 
       const newState = characterReducer(
@@ -91,12 +96,15 @@ describe("Given a characterReducer", () => {
 
       const expectedState: CharacterState = {
         ...fourCharactersState,
-        characters: [...fourCharactersState.characters, ...newCharacters],
+        allCharacters: [...fourCharactersState.allCharacters, ...newCharacters],
       };
 
       const newState = characterReducer(
         currentState,
-        getMoreCharactersActionCreator(newCharacters)
+        getMoreCharactersActionCreator({
+          allCharacters: newCharacters,
+          total: 4,
+        })
       );
 
       expect(newState).toStrictEqual(expectedState);
