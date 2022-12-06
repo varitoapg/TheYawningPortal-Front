@@ -1,4 +1,5 @@
-import { FaDAndD } from "react-icons/fa";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDAndD } from "@fortawesome/free-brands-svg-icons";
 import { useAppSelector } from "../../redux/hooks";
 import {
   isLoggedOptions,
@@ -17,7 +18,7 @@ const Header = (): JSX.Element => {
   return (
     <HeaderStyled>
       <div className="title-container">
-        <FaDAndD className="header-icon" />
+        <FontAwesomeIcon icon={faDAndD} className="header-icon" />
         <h1 className="main-title">The Yawning Portal</h1>
       </div>
       <NavigationMenu

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { FaDiceD20 } from "react-icons/fa";
 import useCharacter from "../../hooks/useCharacter/useCharacter";
 import { CharacterForm } from "../../redux/features/characterSlice/reducer/types";
 import setStatsModifier from "../../utils/setStatsModifier/setStatsModifier";
@@ -194,12 +193,12 @@ const CreateForm = (): JSX.Element => {
           <div className="main-stats__modifier">
             {setStatsModifier(createCharacterData.strength)}
           </div>
-          <Button
+          {/* <Button
             children={<FaDiceD20 className="icon--randomize" />}
             ariaLabel="Randomize strength"
             classname="button button--randomize"
             buttonType="button"
-          />
+          /> */}
         </div>
 
         <div className="main-stats__item">
@@ -219,12 +218,12 @@ const CreateForm = (): JSX.Element => {
           <div className="main-stats__modifier">
             {setStatsModifier(createCharacterData.constitution)}
           </div>
-          <Button
+          {/* <Button
             children={<FaDiceD20 className="icon--randomize" />}
             ariaLabel="Randomize constitution"
             classname="button button--randomize"
             buttonType="button"
-          />
+          /> */}
         </div>
 
         <div className="main-stats__item">
@@ -244,12 +243,12 @@ const CreateForm = (): JSX.Element => {
           <div className="main-stats__modifier">
             {setStatsModifier(createCharacterData.dexterity)}
           </div>
-          <Button
+          {/* <Button
             children={<FaDiceD20 className="icon--randomize" />}
             ariaLabel="Randomize dexterity"
             classname="button button--randomize"
             buttonType="button"
-          />
+          /> */}
         </div>
 
         <div className="main-stats__item">
@@ -269,12 +268,12 @@ const CreateForm = (): JSX.Element => {
           <div className="main-stats__modifier">
             {setStatsModifier(createCharacterData.intelligence)}
           </div>
-          <Button
+          {/* <Button
             children={<FaDiceD20 className="icon--randomize" />}
             ariaLabel="Randomize intelligence"
             classname="button button--randomize"
             buttonType="button"
-          />
+          /> */}
         </div>
 
         <div className="main-stats__item">
@@ -294,12 +293,12 @@ const CreateForm = (): JSX.Element => {
           <div className="main-stats__modifier">
             {setStatsModifier(createCharacterData.wisdom)}
           </div>
-          <Button
+          {/* <Button
             children={<FaDiceD20 className="icon--randomize" />}
             ariaLabel="Randomize wisdom"
             classname="button button--randomize"
             buttonType="button"
-          />
+          /> */}
         </div>
 
         <div className="main-stats__item">
@@ -319,12 +318,12 @@ const CreateForm = (): JSX.Element => {
           <div className="main-stats__modifier">
             {setStatsModifier(createCharacterData.charisma)}
           </div>
-          <Button
+          {/* <Button
             children={<FaDiceD20 className="icon--randomize" />}
             ariaLabel="Randomize charisma"
             classname="button button--randomize"
             buttonType="button"
-          />
+          /> */}
         </div>
       </div>
 

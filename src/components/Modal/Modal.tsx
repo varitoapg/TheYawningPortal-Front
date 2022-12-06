@@ -1,4 +1,5 @@
-import { FaDiceD20, FaTimes } from "react-icons/fa";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDiceD20, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { hideModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
 import { useAppDispatch } from "../../redux/hooks";
 import Button from "../Button/Button";
@@ -19,7 +20,10 @@ const Modal = ({ isError, text }: ModalProps): JSX.Element => {
     <ModalStyled>
       <div className={`modal modal${isError ? "--error" : ""}`}>
         <div className="icon-container">
-          <FaDiceD20 className={`icon icon${isError ? "--error" : ""}`} />
+          <FontAwesomeIcon
+            icon={faDiceD20}
+            className={`icon icon${isError ? "--error" : ""}`}
+          />
           <span className="icon__text">{isError ? "1" : "20"}</span>
         </div>
         <div className="modal-text">
@@ -30,7 +34,8 @@ const Modal = ({ isError, text }: ModalProps): JSX.Element => {
           ariaLabel="Close Modal"
           classname="-modal"
           children={
-            <FaTimes
+            <FontAwesomeIcon
+              icon={faTimes}
               className={`button-modal__icon button-modal__icon${
                 isError ? "--error" : ""
               }`}

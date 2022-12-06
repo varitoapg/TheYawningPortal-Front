@@ -1,6 +1,6 @@
-import { HiBars3 } from "react-icons/hi2";
-import { FaTimesCircle } from "react-icons/fa";
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimesCircle, faBars } from "@fortawesome/free-solid-svg-icons";
 import Button from "../Button/Button";
 import NavigationMenuStyled from "./NavigationMenuStyled";
 import { NavLink } from "react-router-dom";
@@ -28,12 +28,14 @@ const NavigationMenu = ({ paths, texts }: NavigationMenuProps): JSX.Element => {
           action={toggleMenu}
           children={
             isMenuOpen ? (
-              <FaTimesCircle
+              <FontAwesomeIcon
+                icon={faTimesCircle}
                 aria-label="Menu closed"
                 className={`menu-icon menu-navigation--close`}
               />
             ) : (
-              <HiBars3
+              <FontAwesomeIcon
+                icon={faBars}
                 aria-label="Menu opened"
                 className={`menu-icon menu-navigation--open`}
               />

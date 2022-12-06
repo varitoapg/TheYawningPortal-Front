@@ -1,5 +1,10 @@
-import { FaSkull, FaAnkh, FaHeartBroken } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faSkull,
+  faAnkh,
+  faHeartBroken,
+} from "@fortawesome/free-solid-svg-icons";
 import useCharacter from "../../hooks/useCharacter/useCharacter";
 import { Character } from "../../redux/features/characterSlice/reducer/types";
 import Button from "../Button/Button";
@@ -56,20 +61,20 @@ const CharacterCard = ({
             <Button
               classname="button button-icon"
               ariaLabel="Kill character"
-              children={<FaSkull className="icon" />}
+              children={<FontAwesomeIcon icon={faSkull} className="icon" />}
             />
           ) : (
             <Button
               classname="button button-icon"
               ariaLabel="Resurrect character"
-              children={<FaAnkh className="icon" />}
+              children={<FontAwesomeIcon icon={faAnkh} className="icon" />}
             />
           )}
           <Button
             classname="button button-icon"
             ariaLabel="Delete character"
             action={deleteCharacterAction}
-            children={<FaHeartBroken className="icon" />}
+            children={<FontAwesomeIcon icon={faHeartBroken} className="icon" />}
           />
         </div>
       </div>
