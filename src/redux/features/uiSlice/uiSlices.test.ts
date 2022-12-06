@@ -43,6 +43,7 @@ describe("Given a uiReducer", () => {
           totalPages: 2,
           isNextPage: true,
         },
+        filter: "all",
       };
 
       const actionPayload: ShowModalActionPayload = {
@@ -73,6 +74,7 @@ describe("Given a uiReducer", () => {
           totalPages: 2,
           isNextPage: true,
         },
+        filter: "all",
       };
 
       const newUiState = uiReducer(
@@ -98,6 +100,7 @@ describe("Given a uiReducer", () => {
           totalPages: 2,
           isNextPage: true,
         },
+        filter: "all",
       };
 
       const newState = uiReducer(
@@ -123,6 +126,7 @@ describe("Given a uiReducer", () => {
           totalPages: 2,
           isNextPage: true,
         },
+        filter: "all",
       };
 
       const newState = uiReducer(
@@ -151,6 +155,7 @@ describe("Given a uiReducer", () => {
           text: "",
         },
         pages: pagesPayload,
+        filter: "all",
       };
 
       const newState = uiReducer(
@@ -178,6 +183,7 @@ describe("Given a uiReducer", () => {
           totalPages: 2,
           isNextPage: true,
         },
+        filter: "all",
       };
 
       const newState = uiReducer(initialState, moveToNextPageActionCreator());
