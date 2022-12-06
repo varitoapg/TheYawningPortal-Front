@@ -5,6 +5,7 @@ import {
   moveToNextPageActionCreator,
 } from "../../redux/features/uiSlice/uiSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import selectOptions from "../../utils/selectOptions";
 import Button from "../Button/Button";
 import CharacterCard from "../CharacterCard/CharacterCard";
 import CharacterCardListStyled from "./CharacterCardListStyled";
@@ -42,20 +43,13 @@ const CharacterCardList = (): JSX.Element => {
           className="filter-class__input"
           id="characterClassFilter"
         >
-          <option value="all">-- select class --</option>
-          <option value="artificer">artificer</option>
-          <option value="sorcerer">sorcerer</option>
-          <option value="cleric">cleric</option>
-          <option value="warlock">warlock</option>
-          <option value="fighter">fighter</option>
-          <option value="druid">druid</option>
-          <option value="monk">monk</option>
-          <option value="barbarian">barbarian</option>
-          <option value="rogue">rogue</option>
-          <option value="wizard">wizard</option>
-          <option value="bard">bard</option>
-          <option value="paladin">paladin</option>
-          <option value="ranger">ranger</option>
+          {selectOptions.map((option) =>
+            option === "all" ? (
+              <option value={`${option}`}>-- select class</option>
+            ) : (
+              <option value={`${option}`}>{`${option}`}</option>
+            )
+          )}
         </select>
       </div>
       {total === 0 ? (
