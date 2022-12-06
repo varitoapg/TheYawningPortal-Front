@@ -1,6 +1,5 @@
 import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import CreatePage from "../../pages/CreatePage/CreatePage";
 import LoginPage from "../../pages/LoginPage/LoginPage";
 import { useAppSelector } from "../../redux/hooks";
 import ExitRoute from "../ExitRoute/ExitRoute";
@@ -16,6 +15,8 @@ const RegisterPage = lazy(
 );
 
 const DetailPage = lazy(() => import("../../pages/DetailPage/DetailPage"));
+
+const CreatePage = lazy(() => import("../../pages/CreatePage/CreatePage"));
 
 const Layout = (): JSX.Element => {
   const isLogged = useAppSelector((state) => state.user.isLogged);
