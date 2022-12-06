@@ -4,10 +4,13 @@ import { mockUiInitialState } from "../../mocks/states/uiState";
 import { mockUserLogged } from "../../mocks/states/userState";
 import renderWithProviders from "../../testUtils/renderWithProvider";
 import Layout from "./Layout";
-const mockgetCharacters = jest.fn();
+
+const mockGetCharacters = jest.fn();
+const mockGetOneCharacter = jest.fn();
 jest.mock("../../hooks/useCharacter/useCharacter", () => {
   return () => ({
-    getUserCharacters: mockgetCharacters,
+    getUserCharacters: mockGetCharacters,
+    getCharacterById: mockGetOneCharacter,
   });
 });
 
@@ -68,7 +71,49 @@ describe("Given the Layout component", () => {
         });
 
         await waitFor(() => {
-          expect(mockgetCharacters).toHaveBeenCalled();
+          expect(mockGetCharacters).toHaveBeenCalled();
+        });
+      });
+
+      describe("When it's render with an initialEntries /character/:idCharacter and a preloaded state with user logged and 4 characters", () => {
+        test("Then it should show a button wiht 'Register'", async () => {
+          renderWithProviders(<Layout />, {
+            initialEntries: [
+              `/character/${fourCharactersState.allCharacters[0].id}`,
+            ],
+            preloadedState: {
+              characters: fourCharactersState,
+              ui: mockUiInitialState,
+              user: mockUserLogged,
+            },
+          });
+
+          await waitFor(() => {
+            expect(mockGetOneCharacter).toHaveBeenCalled();
+          });
+        });
+      });
+
+      describe("When it's render with an initialEntries /create and a preloaded state with user logged and 4 characters", () => {
+        test("Then it should show a button wiht 'Create'", async () => {
+          const textButton = "Create";
+
+          renderWithProviders(<Layout />, {
+            initialEntries: [`/create`],
+            preloadedState: {
+              characters: fourCharactersState,
+              ui: mockUiInitialState,
+              user: mockUserLogged,
+            },
+          });
+
+          await waitFor(() => {
+            const expectedHeading = screen.getByRole("button", {
+              name: textButton,
+            });
+
+            expect(expectedHeading).toBeInTheDocument();
+          });
         });
       });
     });
