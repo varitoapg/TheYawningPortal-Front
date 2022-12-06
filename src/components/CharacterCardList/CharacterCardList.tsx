@@ -34,28 +34,28 @@ const CharacterCardList = (): JSX.Element => {
   return (
     <CharacterCardListStyled>
       <div className="filter-class-container">
-        <label className="filter-class__label" htmlFor="characterClass">
+        <label className="filter-class__label" htmlFor="characterClassFilter">
           class:
         </label>
         <select
-          className="filter-class__input"
           onChange={filterCharacters}
-          id="characterClass"
+          className="filter-class__input"
+          id="characterClassFilter"
         >
           <option value="all">-- select class --</option>
           <option value="artificer">artificer</option>
-          <option value="barbarian">barbarian</option>
+          <option value="sorcerer">sorcerer</option>
+          <option value="cleric">cleric</option>
           <option value="warlock">warlock</option>
           <option value="fighter">fighter</option>
-          <option value="monk">monk</option>
           <option value="druid">druid</option>
+          <option value="monk">monk</option>
+          <option value="barbarian">barbarian</option>
           <option value="rogue">rogue</option>
-          <option value="cleric">cleric</option>
-          <option value="ranger">ranger</option>
           <option value="wizard">wizard</option>
-          <option value="sorcerer">sorcerer</option>
           <option value="bard">bard</option>
           <option value="paladin">paladin</option>
+          <option value="ranger">ranger</option>
         </select>
       </div>
       {total === 0 ? (
