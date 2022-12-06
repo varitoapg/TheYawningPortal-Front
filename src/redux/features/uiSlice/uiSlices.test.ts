@@ -3,8 +3,10 @@ import {
   mockUiLoadingOpenState,
   mockUiModalOpenState,
 } from "../../../mocks/states/uiState";
+import filterClass from "./reducers/filterClass";
 import { Pagination, ShowModalActionPayload, UiState } from "./types";
 import {
+  filterClassActionCreator,
   getPagesActionCreator,
   hideLoadingActionCreator,
   hideModalActionCreator,
@@ -187,6 +189,34 @@ describe("Given a uiReducer", () => {
       };
 
       const newState = uiReducer(initialState, moveToNextPageActionCreator());
+
+      expect(expectedUiState).toStrictEqual(newState);
+    });
+  });
+
+  describe("When its reducer filterClass is invoked with a initial state and a payload of 'barbarian'", () => {
+    test("Then it should return an state with currentPage equall 0 and filter 'barbarian", () => {
+      const initialState = mockUiInitialState;
+
+      const expectedUiState: UiState = {
+        isLoading: false,
+        modal: {
+          isError: false,
+          isOpen: false,
+          text: "",
+        },
+        pages: {
+          currentPage: 0,
+          totalPages: 2,
+          isNextPage: true,
+        },
+        filter: "barbarian",
+      };
+
+      const newState = uiReducer(
+        initialState,
+        filterClassActionCreator("barbarian")
+      );
 
       expect(expectedUiState).toStrictEqual(newState);
     });
