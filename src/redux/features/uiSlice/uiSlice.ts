@@ -6,6 +6,7 @@ import showLoading from "./reducers/showLoading";
 import hideLoading from "./reducers/hideLoading";
 import getPages from "./reducers/getPages";
 import moveToNextPage from "./reducers/moveToNextPage";
+import filterClass from "./reducers/filterClass";
 
 const initialState: UiState = {
   isLoading: false,
@@ -19,6 +20,7 @@ const initialState: UiState = {
     totalPages: 2,
     isNextPage: true,
   },
+  filter: "all",
 };
 
 const uiSlice = createSlice({
@@ -31,6 +33,7 @@ const uiSlice = createSlice({
     hideLoading,
     getPages,
     moveToNextPage,
+    filterClass,
   },
 });
 
@@ -41,6 +44,7 @@ export const {
   hideLoading: hideLoadingActionCreator,
   getPages: getPagesActionCreator,
   moveToNextPage: moveToNextPageActionCreator,
+  filterClass: filterClassActionCreator,
 } = uiSlice.actions;
 
 export const uiReducer = uiSlice.reducer;

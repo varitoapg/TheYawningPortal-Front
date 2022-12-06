@@ -6,6 +6,8 @@ import {
 } from "../../mocks/states/characterState";
 import { mockUiInitialState } from "../../mocks/states/uiState";
 import { mockUserLogged } from "../../mocks/states/userState";
+import mockStoreUserLogged from "../../mocks/store/mockStoreUserLogged";
+import { filterClassActionCreator } from "../../redux/features/uiSlice/uiSlice";
 import renderWithProviders from "../../testUtils/renderWithProvider";
 import CharacterCardList from "./CharacterCardList";
 
@@ -16,6 +18,7 @@ jest.mock("../../hooks/useCharacter/useCharacter.ts", () => {
     getUserCharacters: mockgetCharacters,
   });
 });
+const dispatchSpy = jest.spyOn(mockStoreUserLogged, "dispatch");
 
 describe("Given a CharacterCardList component", () => {
   describe("When it's rendered with 4 characters in the store", () => {
@@ -71,6 +74,29 @@ describe("Given a CharacterCardList component", () => {
       });
 
       expect(expectedHeading).toBeInTheDocument();
+    });
+  });
+
+  describe("When it's rendered with 4 characters in the store and clicks 'sorcerer' in class filter", () => {
+    test("Then it should call dispatch with filterClassActionCreator", async () => {
+      const expectedClass = "sorcerer";
+      const classSelect = "class:";
+
+      renderWithProviders(<CharacterCardList />, {
+        store: mockStoreUserLogged,
+      });
+      const classCharacterSelect = screen.getByRole("combobox", {
+        name: classSelect,
+      });
+
+      const classCharacterOption = screen.getByRole("option", {
+        name: expectedClass,
+      });
+      await userEvent.selectOptions(classCharacterSelect, classCharacterOption);
+
+      expect(dispatchSpy).toHaveBeenCalledWith(
+        filterClassActionCreator(expectedClass)
+      );
     });
   });
 });

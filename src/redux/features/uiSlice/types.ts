@@ -18,4 +18,5 @@ export interface UiState {
   isLoading: boolean;
   modal: ModalState;
   pages: Pagination;
+  filter: string;
 }

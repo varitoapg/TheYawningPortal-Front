@@ -12,6 +12,7 @@ export const mockUiInitialState: UiState = {
     totalPages: 2,
     isNextPage: true,
   },
+  filter: "all",
 };
 
 export const mockUiModalOpenState: UiState = {
@@ -26,6 +27,7 @@ export const mockUiModalOpenState: UiState = {
     totalPages: 2,
     isNextPage: true,
   },
+  filter: "all",
 };
 
 export const mockUiLoadingOpenState: UiState = {
@@ -40,4 +42,5 @@ export const mockUiLoadingOpenState: UiState = {
     totalPages: 2,
     isNextPage: true,
   },
+  filter: "all",
 };

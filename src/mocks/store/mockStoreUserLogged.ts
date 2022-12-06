@@ -3,6 +3,7 @@ import { characterReducer } from "../../redux/features/characterSlice/characterS
 import { uiReducer } from "../../redux/features/uiSlice/uiSlice";
 import { userReducer } from "../../redux/features/userSlice/userSlice";
 import { store } from "../../redux/store";
+import { fourCharactersState } from "../states/characterState";
 import { mockUiModalOpenState } from "../states/uiState";
 import { mockUserLogged } from "../states/userState";
 
@@ -15,6 +16,7 @@ const mockStoreUserLogged: typeof store = configureStore({
   preloadedState: {
     ui: mockUiModalOpenState,
     user: mockUserLogged,
+    characters: fourCharactersState,
   },
 });
 
