@@ -136,20 +136,20 @@ const CreateForm = (): JSX.Element => {
             onChange={handleFormChange}
             id="characterClass"
           >
-            {/* <option>select a class</option> */}
+            <option value="">-- select class --</option>
             <option value="artificer">artificer</option>
             <option value="barbarian">barbarian</option>
-            <option value="warlock">warlock</option>
+            <option value="bard">bard</option>
+            <option value="cleric">cleric</option>
+            <option value="druid">druid</option>
             <option value="fighter">fighter</option>
             <option value="monk">monk</option>
-            <option value="druid">druid</option>
-            <option value="rogue">rogue</option>
-            <option value="cleric">cleric</option>
             <option value="ranger">ranger</option>
-            <option value="wizard">wizard</option>
+            <option value="rogue">rogue</option>
             <option value="sorcerer">sorcerer</option>
-            <option value="bard">bard</option>
             <option value="paladin">paladin</option>
+            <option value="warlock">warlock</option>
+            <option value="wizard">wizard</option>
           </select>
         </div>
       </div>
@@ -197,12 +197,6 @@ const CreateForm = (): JSX.Element => {
           <div className="main-stats__modifier">
             {setStatsModifier(createCharacterData.strength)}
           </div>
-          {/* <Button
-            children={<FaDiceD20 className="icon--randomize" />}
-            ariaLabel="Randomize strength"
-            classname="button button--randomize"
-            buttonType="button"
-          /> */}
         </div>
 
         <div className="main-stats__item">
@@ -222,12 +216,6 @@ const CreateForm = (): JSX.Element => {
           <div className="main-stats__modifier">
             {setStatsModifier(createCharacterData.constitution)}
           </div>
-          {/* <Button
-            children={<FaDiceD20 className="icon--randomize" />}
-            ariaLabel="Randomize constitution"
-            classname="button button--randomize"
-            buttonType="button"
-          /> */}
         </div>
 
         <div className="main-stats__item">
@@ -247,12 +235,6 @@ const CreateForm = (): JSX.Element => {
           <div className="main-stats__modifier">
             {setStatsModifier(createCharacterData.dexterity)}
           </div>
-          {/* <Button
-            children={<FaDiceD20 className="icon--randomize" />}
-            ariaLabel="Randomize dexterity"
-            classname="button button--randomize"
-            buttonType="button"
-          /> */}
         </div>
 
         <div className="main-stats__item">
@@ -272,12 +254,6 @@ const CreateForm = (): JSX.Element => {
           <div className="main-stats__modifier">
             {setStatsModifier(createCharacterData.intelligence)}
           </div>
-          {/* <Button
-            children={<FaDiceD20 className="icon--randomize" />}
-            ariaLabel="Randomize intelligence"
-            classname="button button--randomize"
-            buttonType="button"
-          /> */}
         </div>
 
         <div className="main-stats__item">
@@ -297,12 +273,6 @@ const CreateForm = (): JSX.Element => {
           <div className="main-stats__modifier">
             {setStatsModifier(createCharacterData.wisdom)}
           </div>
-          {/* <Button
-            children={<FaDiceD20 className="icon--randomize" />}
-            ariaLabel="Randomize wisdom"
-            classname="button button--randomize"
-            buttonType="button"
-          /> */}
         </div>
 
         <div className="main-stats__item">
@@ -322,12 +292,6 @@ const CreateForm = (): JSX.Element => {
           <div className="main-stats__modifier">
             {setStatsModifier(createCharacterData.charisma)}
           </div>
-          {/* <Button
-            children={<FaDiceD20 className="icon--randomize" />}
-            ariaLabel="Randomize charisma"
-            classname="button button--randomize"
-            buttonType="button"
-          /> */}
         </div>
       </div>
 
@@ -340,7 +304,7 @@ const CreateForm = (): JSX.Element => {
             className="character-information__input"
             type="text"
             id="background"
-            placeholder="Insert your background here"
+            placeholder="Insert background here"
             onChange={handleFormChange}
             autoComplete="off"
           />

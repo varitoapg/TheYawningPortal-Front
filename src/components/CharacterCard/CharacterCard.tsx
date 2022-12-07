@@ -48,6 +48,7 @@ const CharacterCard = ({
         <Link to={`/character/${id}`}>
           {imageBackup ? (
             <img
+              width="200"
               src={imageBackup}
               alt={`${name}`}
               className={`character__image character__image${
