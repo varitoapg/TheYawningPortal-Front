@@ -28,8 +28,8 @@ describe("Given a CharacterCardList component", () => {
   });
 
   describe("When it's rendered without characters in the store", () => {
-    test("Then it should show a heading with 'Sorry, you still don't have characters'", () => {
-      const expectedHeadingText = "Sorry, you still don't have characters";
+    test("Then it should show a heading with 'You still don't have characters.'", () => {
+      const expectedHeadingText = "You still don't have characters.";
 
       renderWithProviders(<CharacterCardList />, {
         preloadedState: {
