@@ -5,7 +5,7 @@ const CharacterCardListStyled = styled.div`
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 40px;
   }
 
   .empty-warning {
@@ -23,8 +23,8 @@ const CharacterCardListStyled = styled.div`
     color: ${(props) => props.theme.color.ink.base};
     font-size: ${(props) => props.theme.font.main.sizes.title};
     font-weight: ${(props) => props.theme.font.main.weights.regular};
-    margin-bottom: 10px;
-    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
   }
 `;
 
