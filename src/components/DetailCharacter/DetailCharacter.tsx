@@ -46,13 +46,13 @@ const DetailCharacter = ({
         <div className="secondary-stats-container">
           <h3 className="secondary-stats-title">armor class</h3>
           <h2 className="secondary-stats-value" aria-label="armor class score">
-            16
+            {10 + +setStatsModifier(dexterity)}
           </h2>
         </div>
         <div className="secondary-stats-container">
           <h3 className="secondary-stats-title">initiative</h3>
           <h2 className="secondary-stats-value" aria-label="initiative score">
-            +2
+            {setStatsModifier(dexterity)}
           </h2>
         </div>
         <div className="secondary-stats-container">

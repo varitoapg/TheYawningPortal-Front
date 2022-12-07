@@ -41,7 +41,13 @@ describe("Given a HomePage page", () => {
 
   describe("When it's rendered with 4 characters in the store and clicks Load more character button", () => {
     test("Then it should call getUserCharacters twice", async () => {
-      renderWithProviders(<HomePage />);
+      renderWithProviders(<HomePage />, {
+        preloadedState: {
+          characters: fourCharactersState,
+          ui: mockUiInitialState,
+          user: mockUserLogged,
+        },
+      });
       const expectedButton = screen.getByLabelText("Load more characters");
       expect(expectedButton).toBeInTheDocument();
       await userEvent.click(expectedButton!);

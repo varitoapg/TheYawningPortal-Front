@@ -42,8 +42,6 @@ const DetailCharacterStyled = styled.article`
 
     &__value {
       display: block;
-      font-family: ${(props) => props.theme.font.main.family};
-      color: ${(props) => props.theme.color.ink.base};
       font-size: ${(props) => props.theme.font.main.sizes.title};
       text-transform: capitalize;
       min-width: 100%;
@@ -127,7 +125,6 @@ const DetailCharacterStyled = styled.article`
       background-color: ${(props) => props.theme.color.whites.base};
       color: ${(props) => props.theme.color.ink.base};
       font-size: ${(props) => props.theme.font.main.sizes.display};
-      font-weight: ${(props) => props.theme.font.main.weights.regular};
       text-align: center;
       vertical-align: middle;
       border: none;

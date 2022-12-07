@@ -67,7 +67,6 @@ const CharacterCardStyled = styled.li`
       }
 
       &-value {
-        color: ${(props) => props.theme.color.ink.base};
         font-size: ${(props) => props.theme.font.main.sizes.display};
         font-weight: ${(props) => props.theme.font.main.weights.regular};
         background-color: ${(props) => props.theme.color.whites.lightest};
@@ -81,7 +80,7 @@ const CharacterCardStyled = styled.li`
     &__name {
       font-size: ${(props) => props.theme.font.main.sizes.display};
       font-weight: ${(props) => props.theme.font.main.weights.bold};
-      color: ${(props) => props.theme.color.ink.darkest};
+      color: ${(props) => props.theme.color.ink.base};
     }
 
     &__information {
@@ -99,8 +98,6 @@ const CharacterCardStyled = styled.li`
       color: ${(props) => props.theme.color.ink.base};
       width: 40px;
       height: 40px;
-      display: inline-flex;
-      align-items: center;
       padding: 0;
     }
 
