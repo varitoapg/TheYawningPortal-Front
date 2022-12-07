@@ -28,6 +28,10 @@ const HomePage = () => {
     );
   };
 
+  const movePage = () => {
+    dispatch(moveToNextPageActionCreator());
+  };
+
   useEffect(() => {
     getUserCharacters(currentPage, filter);
   }, [currentPage, filter, getUserCharacters]);
@@ -36,31 +40,43 @@ const HomePage = () => {
     <>
       <Header />
       <HomePageStyled>
-        <div className="filter-class-container">
-          <label className="filter-class__label" htmlFor="characterClassFilter">
-            class:
-          </label>
-          <select
-            onChange={filterCharacters}
-            className="filter-class__input"
-            id="characterClassFilter"
-          >
-            {selectOptions.map((option) =>
-              option === "all" ? (
-                <option value={`${option}`}>-- select class --</option>
-              ) : (
-                <option value={`${option}`}>{`${option}`}</option>
-              )
-            )}
-          </select>
+        <div className="conten-container">
+          <div className="filter-class-container">
+            <label
+              className="filter-class__label"
+              htmlFor="characterClassFilter"
+            >
+              class:
+            </label>
+            <select
+              onChange={filterCharacters}
+              className="filter-class__input"
+              id="characterClassFilter"
+            >
+              {selectOptions.map((option) =>
+                option === "all" ? (
+                  <option key={`${option}`} value={`${option}`}>
+                    -- select class --
+                  </option>
+                ) : (
+                  <option
+                    key={`${option}`}
+                    value={`${option}`}
+                  >{`${option}`}</option>
+                )
+              )}
+            </select>
+          </div>
+          <div className="content-container">
+            <CharacterCardList />
+            <Button
+              children={"Load more"}
+              isDisable={!isNextPage}
+              action={movePage}
+              ariaLabel="Load more characters"
+            />
+          </div>
         </div>
-        <CharacterCardList />
-        <Button
-          children={"Load more"}
-          isDisable={!isNextPage}
-          action={() => dispatch(moveToNextPageActionCreator())}
-          ariaLabel="Load more characters"
-        />
       </HomePageStyled>
     </>
   );
