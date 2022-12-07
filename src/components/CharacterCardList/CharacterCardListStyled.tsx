@@ -24,12 +24,10 @@ const CharacterCardListStyled = styled.div`
 
     &__text {
       font-size: ${(props) => props.theme.font.main.sizes.title};
-      font-weight: ${(props) => props.theme.font.main.weights.regular};
     }
 
     &__link {
       font-size: ${(props) => props.theme.font.main.sizes.title};
-      font-weight: ${(props) => props.theme.font.main.weights.regular};
       color: ${(props) => props.theme.color.primary.base};
       margin-left: 5px;
     }

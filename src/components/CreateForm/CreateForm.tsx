@@ -157,11 +157,15 @@ const CreateForm = (): JSX.Element => {
       <div className="secondary-stats">
         <div className="secondary-stats-container">
           <h3 className="secondary-stats-title">armor class</h3>
-          <h2 className="secondary-stats-value">16</h2>
+          <h2 className="secondary-stats-value">
+            {10 + +setStatsModifier(createCharacterData.dexterity)}
+          </h2>
         </div>
         <div className="secondary-stats-container">
           <h3 className="secondary-stats-title">initiative</h3>
-          <h2 className="secondary-stats-value">+2</h2>
+          <h2 className="secondary-stats-value">
+            {setStatsModifier(createCharacterData.dexterity)}
+          </h2>
         </div>
         <div className="secondary-stats-container">
           <div className="secondary-stats__item">
@@ -192,7 +196,6 @@ const CreateForm = (): JSX.Element => {
             placeholder="5"
             onChange={handleFormChange}
             autoComplete="off"
-            max={20}
           />
           <div className="main-stats__modifier">
             {setStatsModifier(createCharacterData.strength)}
@@ -204,8 +207,6 @@ const CreateForm = (): JSX.Element => {
             constitution
           </label>
           <input
-            max={20}
-            min={0}
             className="main-stats__input"
             type="number"
             id="constitution"
@@ -223,8 +224,6 @@ const CreateForm = (): JSX.Element => {
             dexterity
           </label>
           <input
-            max={20}
-            min={0}
             className="main-stats__input"
             type="number"
             id="dexterity"
@@ -248,8 +247,6 @@ const CreateForm = (): JSX.Element => {
             placeholder="5"
             onChange={handleFormChange}
             autoComplete="off"
-            max={20}
-            min={0}
           />
           <div className="main-stats__modifier">
             {setStatsModifier(createCharacterData.intelligence)}
@@ -267,8 +264,6 @@ const CreateForm = (): JSX.Element => {
             placeholder="5"
             onChange={handleFormChange}
             autoComplete="off"
-            max={20}
-            min={0}
           />
           <div className="main-stats__modifier">
             {setStatsModifier(createCharacterData.wisdom)}
@@ -286,8 +281,6 @@ const CreateForm = (): JSX.Element => {
             placeholder="5"
             onChange={handleFormChange}
             autoComplete="off"
-            max={20}
-            min={0}
           />
           <div className="main-stats__modifier">
             {setStatsModifier(createCharacterData.charisma)}

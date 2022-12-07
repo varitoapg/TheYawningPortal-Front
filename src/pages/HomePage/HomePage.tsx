@@ -15,6 +15,8 @@ import HomePageStyled from "./HomePageStyled";
 const HomePage = () => {
   const { getUserCharacters } = useCharacter();
   const dispatch = useAppDispatch();
+  const { total } = useAppSelector((state) => state.characters);
+
   const { currentPage, isNextPage } = useAppSelector((state) => state.ui.pages);
   const filter = useAppSelector((state) => state.ui.filter);
 
@@ -71,12 +73,14 @@ const HomePage = () => {
           </div>
           <div className="content-container">
             <CharacterCardList />
-            <Button
-              children={"Load more"}
-              isDisable={!isNextPage}
-              action={movePage}
-              ariaLabel="Load more characters"
-            />
+            {total !== 0 && (
+              <Button
+                children={"Load more"}
+                isDisable={!isNextPage}
+                action={movePage}
+                ariaLabel="Load more characters"
+              />
+            )}
           </div>
         </div>
       </HomePageStyled>
