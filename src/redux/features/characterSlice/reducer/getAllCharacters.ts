@@ -6,7 +6,12 @@ const getAllCharacters = (
   action: PayloadAction<CharacterResponse>
 ) => ({
   ...currentState,
-  allCharacters: [...action.payload.allCharacters],
+  allCharacters: [...action.payload.allCharacters].filter(
+    (character, index, self) =>
+      self.findIndex((characterIndex) => {
+        return characterIndex.id === character.id;
+      }) === index
+  ),
   total: action.payload.total,
 });
 

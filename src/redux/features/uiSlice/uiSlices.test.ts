@@ -41,7 +41,6 @@ describe("Given a uiReducer", () => {
         },
         pages: {
           currentPage: 0,
-          totalPages: 2,
           isNextPage: true,
         },
         filter: "all",
@@ -72,7 +71,6 @@ describe("Given a uiReducer", () => {
         },
         pages: {
           currentPage: 0,
-          totalPages: 2,
           isNextPage: true,
         },
         filter: "all",
@@ -98,7 +96,6 @@ describe("Given a uiReducer", () => {
         },
         pages: {
           currentPage: 0,
-          totalPages: 2,
           isNextPage: true,
         },
         filter: "all",
@@ -124,7 +121,6 @@ describe("Given a uiReducer", () => {
         },
         pages: {
           currentPage: 0,
-          totalPages: 2,
           isNextPage: true,
         },
         filter: "all",
@@ -144,7 +140,6 @@ describe("Given a uiReducer", () => {
       const initialState = mockUiInitialState;
       const pagesPayload: Pagination = {
         currentPage: 0,
-        totalPages: 2,
         isNextPage: true,
       };
 
@@ -181,7 +176,6 @@ describe("Given a uiReducer", () => {
         },
         pages: {
           currentPage: 1,
-          totalPages: 2,
           isNextPage: true,
         },
         filter: "all",
@@ -206,7 +200,6 @@ describe("Given a uiReducer", () => {
         },
         pages: {
           currentPage: 0,
-          totalPages: 2,
           isNextPage: true,
         },
         filter: "barbarian",

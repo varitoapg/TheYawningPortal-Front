@@ -4,9 +4,11 @@ import renderWithProviders from "../../testUtils/renderWithProvider";
 import CreateForm from "./CreateForm";
 
 const mockSubmit = jest.fn();
+const mockGetCharacters = jest.fn();
 jest.mock("../../hooks/useCharacter/useCharacter.ts", () => {
   return () => ({
     createCharacter: mockSubmit,
+    getUserCharacters: mockGetCharacters,
   });
 });
 

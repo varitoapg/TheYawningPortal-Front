@@ -9,6 +9,7 @@ import useCharacter from "../../hooks/useCharacter/useCharacter";
 import { Character } from "../../redux/features/characterSlice/reducer/types";
 import Button from "../Button/Button";
 import CharacterCardStyled from "./CharacterCardStyled";
+import { useAppSelector } from "../../redux/hooks";
 
 interface CharacterCardProps {
   character: Character;
@@ -30,11 +31,17 @@ const CharacterCard = ({
     characterClass,
   },
 }: CharacterCardProps): JSX.Element => {
-  const { deleteCharacter } = useCharacter();
+  const { deleteCharacter, getUserCharacters } = useCharacter();
+  const {
+    pages: { currentPage },
+    filter,
+  } = useAppSelector((state) => state.ui);
 
   const deleteCharacterAction = () => {
     deleteCharacter(id);
+    getUserCharacters(currentPage, filter);
   };
+
   return (
     <CharacterCardStyled>
       <div className="character-state">

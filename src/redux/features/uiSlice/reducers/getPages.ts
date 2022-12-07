@@ -8,7 +8,6 @@ const loadPagesReducer = (
   ...previousUi,
   pages: {
     currentPage: action.payload.currentPage,
-    totalPages: action.payload.totalPages,
     isNextPage: action.payload.isNextPage,
   },
 });
