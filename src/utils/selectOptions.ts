@@ -1,18 +1,19 @@
 const selectOptions = [
+  "default",
   "all",
   "artificer",
-  "sorcerer",
-  "cleric",
-  "warlock",
-  "fighter",
-  "druid",
-  "monk",
   "barbarian",
-  "rogue",
-  "wizard",
   "bard",
-  "paladin",
+  "cleric",
+  "druid",
+  "fighter",
+  "monk",
   "ranger",
+  "rogue",
+  "sorcerer",
+  "paladin",
+  "warlock",
+  "wizard",
 ];
 
 export default selectOptions;

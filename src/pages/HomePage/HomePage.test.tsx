@@ -72,4 +72,27 @@ describe("Given a HomePage page", () => {
       );
     });
   });
+
+  describe("When it's rendered with 4 characters in the store and clicks '-- select class --' in class filter", () => {
+    test("Then it shouldn't call dispatch with filterClassActionCreator", async () => {
+      const expectedClass = "-- select class --";
+      const classSelect = "class:";
+
+      renderWithProviders(<HomePage />, {
+        store: mockStoreUserLogged,
+      });
+      const classCharacterSelect = screen.getByRole("combobox", {
+        name: classSelect,
+      });
+
+      const classCharacterOption = screen.getByRole("option", {
+        name: expectedClass,
+      });
+      await userEvent.selectOptions(classCharacterSelect, classCharacterOption);
+
+      expect(dispatchSpy).not.toHaveBeenCalledWith(
+        filterClassActionCreator(expectedClass)
+      );
+    });
+  });
 });
