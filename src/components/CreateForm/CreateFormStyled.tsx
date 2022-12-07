@@ -57,6 +57,7 @@ const CreateFormStyled = styled.form`
       }
 
       &--select {
+        text-transform: capitalize;
         -webkit-appearance: none;
         border: 2px solid ${(props) => props.theme.color.ink.darkest};
         border-radius: ${(props) => props.theme.size.borderRadius.big};
@@ -243,7 +244,7 @@ const CreateFormStyled = styled.form`
       }
 
       &::placeholder {
-        font-size: ${(props) => props.theme.font.main.sizes.body};
+        font-size: ${(props) => props.theme.font.main.sizes.title};
         font-family: ${(props) => props.theme.font.main.family};
         color: ${(props) => props.theme.color.ink.light};
       }
@@ -258,6 +259,7 @@ const CreateFormStyled = styled.form`
         border: none;
         background-color: #f8f8f8;
         font-size: ${(props) => props.theme.font.main.sizes.title};
+        font-family: ${(props) => props.theme.font.main.family};
         resize: none;
 
         &:focus {

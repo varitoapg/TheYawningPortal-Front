@@ -19,13 +19,15 @@ const HomePage = () => {
   const filter = useAppSelector((state) => state.ui.filter);
 
   const filterCharacters = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch(filterClassActionCreator(event.target.value));
-    dispatch(
-      getPagesActionCreator({
-        currentPage: 0,
-        isNextPage: true,
-      })
-    );
+    if (event.target.value !== "default") {
+      dispatch(filterClassActionCreator(event.target.value));
+      dispatch(
+        getPagesActionCreator({
+          currentPage: 0,
+          isNextPage: true,
+        })
+      );
+    }
   };
 
   const movePage = () => {
@@ -54,7 +56,7 @@ const HomePage = () => {
               id="characterClassFilter"
             >
               {selectOptions.map((option) =>
-                option === "all" ? (
+                option === "default" ? (
                   <option key={`${option}`} value={`${option}`}>
                     -- select class --
                   </option>
