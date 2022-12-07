@@ -39,6 +39,7 @@ const CharacterCardListStyled = styled.div`
     font-weight: ${(props) => props.theme.font.main.weights.regular};
     margin-bottom: 20px;
     margin-top: 20px;
+    display: block;
   }
 `;
 

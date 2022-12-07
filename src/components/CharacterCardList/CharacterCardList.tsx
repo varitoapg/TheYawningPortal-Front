@@ -24,7 +24,7 @@ const CharacterCardList = (): JSX.Element => {
         </div>
       ) : (
         <>
-          <h3 className="total-characters">{`Total of ${total} characters`}</h3>
+          <span className="total-characters">{`Total of ${total} characters`}</span>
           <div className="content-container">
             <ul className="characters-list">
               {allCharacters.map((character) => (
