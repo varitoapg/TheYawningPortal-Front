@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useAppSelector } from "../../redux/hooks";
 import CharacterCard from "../CharacterCard/CharacterCard";
 import CharacterCardListStyled from "./CharacterCardListStyled";
@@ -8,9 +9,19 @@ const CharacterCardList = (): JSX.Element => {
   return (
     <CharacterCardListStyled>
       {total === 0 ? (
-        <h2 className="empty-warning">
-          Sorry, you still don't have characters
-        </h2>
+        <div className="empty-warning">
+          <h2 className="empty-warning__title">
+            You still don't have characters.
+          </h2>
+          <span className="empty-warning__text">Wanna create one?</span>
+          <Link
+            aria-label="Go to Login page"
+            className="empty-warning__link"
+            to="/create"
+          >
+            Create
+          </Link>
+        </div>
       ) : (
         <>
           <h3 className="total-characters">{`Total of ${total} characters`}</h3>
