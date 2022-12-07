@@ -77,9 +77,9 @@ To do:
 
 ## Acknowledgements
 
-- Many thanks to everyone who keep fighting these months in the bootcamp, specially those who stay close last weeks
+- Many thanks to everyone who kept fighting these months in the bootcamp, specially those who stayed close the last weeks
 - An special thanks to all professorate of ISDI Coders
-- The last but not least thank to my family who support me in the distance. And my girlfriend who never stop believing in me
+- The last but not least thanks to my family who supported me in the distance. And thanks to my girlfriend who never stops believing in me
 
 ## Contact
 
