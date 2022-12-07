@@ -2,6 +2,7 @@ import axios, { AxiosError } from "axios";
 import decodeToken from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import {
+  filterClassActionCreator,
   hideLoadingActionCreator,
   showLoadingActionCreator,
   showModalActionCreator,
@@ -107,7 +108,7 @@ const useUser = () => {
 
   const userLogout = () => {
     deleteToken();
-
+    dispatch(filterClassActionCreator("all"));
     dispatch(userLogoutActionCreator());
     navigate("/login");
   };
