@@ -6,9 +6,11 @@ import renderWithProviders from "../../testUtils/renderWithProvider";
 import CharacterCard from "./CharacterCard";
 
 const mockDelete = jest.fn();
+const mockGetUser = jest.fn();
 jest.mock("../../hooks/useCharacter/useCharacter.ts", () => {
   return () => ({
     deleteCharacter: mockDelete,
+    getUserCharacters: mockGetUser,
   });
 });
 
@@ -143,6 +145,7 @@ describe("Given a component CharacterCard", () => {
       );
 
       await userEvent.click(expectedDeleteButton!);
+
       expect(mockDelete).toHaveBeenCalledWith(character.id);
     });
   });

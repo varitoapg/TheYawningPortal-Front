@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useCharacter from "../../hooks/useCharacter/useCharacter";
 import { CharacterForm } from "../../redux/features/characterSlice/reducer/types";
+import { useAppSelector } from "../../redux/hooks";
 import setStatsModifier from "../../utils/setStatsModifier/setStatsModifier";
 import Button from "../Button/Button";
 import CreateFormStyled from "./CreateFormStyled";
@@ -22,10 +23,12 @@ const initialDataCharacter: CharacterForm = {
 };
 
 const CreateForm = (): JSX.Element => {
+  const { currentPage } = useAppSelector((state) => state.ui.pages);
+  const filter = useAppSelector((state) => state.ui.filter);
   const [createCharacterData, setCreateCharacterData] =
     useState(initialDataCharacter);
 
-  const { createCharacter } = useCharacter();
+  const { createCharacter, getUserCharacters } = useCharacter();
 
   const handleFormChange = (
     event:
@@ -62,6 +65,7 @@ const CreateForm = (): JSX.Element => {
     };
 
     await createCharacter(createdCharacter);
+    await getUserCharacters(currentPage, filter);
   };
 
   return (
