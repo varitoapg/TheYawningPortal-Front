@@ -1,13 +1,10 @@
-import { screen, waitFor } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { fourCharactersState } from "../../mocks/states/characterState";
 import { mockUiInitialState } from "../../mocks/states/uiState";
 import { mockUserLogged } from "../../mocks/states/userState";
 import mockStoreUserLogged from "../../mocks/store/mockStoreUserLogged";
-import {
-  filterClassActionCreator,
-  moveToNextPageActionCreator,
-} from "../../redux/features/uiSlice/uiSlice";
+import { filterClassActionCreator } from "../../redux/features/uiSlice/uiSlice";
 import renderWithProviders from "../../testUtils/renderWithProvider";
 import HomePage from "./HomePage";
 
