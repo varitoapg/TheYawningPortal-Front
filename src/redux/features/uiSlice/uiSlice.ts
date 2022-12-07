@@ -8,7 +8,7 @@ import getPages from "./reducers/getPages";
 import moveToNextPage from "./reducers/moveToNextPage";
 import filterClass from "./reducers/filterClass";
 
-const initialState: UiState = {
+export const initialState: UiState = {
   isLoading: false,
   modal: {
     isError: false,
@@ -17,7 +17,6 @@ const initialState: UiState = {
   },
   pages: {
     currentPage: 0,
-    totalPages: 2,
     isNextPage: true,
   },
   filter: "all",

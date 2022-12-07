@@ -42,7 +42,7 @@ const useCharacter = () => {
           },
         });
 
-        const { allCharacters, isNextPage, totalPages, count } = response.data;
+        const { allCharacters, isNextPage, count } = response.data;
 
         if (page === 0) {
           dispatch(
@@ -54,9 +54,7 @@ const useCharacter = () => {
           );
         }
 
-        dispatch(
-          getPagesActionCreator({ totalPages, isNextPage, currentPage: page })
-        );
+        dispatch(getPagesActionCreator({ isNextPage, currentPage: page }));
         dispatch(hideLoadingActionCreator());
       } catch (error: unknown) {
         dispatch(hideLoadingActionCreator());
