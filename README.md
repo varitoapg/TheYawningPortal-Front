@@ -18,7 +18,7 @@ Here it is the end of my trip in ISDI Coders web development bootcamp with my fi
 With The Yawning Portal you can create in an easy way your own characters to play Dungeons and Dragons. It is a copy of a simplified D&D spreadsheet to keep your characters.
 If you are a DM it's useful too to save all your NPC of your games.
 
-This projects works with an API Rest, if you are interested, here you have the link for it: https://github.com/varitoapg/TheYwaningPortal-Back
+This projects works with an API Rest, if you are interested, here you have the link for it: https://github.com/varitoapg/TheYawningPortal-Back
 
 ## Technologies Used
 
