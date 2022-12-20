@@ -45,10 +45,9 @@ This projects works with an API Rest, if you are interested, here you have the l
 - **Filter by character class**: Filter the class you need to find the character you want.
 
 - [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=varitoapg_TheYawningPortal-Front&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=varitoapg_TheYawningPortal-Front)
-- [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=varitoapg_TheYawningPortal-Front-api&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=varitoapg_TheYawningPortal-Front-api)
-- [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=varitoapg_TheYawningPortal-Front-api&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=varitoapg_TheYawningPortal-Front-api)
-- [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=varitoapg_TheYawningPortal-Front-api&metric=coverage)](https://sonarcloud.io/summary/new_code?id=varitoapg_TheYawningPortal-Front-api)
-- [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=varitoapg_TheYawningPortal-Front-api&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=varitoapg_TheYawningPortal-Front-api)
+- [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=varitoapg_TheYawningPortal-Front&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=varitoapg_TheYawningPortal-Front)
+- [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=varitoapg_TheYawningPortal-Front&metric=coverage)](https://sonarcloud.io/summary/new_code?id=varitoapg_TheYawningPortal-Front)
+- [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=varitoapg_TheYawningPortal-Front&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=varitoapg_TheYawningPortal-Front)
 
 ## Setup
 
