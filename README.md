@@ -18,7 +18,7 @@ Here it is the end of my trip in ISDI Coders web development bootcamp with my fi
 With The Yawning Portal you can create in an easy way your own characters to play Dungeons and Dragons. It is a copy of a simplified D&D spreadsheet to keep your characters.
 If you are a DM it's useful too to save all your NPC of your games.
 
-This projects works with an API Rest, if you are interested, here you have the link for it: https://github.com/varitoapg/TheYwaningPortal-Back
+This projects works with an API Rest, if you are interested, here you have the link for it: https://github.com/varitoapg/TheYawningPortal-Back
 
 ## Technologies Used
 
@@ -45,10 +45,9 @@ This projects works with an API Rest, if you are interested, here you have the l
 - **Filter by character class**: Filter the class you need to find the character you want.
 
 - [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=varitoapg_TheYawningPortal-Front&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=varitoapg_TheYawningPortal-Front)
-- [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=varitoapg_TheYawningPortal-Front-api&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=varitoapg_TheYawningPortal-Front-api)
-- [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=varitoapg_TheYawningPortal-Front-api&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=varitoapg_TheYawningPortal-Front-api)
-- [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=varitoapg_TheYawningPortal-Front-api&metric=coverage)](https://sonarcloud.io/summary/new_code?id=varitoapg_TheYawningPortal-Front-api)
-- [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=varitoapg_TheYawningPortal-Front-api&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=varitoapg_TheYawningPortal-Front-api)
+- [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=varitoapg_TheYawningPortal-Front&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=varitoapg_TheYawningPortal-Front)
+- [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=varitoapg_TheYawningPortal-Front&metric=coverage)](https://sonarcloud.io/summary/new_code?id=varitoapg_TheYawningPortal-Front)
+- [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=varitoapg_TheYawningPortal-Front&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=varitoapg_TheYawningPortal-Front)
 
 ## Setup
 
