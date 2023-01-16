@@ -6,7 +6,8 @@ import testProfile from "./testProfile";
 
 const baseUrl = process.env.REACT_APP_API_URL;
 const { registerRoute, usersRoute, loginRoute } = userRoutes;
-const { charactersRoute, deleteRoute, createRoute } = characterRoutes;
+const { charactersRoute, deleteRoute, createRoute, editRoute } =
+  characterRoutes;
 const { id } = testListCharacters[0];
 const { id: idCharacter } = testListCharacters[1];
 
@@ -106,6 +107,26 @@ export const handlers = [
       return res.once(
         ctx.status(500),
         ctx.json({ error: "Character not found!" })
+      );
+    }
+  ),
+
+  rest.patch(
+    `${baseUrl}${charactersRoute}${editRoute}/${idCharacter}`,
+    async (req, res, ctx) => {
+      return res.once(
+        ctx.status(200),
+        ctx.json({ text: "Character created!" })
+      );
+    }
+  ),
+
+  rest.patch(
+    `${baseUrl}${charactersRoute}${editRoute}/${idCharacter}`,
+    async (req, res, ctx) => {
+      return res.once(
+        ctx.status(500),
+        ctx.json({ error: "Character cannot be updated!" })
       );
     }
   ),
