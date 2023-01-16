@@ -44,154 +44,168 @@ describe("Given the useCharacter custom hook", () => {
       });
     });
 
-    describe("And invokes its function getUserCharacters", () => {
-      describe("When it's invoked with page 1 and there is no errors", () => {
-        test("Then it should return an array of characters and call dispatch with getMoreCharactersActionCreator", async () => {
-          const { result } = renderHook(() => useCharacter(), {
-            wrapper: ProviderWrapper,
-          });
-          await result.current.getUserCharacters(1);
-
-          expect(dispatchSpy).toHaveBeenCalledWith(
-            getMoreCharactersActionCreator({
-              allCharacters: testListCharacters,
-              total: 3,
-            })
-          );
+    describe("When it's invoked with page 1 and there is no errors", () => {
+      test("Then it should return an array of characters and call dispatch with getMoreCharactersActionCreator", async () => {
+        const { result } = renderHook(() => useCharacter(), {
+          wrapper: ProviderWrapper,
         });
-      });
+        await result.current.getUserCharacters(1);
 
-      describe("When axios rejects an error", () => {
-        test("Then dispatch should be called with show and hide LoadingActionCreator and showModalActionCreator with error true and 'Something goes wrong. Try again'", async () => {
-          const { result } = renderHook(() => useCharacter(), {
-            wrapper: ProviderWrapper,
-          });
-
-          await result.current.getUserCharacters();
-
-          expect(dispatchSpy).toHaveBeenNthCalledWith(
-            1,
-            showLoadingActionCreator()
-          );
-          expect(dispatchSpy).toHaveBeenNthCalledWith(
-            2,
-            hideLoadingActionCreator()
-          );
-          expect(dispatchSpy).toHaveBeenNthCalledWith(
-            3,
-            showModalActionCreator({
-              isError: true,
-              text: "Something goes wrong. Try again",
-            })
-          );
-        });
+        expect(dispatchSpy).toHaveBeenCalledWith(
+          getMoreCharactersActionCreator({
+            allCharacters: testListCharacters,
+            total: 3,
+          })
+        );
       });
     });
 
-    describe("And invokes its function deleteCharacter", () => {
-      describe("When it's invoked with a character id that it is in user characters array", () => {
-        test("Then dispatch should be called with show and hide LoadingActionCreator and showModalActionCreator with error true and 'Something goes wrong. Try again'", async () => {
-          const { id: idCharacter } = testListCharacters[0];
-          const { result } = renderHook(() => useCharacter(), {
-            wrapper: ProviderWrapper,
-          });
-
-          await result.current.deleteCharacter(idCharacter);
-
-          expect(dispatchSpy).toHaveBeenCalledWith(
-            deleteCharacterActionCreator(idCharacter)
-          );
+    describe("When axios rejects an error", () => {
+      test("Then dispatch should be called with show and hide LoadingActionCreator and showModalActionCreator with error true and 'Something goes wrong. Try again'", async () => {
+        const { result } = renderHook(() => useCharacter(), {
+          wrapper: ProviderWrapper,
         });
+
+        await result.current.getUserCharacters();
+
+        expect(dispatchSpy).toHaveBeenNthCalledWith(
+          1,
+          showLoadingActionCreator()
+        );
+        expect(dispatchSpy).toHaveBeenNthCalledWith(
+          2,
+          hideLoadingActionCreator()
+        );
+        expect(dispatchSpy).toHaveBeenNthCalledWith(
+          3,
+          showModalActionCreator({
+            isError: true,
+            text: "Something goes wrong. Try again",
+          })
+        );
       });
-
-      describe("When it's invoked an axios rejects an error", () => {
-        test("Then it should call dispatch deleteCharacterActionCreator", async () => {
-          const { id: idCharacter } = testListCharacters[0];
-          const { result } = renderHook(() => useCharacter(), {
-            wrapper: ProviderWrapper,
-          });
-
-          await result.current.deleteCharacter(idCharacter);
-
-          expect(dispatchSpy).toHaveBeenNthCalledWith(
-            1,
-            showLoadingActionCreator()
-          );
-          expect(dispatchSpy).toHaveBeenNthCalledWith(
-            2,
-            hideLoadingActionCreator()
-          );
-          expect(dispatchSpy).toHaveBeenNthCalledWith(
-            3,
-            showModalActionCreator({
-              isError: true,
-              text: "Fatal error",
-            })
-          );
+    });
+  });
+  describe("And invokes its function deleteCharacter", () => {
+    describe("When it's invoked with a character id that it is in user characters array", () => {
+      test("Then dispatch should be called with show and hide LoadingActionCreator and showModalActionCreator with error true and 'Something goes wrong. Try again'", async () => {
+        const { id: idCharacter } = testListCharacters[0];
+        const { result } = renderHook(() => useCharacter(), {
+          wrapper: ProviderWrapper,
         });
+
+        await result.current.deleteCharacter(idCharacter);
+
+        expect(dispatchSpy).toHaveBeenCalledWith(
+          deleteCharacterActionCreator(idCharacter)
+        );
       });
     });
 
-    describe("And invokes its function createCharacter", () => {
-      const character = getRandomCharacter();
-      const characterFormData: CharacterForm = {
-        background: character.background,
-        characterClass: character.characterClass,
-        details: character.details,
-        image: character.image,
-        name: character.name,
-        race: character.race,
-        speed: character.speed,
-        strength: character.strength,
-        constitution: character.constitution,
-        dexterity: character.dexterity,
-        intelligence: character.intelligence,
-        wisdom: character.wisdom,
-        charisma: character.charisma,
-      };
-
-      describe("When it's invoked with a character data correctly", () => {
-        test("Then it should calls navigate with '/home'", async () => {
-          const { result } = renderHook(() => useCharacter(), {
-            wrapper: ProviderWrapper,
-          });
-
-          await result.current.createCharacter(characterFormData);
-
-          expect(mockedUseNavigate).toHaveBeenCalledWith("/home");
+    describe("When it's invoked an axios rejects an error", () => {
+      test("Then it should call dispatch deleteCharacterActionCreator", async () => {
+        const { id: idCharacter } = testListCharacters[0];
+        const { result } = renderHook(() => useCharacter(), {
+          wrapper: ProviderWrapper,
         });
+
+        await result.current.deleteCharacter(idCharacter);
+
+        expect(dispatchSpy).toHaveBeenNthCalledWith(
+          1,
+          showLoadingActionCreator()
+        );
+        expect(dispatchSpy).toHaveBeenNthCalledWith(
+          2,
+          hideLoadingActionCreator()
+        );
+        expect(dispatchSpy).toHaveBeenNthCalledWith(
+          3,
+          showModalActionCreator({
+            isError: true,
+            text: "Fatal error",
+          })
+        );
       });
+    });
+  });
 
-      describe("When it's invoked an axios rejects an error", () => {
-        test("Then it should call dispatch with showLoadingActionCreator, then hideLoadingActionCreator and finally showModalActionCreator", async () => {
-          const { result } = renderHook(() => useCharacter(), {
-            wrapper: ProviderWrapper,
-          });
+  describe("And invokes its function createCharacter", () => {
+    const character = getRandomCharacter();
+    const characterFormData: CharacterForm = {
+      background: character.background,
+      characterClass: character.characterClass,
+      details: character.details,
+      image: character.image,
+      name: character.name,
+      race: character.race,
+      speed: character.speed,
+      strength: character.strength,
+      constitution: character.constitution,
+      dexterity: character.dexterity,
+      intelligence: character.intelligence,
+      wisdom: character.wisdom,
+      charisma: character.charisma,
+    };
 
-          await result.current.createCharacter(characterFormData);
-
-          expect(dispatchSpy).toHaveBeenNthCalledWith(
-            1,
-            showLoadingActionCreator()
-          );
-          expect(dispatchSpy).toHaveBeenNthCalledWith(
-            2,
-            hideLoadingActionCreator()
-          );
-          expect(dispatchSpy).toHaveBeenNthCalledWith(
-            3,
-            showModalActionCreator({
-              isError: true,
-              text: "Character cannot be created!",
-            })
-          );
+    describe("When it's invoked with a character data correctly", () => {
+      test("Then it should calls navigate with '/home'", async () => {
+        const { result } = renderHook(() => useCharacter(), {
+          wrapper: ProviderWrapper,
         });
+
+        await result.current.createCharacter(characterFormData);
+
+        expect(mockedUseNavigate).toHaveBeenCalledWith("/home");
+      });
+    });
+
+    describe("When it's invoked an axios rejects an error", () => {
+      test("Then it should call dispatch with showLoadingActionCreator, then hideLoadingActionCreator and finally showModalActionCreator", async () => {
+        const { result } = renderHook(() => useCharacter(), {
+          wrapper: ProviderWrapper,
+        });
+
+        await result.current.createCharacter(characterFormData);
+
+        expect(dispatchSpy).toHaveBeenNthCalledWith(
+          1,
+          showLoadingActionCreator()
+        );
+        expect(dispatchSpy).toHaveBeenNthCalledWith(
+          2,
+          hideLoadingActionCreator()
+        );
+        expect(dispatchSpy).toHaveBeenNthCalledWith(
+          3,
+          showModalActionCreator({
+            isError: true,
+            text: "Character cannot be created!",
+          })
+        );
+      });
+    });
+  });
+
+  describe("And invokes its function getCharacterById", () => {
+    describe("When it's invocked with a correct characterId", () => {
+      test("Then it should return the correct character", async () => {
+        const { id: idCharacter } = testListCharacters[1];
+        const { result } = renderHook(() => useCharacter(), {
+          wrapper: ProviderWrapper,
+        });
+
+        await result.current.getCharacterById(idCharacter);
+
+        expect(dispatchSpy).toHaveBeenCalledWith(
+          getCharacterByIdActionCreator(testListCharacters[1])
+        );
       });
     });
 
     describe("And invokes its function getCharacterById", () => {
-      describe("When it's invocked with a correct characterId", () => {
-        test("Then it should return the correct character", async () => {
+      describe("When it's invocked an axios rejects an error", () => {
+        test("Then dispatch should be called with show and hide LoadingActionCreator and showModalActionCreator with error true and 'Character not found!'", async () => {
           const { id: idCharacter } = testListCharacters[1];
           const { result } = renderHook(() => useCharacter(), {
             wrapper: ProviderWrapper,
@@ -199,39 +213,81 @@ describe("Given the useCharacter custom hook", () => {
 
           await result.current.getCharacterById(idCharacter);
 
-          expect(dispatchSpy).toHaveBeenCalledWith(
-            getCharacterByIdActionCreator(testListCharacters[1])
+          expect(dispatchSpy).toHaveBeenNthCalledWith(
+            1,
+            showLoadingActionCreator()
+          );
+          expect(dispatchSpy).toHaveBeenNthCalledWith(
+            2,
+            hideLoadingActionCreator()
+          );
+          expect(dispatchSpy).toHaveBeenNthCalledWith(
+            3,
+            showModalActionCreator({
+              isError: true,
+              text: "Character not found!",
+            })
           );
         });
       });
+    });
+  });
 
-      describe("And invokes its function getCharacterById", () => {
-        describe("When it's invocked an axios rejects an error", () => {
-          test("Then dispatch should be called with show and hide LoadingActionCreator and showModalActionCreator with error true and 'Character not found!'", async () => {
-            const { id: idCharacter } = testListCharacters[1];
-            const { result } = renderHook(() => useCharacter(), {
-              wrapper: ProviderWrapper,
-            });
+  describe("And invokes its function editCharacter", () => {
+    const newCharacter = getRandomCharacter();
+    const newCharacterFormData: CharacterForm = {
+      background: newCharacter.background,
+      characterClass: newCharacter.characterClass,
+      details: newCharacter.details,
+      image: newCharacter.image,
+      name: newCharacter.name,
+      race: newCharacter.race,
+      speed: newCharacter.speed,
+      strength: newCharacter.strength,
+      constitution: newCharacter.constitution,
+      dexterity: newCharacter.dexterity,
+      intelligence: newCharacter.intelligence,
+      wisdom: newCharacter.wisdom,
+      charisma: newCharacter.charisma,
+    };
 
-            await result.current.getCharacterById(idCharacter);
-
-            expect(dispatchSpy).toHaveBeenNthCalledWith(
-              1,
-              showLoadingActionCreator()
-            );
-            expect(dispatchSpy).toHaveBeenNthCalledWith(
-              2,
-              hideLoadingActionCreator()
-            );
-            expect(dispatchSpy).toHaveBeenNthCalledWith(
-              3,
-              showModalActionCreator({
-                isError: true,
-                text: "Character not found!",
-              })
-            );
-          });
+    describe("When it's called with a character ID and the new character information", () => {
+      test("Then it should call navigate with '/home'", async () => {
+        const { id: idCharacter } = testListCharacters[1];
+        const { result } = renderHook(() => useCharacter(), {
+          wrapper: ProviderWrapper,
         });
+
+        await result.current.editCharacter(newCharacterFormData, idCharacter);
+
+        expect(mockedUseNavigate).toHaveBeenCalledWith("/home");
+      });
+    });
+
+    describe("When it's called and axios reject an error", () => {
+      test("Then it should call dispatch with showLoadingActionCreator, then hideLoadingActionCreator and finally showModalActionCreator", async () => {
+        const { id: idCharacter } = testListCharacters[1];
+        const { result } = renderHook(() => useCharacter(), {
+          wrapper: ProviderWrapper,
+        });
+
+        await result.current.editCharacter(newCharacterFormData, idCharacter);
+
+        expect(dispatchSpy).toHaveBeenNthCalledWith(
+          1,
+          showLoadingActionCreator()
+        );
+        expect(dispatchSpy).toHaveBeenNthCalledWith(
+          2,
+          hideLoadingActionCreator()
+        );
+        expect(dispatchSpy).toHaveBeenNthCalledWith(
+          3,
+          showModalActionCreator({
+            isError: true,
+            text: "Character cannot be updated!",
+          })
+        );
       });
     });
   });
