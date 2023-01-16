@@ -20,7 +20,8 @@ import { AxiosResponseBody } from "../useUser/types";
 
 const useCharacter = () => {
   const baseUrl = process.env.REACT_APP_API_URL;
-  const { charactersRoute, deleteRoute, createRoute } = characterRoutes;
+  const { charactersRoute, deleteRoute, createRoute, editRoute } =
+    characterRoutes;
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -169,11 +170,48 @@ const useCharacter = () => {
     [baseUrl, charactersRoute, dispatch, token]
   );
 
+  const editCharacter = useCallback(
+    async (characterData: CharacterForm, idCharacter: string) => {
+      try {
+        dispatch(showLoadingActionCreator());
+        await axios.patch(
+          `${baseUrl}${charactersRoute}${editRoute}/${idCharacter}`,
+          characterData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        dispatch(hideLoadingActionCreator());
+        dispatch(
+          showModalActionCreator({
+            isError: false,
+            text: "Character updated!",
+          })
+        );
+        navigate("/home");
+      } catch (error: unknown) {
+        dispatch(hideLoadingActionCreator());
+        dispatch(
+          showModalActionCreator({
+            isError: true,
+            text: (error as AxiosError<AxiosResponseBody>).response?.data
+              .error!,
+          })
+        );
+      }
+    },
+    [baseUrl, charactersRoute, dispatch, editRoute, navigate, token]
+  );
+
   return {
     getUserCharacters,
     deleteCharacter,
     createCharacter,
     getCharacterById,
+    editCharacter,
   };
 };
 export default useCharacter;
