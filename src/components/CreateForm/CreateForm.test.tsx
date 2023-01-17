@@ -32,7 +32,7 @@ describe("Given the LoginForm Component", () => {
     test("Then it should return 4 input text elements, 7 spinbutton a heading 'armor class, option 'sorcerer', a select 'class:' a button 'create'", () => {
       const headingText = "armor class";
 
-      renderWithProviders(<CreateForm />);
+      renderWithProviders(<CreateForm isEdit={false} />);
 
       const expectedName = screen.getByRole("textbox", {
         name: nameText,
@@ -104,7 +104,7 @@ describe("Given the LoginForm Component", () => {
         type: "image/jpg",
       });
 
-      renderWithProviders(<CreateForm />);
+      renderWithProviders(<CreateForm isEdit={false} />);
 
       const expectedImage = screen.getByTestId("input image");
       const expectedName = screen.getByRole("textbox", {

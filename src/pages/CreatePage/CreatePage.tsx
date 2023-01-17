@@ -15,7 +15,7 @@ const CreatePage = () => {
     <>
       <Header />
       <CreatePageStyled>
-        <CreateForm />
+        <CreateForm isEdit={false} />
       </CreatePageStyled>
     </>
   );

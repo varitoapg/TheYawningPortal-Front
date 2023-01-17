@@ -22,7 +22,11 @@ const initialDataCharacter: CharacterForm = {
   speed: 0,
 };
 
-const CreateForm = (): JSX.Element => {
+interface CreateFormProps {
+  isEdit: boolean;
+}
+
+const CreateForm = ({ isEdit }: CreateFormProps): JSX.Element => {
   const { currentPage } = useAppSelector((state) => state.ui.pages);
   const filter = useAppSelector((state) => state.ui.filter);
   const [createCharacterData, setCreateCharacterData] =
