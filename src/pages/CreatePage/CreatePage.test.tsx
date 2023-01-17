@@ -1,4 +1,7 @@
 import { screen } from "@testing-library/react";
+import { fourCharactersState } from "../../mocks/states/characterState";
+import { mockUiInitialState } from "../../mocks/states/uiState";
+import { mockUserLogged } from "../../mocks/states/userState";
 
 import renderWithProviders from "../../testUtils/renderWithProvider";
 import CreatePage from "./CreatePage";
@@ -10,7 +13,13 @@ describe("Given a CreatePage page", () => {
       const nameText = "name:";
       const charismaScore = "charisma";
 
-      renderWithProviders(<CreatePage />);
+      renderWithProviders(<CreatePage />, {
+        preloadedState: {
+          ui: mockUiInitialState,
+          user: mockUserLogged,
+          characters: fourCharactersState,
+        },
+      });
 
       const expectedHeading = screen.getByRole("heading", {
         name: headingText,

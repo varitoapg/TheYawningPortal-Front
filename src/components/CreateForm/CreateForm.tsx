@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import useCharacter from "../../hooks/useCharacter/useCharacter";
 import { CharacterForm } from "../../redux/features/characterSlice/reducer/types";
 import { useAppSelector } from "../../redux/hooks";
@@ -22,13 +23,36 @@ const initialDataCharacter: CharacterForm = {
   speed: 0,
 };
 
-const CreateForm = (): JSX.Element => {
+interface CreateFormProps {
+  isEdit: boolean;
+}
+
+const CreateForm = ({ isEdit }: CreateFormProps): JSX.Element => {
   const { currentPage } = useAppSelector((state) => state.ui.pages);
   const filter = useAppSelector((state) => state.ui.filter);
+  const character = useAppSelector(
+    (state) => state.characters.currentCharacter
+  );
   const [createCharacterData, setCreateCharacterData] =
     useState(initialDataCharacter);
 
-  const { createCharacter, getUserCharacters } = useCharacter();
+  const {
+    createCharacter,
+    getUserCharacters,
+    getCharacterById,
+    editCharacter,
+  } = useCharacter();
+  const { id: characterId } = useParams<"id">();
+
+  useEffect(() => {
+    if (isEdit) {
+      getCharacterById(characterId!);
+
+      setCreateCharacterData({
+        ...character,
+      });
+    }
+  }, [character, characterId, getCharacterById, isEdit]);
 
   const handleFormChange = (
     event:
@@ -48,7 +72,7 @@ const CreateForm = (): JSX.Element => {
   const handleSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
 
-    const createdCharacter: CharacterForm = {
+    const informationCharacter: CharacterForm = {
       background: createCharacterData.background,
       characterClass: createCharacterData.characterClass,
       details: createCharacterData.details,
@@ -64,7 +88,12 @@ const CreateForm = (): JSX.Element => {
       speed: createCharacterData.speed,
     };
 
-    await createCharacter(createdCharacter);
+    if (isEdit) {
+      await editCharacter(informationCharacter, characterId!);
+      return;
+    }
+
+    await createCharacter(informationCharacter);
     await getUserCharacters(currentPage, filter);
   };
 
@@ -177,6 +206,7 @@ const CreateForm = (): JSX.Element => {
               type="number"
               id="speed"
               placeholder="5"
+              value={createCharacterData.speed}
               onChange={handleFormChange}
               autoComplete="off"
             />
@@ -191,6 +221,7 @@ const CreateForm = (): JSX.Element => {
           </label>
           <input
             className="main-stats__input"
+            value={createCharacterData.strength}
             type="number"
             id="strength"
             placeholder="5"
@@ -211,6 +242,7 @@ const CreateForm = (): JSX.Element => {
             type="number"
             id="constitution"
             placeholder="5"
+            value={createCharacterData.constitution}
             onChange={handleFormChange}
             autoComplete="off"
           />
@@ -228,6 +260,7 @@ const CreateForm = (): JSX.Element => {
             type="number"
             id="dexterity"
             placeholder="5"
+            value={createCharacterData.dexterity}
             onChange={handleFormChange}
             autoComplete="off"
           />
@@ -245,6 +278,7 @@ const CreateForm = (): JSX.Element => {
             type="number"
             id="intelligence"
             placeholder="5"
+            value={createCharacterData.intelligence}
             onChange={handleFormChange}
             autoComplete="off"
           />
@@ -262,6 +296,7 @@ const CreateForm = (): JSX.Element => {
             type="number"
             id="wisdom"
             placeholder="5"
+            value={createCharacterData.wisdom}
             onChange={handleFormChange}
             autoComplete="off"
           />
@@ -279,6 +314,7 @@ const CreateForm = (): JSX.Element => {
             type="number"
             id="charisma"
             placeholder="5"
+            value={createCharacterData.charisma}
             onChange={handleFormChange}
             autoComplete="off"
           />
@@ -298,6 +334,7 @@ const CreateForm = (): JSX.Element => {
             type="text"
             id="background"
             placeholder="Insert background here"
+            value={createCharacterData.background}
             onChange={handleFormChange}
             autoComplete="off"
           />
@@ -310,6 +347,7 @@ const CreateForm = (): JSX.Element => {
             id="details"
             placeholder="Insert your details here"
             rows={10}
+            value={createCharacterData.details}
             onChange={handleFormChange}
             className="character-information__input character-information__input--textArea"
           />

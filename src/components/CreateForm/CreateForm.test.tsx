@@ -1,18 +1,25 @@
 import { screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { fourCharactersState } from "../../mocks/states/characterState";
+import { mockUiInitialState } from "../../mocks/states/uiState";
+import { mockUserLogged } from "../../mocks/states/userState";
 import renderWithProviders from "../../testUtils/renderWithProvider";
 import CreateForm from "./CreateForm";
 
 const mockSubmit = jest.fn();
 const mockGetCharacters = jest.fn();
+const mockGetCharacterById = jest.fn();
+const mockEditCharacter = jest.fn();
 jest.mock("../../hooks/useCharacter/useCharacter.ts", () => {
   return () => ({
     createCharacter: mockSubmit,
     getUserCharacters: mockGetCharacters,
+    getCharacterById: mockGetCharacterById,
+    editCharacter: mockEditCharacter,
   });
 });
 
-describe("Given the LoginForm Component", () => {
+describe("Given the CreateForm Component", () => {
   const nameText = "name:";
   const racetext = "race:";
   const backgroundText = "background:";
@@ -28,11 +35,17 @@ describe("Given the LoginForm Component", () => {
   const charismaScore = "charisma";
   const createButton = "Create";
 
-  describe("When it's rendered", () => {
+  describe("When it's rendered and isEdit is false", () => {
     test("Then it should return 4 input text elements, 7 spinbutton a heading 'armor class, option 'sorcerer', a select 'class:' a button 'create'", () => {
       const headingText = "armor class";
 
-      renderWithProviders(<CreateForm />);
+      renderWithProviders(<CreateForm isEdit={false} />, {
+        preloadedState: {
+          ui: mockUiInitialState,
+          user: mockUserLogged,
+          characters: fourCharactersState,
+        },
+      });
 
       const expectedName = screen.getByRole("textbox", {
         name: nameText,
@@ -104,7 +117,13 @@ describe("Given the LoginForm Component", () => {
         type: "image/jpg",
       });
 
-      renderWithProviders(<CreateForm />);
+      renderWithProviders(<CreateForm isEdit={false} />, {
+        preloadedState: {
+          ui: mockUiInitialState,
+          user: mockUserLogged,
+          characters: fourCharactersState,
+        },
+      });
 
       const expectedImage = screen.getByTestId("input image");
       const expectedName = screen.getByRole("textbox", {
@@ -173,6 +192,90 @@ describe("Given the LoginForm Component", () => {
       await userEvent.click(expectedButton);
 
       expect(mockSubmit).toBeCalled();
+    });
+  });
+
+  describe("When it's rendered with isEdit true and all inputs fullfilled and Create button it's clicked", () => {
+    test("Then the form should be submited", async () => {
+      const image = new File(["avatar"], "avatar.jpg", {
+        type: "image/jpg",
+      });
+
+      renderWithProviders(<CreateForm isEdit={true} />, {
+        preloadedState: {
+          ui: mockUiInitialState,
+          user: mockUserLogged,
+          characters: fourCharactersState,
+        },
+      });
+
+      const expectedImage = screen.getByTestId("input image");
+      const expectedName = screen.getByRole("textbox", {
+        name: nameText,
+      });
+      const expectedRace = screen.getByRole("textbox", {
+        name: racetext,
+      });
+      const expectedBackground = screen.getByRole("textbox", {
+        name: backgroundText,
+      });
+      const expectedDetails = screen.getByRole("textbox", {
+        name: textDetails,
+      });
+      const classCharacterSelect = screen.getByRole("combobox", {
+        name: classSelect,
+      });
+      const classCharacterOption = screen.getByRole("option", {
+        name: optionClass,
+      });
+      const expectedScoreStrength = screen.getByRole("spinbutton", {
+        name: strengthScore,
+      });
+      const expectedScoreSpeed = screen.getByRole("spinbutton", {
+        name: speedScore,
+      });
+      const expectedScoreConstitution = screen.getByRole("spinbutton", {
+        name: constitutionScore,
+      });
+      const expectedScoreDexterity = screen.getByRole("spinbutton", {
+        name: dexterityScore,
+      });
+      const expectedScoreIntelligence = screen.getByRole("spinbutton", {
+        name: intelligenceScore,
+      });
+      const expectedScoreWisdom = screen.getByRole("spinbutton", {
+        name: wisdomScore,
+      });
+      const expectedScoreCharisma = screen.getByRole("spinbutton", {
+        name: charismaScore,
+      });
+      const expectedButton = screen.getByRole("button", {
+        name: createButton,
+      });
+
+      URL.createObjectURL = jest.fn().mockReturnValue(image.type);
+
+      await userEvent.type(expectedName, "test");
+      await userEvent.type(expectedRace, "test");
+      await userEvent.type(expectedBackground, "test");
+      await userEvent.type(expectedDetails, "test");
+      await userEvent.type(expectedScoreStrength, "1");
+      await userEvent.type(expectedScoreSpeed, "2");
+      await userEvent.type(expectedScoreConstitution, "3");
+      await userEvent.type(expectedScoreDexterity, "4");
+      await userEvent.type(expectedScoreIntelligence, "4");
+      await userEvent.type(expectedScoreWisdom, "4");
+      await userEvent.type(expectedScoreCharisma, "4");
+      await userEvent.upload(expectedImage!, image);
+
+      userEvent.click(classCharacterSelect);
+
+      userEvent.click(within(classCharacterOption).getByText(/sorcerer/i));
+      await userEvent.click(expectedButton);
+
+      await userEvent.click(expectedButton);
+
+      expect(mockEditCharacter).toBeCalled();
     });
   });
 });
