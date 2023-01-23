@@ -1,6 +1,12 @@
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPen, faHeartBroken } from "@fortawesome/free-solid-svg-icons";
 import { CharacterForm } from "../../redux/features/characterSlice/reducer/types";
 import setStatsModifier from "../../utils/setStatsModifier/setStatsModifier";
 import DetailCharacterStyled from "./DetailCharacterStyled";
+import Button from "../Button/Button";
+import { useAppSelector } from "../../redux/hooks";
+import useCharacter from "../../hooks/useCharacter/useCharacter";
 
 interface DetailCharacterProps {
   character: CharacterForm;
@@ -22,6 +28,21 @@ const DetailCharacter = ({
     speed,
   },
 }: DetailCharacterProps): JSX.Element => {
+  const { deleteCharacter, getUserCharacters } = useCharacter();
+  const {
+    pages: { currentPage },
+    filter,
+  } = useAppSelector((state) => state.ui);
+
+  const { idCharacter } = useParams();
+  const navigate = useNavigate();
+
+  const deleteCharacterAction = () => {
+    deleteCharacter(idCharacter as string);
+    getUserCharacters(currentPage, filter);
+    navigate("/home");
+  };
+
   return (
     <DetailCharacterStyled>
       <div className="character-image-container">
@@ -33,6 +54,17 @@ const DetailCharacter = ({
         />
       </div>
 
+      <div className="character-actions-container">
+        <Button
+          classname="button icon"
+          ariaLabel="Delete character"
+          action={deleteCharacterAction}
+          children={<FontAwesomeIcon icon={faHeartBroken} className="icon" />}
+        />
+        <Link className="character-actions__link" to={`/edit/${idCharacter}`}>
+          <FontAwesomeIcon icon={faPen} className="icon" />
+        </Link>
+      </div>
       <div className="character-information">
         <h2 className="character-information__label">name:</h2>
         <span className="character-information__value">{name}</span>
@@ -120,7 +152,7 @@ const DetailCharacter = ({
 
       <div className="character-story">
         <h2 className="character-story__label">background:</h2>
-        <span className="character-story__value">{background}</span>
+        <span className="character-story__value--background">{background}</span>
         <h2 className="character-story__label">details:</h2>
         <span className="character-story__value">{details}</span>
       </div>
