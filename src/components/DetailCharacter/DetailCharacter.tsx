@@ -1,6 +1,12 @@
+import { Link, useParams } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPen, faHeartBroken } from "@fortawesome/free-solid-svg-icons";
 import { CharacterForm } from "../../redux/features/characterSlice/reducer/types";
 import setStatsModifier from "../../utils/setStatsModifier/setStatsModifier";
 import DetailCharacterStyled from "./DetailCharacterStyled";
+import Button from "../Button/Button";
+import { useAppSelector } from "../../redux/hooks";
+import useCharacter from "../../hooks/useCharacter/useCharacter";
 
 interface DetailCharacterProps {
   character: CharacterForm;
@@ -22,6 +28,19 @@ const DetailCharacter = ({
     speed,
   },
 }: DetailCharacterProps): JSX.Element => {
+  const { deleteCharacter, getUserCharacters } = useCharacter();
+  const {
+    pages: { currentPage },
+    filter,
+  } = useAppSelector((state) => state.ui);
+
+  const { idCharacter } = useParams();
+
+  const deleteCharacterAction = () => {
+    deleteCharacter(idCharacter as string);
+    getUserCharacters(currentPage, filter);
+  };
+
   return (
     <DetailCharacterStyled>
       <div className="character-image-container">
@@ -31,6 +50,15 @@ const DetailCharacter = ({
           className="character-image__image"
           aria-label={`${name} Avatar`}
         />
+        <Button
+          classname="button icon"
+          ariaLabel="Delete character"
+          action={deleteCharacterAction}
+          children={<FontAwesomeIcon icon={faHeartBroken} className="icon" />}
+        />
+        <Link to={`/edit/${idCharacter}`}>
+          <FontAwesomeIcon icon={faPen} className="icon" />
+        </Link>
       </div>
 
       <div className="character-information">
@@ -129,3 +157,6 @@ const DetailCharacter = ({
 };
 
 export default DetailCharacter;
+function getUserCharacters(currentPage: any, filter: any) {
+  throw new Error("Function not implemented.");
+}
