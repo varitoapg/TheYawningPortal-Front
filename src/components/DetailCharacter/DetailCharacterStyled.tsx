@@ -8,7 +8,24 @@ const DetailCharacterStyled = styled.article`
   flex-direction: column;
   align-items: center;
   gap: 30px;
+  .button {
+    margin: 0;
+  }
+  .icon {
+    background: transparent;
+    color: ${(props) => props.theme.color.ink.base};
+    width: 40px;
+    height: 40px;
+    padding: 0;
+  }
 
+  .character-actions {
+    &-container {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
   .character-image {
     &__image {
       width: 200px;
@@ -20,6 +37,7 @@ const DetailCharacterStyled = styled.article`
       object-fit: cover;
       object-position: top;
       margin: 0 auto;
+      grid-column: 1 / -1;
     }
   }
 
@@ -164,13 +182,16 @@ const DetailCharacterStyled = styled.article`
     }
 
     &__value {
-      text-transform: capitalize;
       color: ${(props) => props.theme.color.ink.base};
       min-width: 100%;
       border: none;
       background-color: inherit;
       font-size: ${(props) => props.theme.font.main.sizes.title};
       color: ${(props) => props.theme.color.ink.base};
+
+      &--background {
+        text-transform: capitalize;
+      }
     }
   }
 `;
