@@ -18,10 +18,7 @@ const DetailPage = () => {
     dispatch(filterClassActionCreator("all"));
   }, [dispatch, getCharacterById, idCharacter]);
 
-  const currentCharacter = useAppSelector(
-    (state) => state.characters.currentCharacter
-  );
-
+  const { currentCharacter } = useAppSelector((state) => state.characters);
   return (
     <>
       <Header />

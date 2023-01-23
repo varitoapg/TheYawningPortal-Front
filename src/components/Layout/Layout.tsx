@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
+import EditPage from "../../pages/EditPage/EditPage";
 import LoginPage from "../../pages/LoginPage/LoginPage";
 import { useAppSelector } from "../../redux/hooks";
 import ExitRoute from "../ExitRoute/ExitRoute";
@@ -72,6 +73,14 @@ const Layout = (): JSX.Element => {
           element={
             <ProtectedRoute isLogged={isLogged}>
               <CreatePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/edit/:idCharacter"
+          element={
+            <ProtectedRoute isLogged={isLogged}>
+              <EditPage />
             </ProtectedRoute>
           }
         />

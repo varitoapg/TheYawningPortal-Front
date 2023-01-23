@@ -2,10 +2,10 @@
 
 exports[`Given an App component When it's rendered with path '/' Then it should render 'LoginPage' 1`] = `
 <div
-  className="sc-iBYQkv"
+  className="sc-pyfCe"
 >
   <header
-    className="sc-dkrFOg fGHoSm"
+    className="sc-hLBbgP eHzvO"
   >
     <div
       className="title-container"
@@ -34,7 +34,7 @@ exports[`Given an App component When it's rendered with path '/' Then it should 
       </h1>
     </div>
     <div
-      className="sc-gswNZR fdiSgb"
+      className="sc-dkrFOg hBiTdd"
     >
       <div
         className="mobile"
@@ -129,10 +129,10 @@ exports[`Given an App component When it's rendered with path '/' Then it should 
     </div>
   </header>
   <div
-    className="sc-eDvSVe"
+    className="sc-gKPRtg"
   >
     <div
-      className="sc-hLBbgP gTvrzw"
+      className="sc-jSUZER fVVnxm"
     >
       <form
         className="login-form"
