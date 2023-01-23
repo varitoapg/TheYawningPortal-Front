@@ -30,29 +30,49 @@ interface CreateFormProps {
 const CreateForm = ({ isEdit }: CreateFormProps): JSX.Element => {
   const { currentPage } = useAppSelector((state) => state.ui.pages);
   const filter = useAppSelector((state) => state.ui.filter);
-  const character = useAppSelector(
-    (state) => state.characters.currentCharacter
-  );
-  const [createCharacterData, setCreateCharacterData] =
-    useState(initialDataCharacter);
+  const { currentCharacter } = useAppSelector((state) => state.characters);
 
   const {
     createCharacter,
     getUserCharacters,
-    getCharacterById,
     editCharacter,
+    getCharacterById,
   } = useCharacter();
-  const { id: characterId } = useParams<"id">();
+  const { idCharacter } = useParams();
+
+  const [createCharacterData, setCreateCharacterData] =
+    useState(initialDataCharacter);
+  const [imagePreviewUrl, setImagePreviewUrl] = useState("" as string | File);
 
   useEffect(() => {
     if (isEdit) {
-      getCharacterById(characterId!);
-
-      setCreateCharacterData({
-        ...character,
-      });
+      getCharacterById(idCharacter!);
     }
-  }, [character, characterId, getCharacterById, isEdit]);
+  }, [getCharacterById, idCharacter, isEdit]);
+
+  useEffect(() => {
+    if (isEdit) {
+      const previousCharacterData: Partial<CharacterForm> = {
+        background: currentCharacter.background,
+        characterClass: currentCharacter.characterClass,
+        details: currentCharacter.details,
+        name: currentCharacter.name,
+        race: currentCharacter.race,
+        charisma: currentCharacter.charisma,
+        wisdom: currentCharacter.wisdom,
+        intelligence: currentCharacter.intelligence,
+        constitution: currentCharacter.constitution,
+        dexterity: currentCharacter.dexterity,
+        strength: currentCharacter.strength,
+        speed: currentCharacter.speed,
+        image: {} as File,
+        imageBackup: currentCharacter.imageBackup,
+      };
+
+      setCreateCharacterData(previousCharacterData as CharacterForm);
+      setImagePreviewUrl(currentCharacter.imageBackup!);
+    }
+  }, [currentCharacter, isEdit]);
 
   const handleFormChange = (
     event:
@@ -60,12 +80,24 @@ const CreateForm = ({ isEdit }: CreateFormProps): JSX.Element => {
       | React.ChangeEvent<HTMLSelectElement>
       | React.ChangeEvent<HTMLTextAreaElement>
   ) => {
+    if (event.target.id === "image") {
+      const input = event.target as HTMLInputElement;
+      const files = input.files as FileList;
+
+      setCreateCharacterData({
+        ...createCharacterData,
+
+        [event.target.id]: files[0],
+      });
+
+      const url = URL.createObjectURL(files[0]);
+      setImagePreviewUrl(url);
+      return;
+    }
+
     setCreateCharacterData({
       ...createCharacterData,
-      [event.target.id]:
-        event.target.id === "image"
-          ? (event.target as HTMLInputElement).files![0]
-          : event.target.value,
+      [event.target.id]: event.target.value,
     });
   };
 
@@ -89,7 +121,7 @@ const CreateForm = ({ isEdit }: CreateFormProps): JSX.Element => {
     };
 
     if (isEdit) {
-      await editCharacter(informationCharacter, characterId!);
+      await editCharacter(informationCharacter, idCharacter!);
       return;
     }
 
@@ -101,18 +133,15 @@ const CreateForm = ({ isEdit }: CreateFormProps): JSX.Element => {
     <CreateFormStyled onSubmit={handleSubmit}>
       <div className="create-form__item--image">
         <label className="create-form__label" htmlFor="image">
-          {(createCharacterData.image as File).name ? (
+          {imagePreviewUrl ? (
             <img
-              src={URL.createObjectURL(createCharacterData.image as File)}
+              src={imagePreviewUrl as string}
               alt="Your avatar"
               className="edit-profile__image"
               aria-label="Your avatar"
             />
           ) : (
-            <div
-              aria-label="Empty image"
-              className={"edit-profile__image"}
-            ></div>
+            <div aria-label="Empty image" className="edit-profile__image"></div>
           )}
         </label>
         <input
