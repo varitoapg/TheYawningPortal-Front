@@ -58,10 +58,10 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
-    "@testing-library/cypress": "^9.0.0",
+    "@testing-library/cypress": "^8.0.7",
     "@types/styled-components": "^5.1.26",
     "@types/uuid": "^8.3.4",
-    "cypress": "^12.4.0",
+    "cypress": "^11.2.0",
     "fishery": "^2.2.2",
     "husky": "^8.0.0",
     "msw": "^0.49.0"
